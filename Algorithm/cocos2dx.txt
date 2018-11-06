@@ -1,0 +1,117 @@
+cocos2dx ÇúÏßÔË¶¯
+
+/////////////////////////////////////////////////////
+
+if (resPicId!=-1) {
+        for (int i=0; i<resCnt; i++) {
+            ui::ImageView* resImg = Utils::createImageViewByPicId(resPicId, PictureItemType::PictureItem_Icon);
+            Vec2 fromWorldPos = fromNode->convertToWorldSpace(Vec2::ZERO);
+            fromWorldPos = fromWorldPos+fromNode->getContentSize()*0.5f;
+            
+            Vec2 aimWorldPos = resNode->convertToWorldSpace(Vec2::ZERO)+resNode->getContentSize()*0.5f;
+            Size aimSize = resNode->getContentSize();
+            
+            EffectAniPickUpRes* ani = EffectAniPickUpRes::create(resImg, aimWorldPos,aimSize);
+            ani->setPosition(topBottomLayer->convertToNodeSpace(fromWorldPos));
+            ani->setAniEndCall(endCall);
+            topBottomLayer->addChild(ani,1);
+            ani->startAnimation();
+        }
+    }
+    
+void EffectBaseAnimation::onFinishAnimation()
+{
+    CC_SAFE_RETAIN(this);
+    if (m_AniEndCall!=nullptr)
+        m_AniEndCall();
+    CC_SAFE_RELEASE(this);
+    this->removeFromParent();
+}
+
+#pragma mark - EffectAniPickUpRes
+EffectAniPickUpRes* EffectAniPickUpRes::create(cocos2d::Node* resNode,const cocos2d::Vec2& aimPos,const cocos2d::Size& aimSize)
+{
+    EffectAniPickUpRes* p = new (std::nothrow)EffectAniPickUpRes();
+    if (p && p->init(resNode, aimPos,aimSize)) {
+        p->autorelease();
+        return p;
+    }
+    CC_SAFE_DELETE(p);
+    return nullptr;
+}
+bool EffectAniPickUpRes::init(cocos2d::Node* resNode,const cocos2d::Vec2& aimPos,const cocos2d::Size& aimSize)
+{
+    bool ret = false;
+    do {
+        CC_BREAK_IF(!cocos2d::Node::init());
+        CC_BREAK_IF(resNode==nullptr);
+        m_resNode = resNode;
+        m_aimPos = aimPos;
+        m_aimW = aimSize.width;
+        m_sign = rand()%2==1? -1 : 1;
+        
+        cocos2d::Size nodeSize = m_resNode->getContentSize();
+        
+        m_resNode->setPosition(nodeSize*0.5f);
+        m_resNode->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+        m_resNode->setScale(4.f);
+        this->addChild(m_resNode);
+        
+        this->setContentSize(nodeSize*4.f);
+        this->setAnchorPoint(cocos2d::Vec2::ANCHOR_MIDDLE);
+        this->setScale(0.0f);
+        
+        ret = true;
+    } while (false);
+    return ret;
+}
+
+void EffectAniPickUpRes::startAnimation()
+{
+    cocos2d::Size resSize = this->getContentSize();
+    float dropDuration = 0.6f;
+    
+    //-------------act 0
+    float delay = (float)(rand()%50)/100.f;//delay 0-0.49s,the delay time should smaller than dropDuration
+    
+    //-------------act 1
+    float actTime = 0.4f;
+    float randScale = (float)(rand()%4+2)/10.f;
+    float randW = rand()%(int)resSize.width;
+    float randH = rand()%(int)resSize.height;
+    float randJH = (rand()%(int)resSize.height+20.f)*0.5f;
+    cocos2d::Vec2 jumpDt = cocos2d::Vec2(m_sign*-1*randW*0.6f,-randH);
+    cocos2d::JumpBy* jumpAct = cocos2d::JumpBy::create(actTime, jumpDt, randJH, 1);
+    cocos2d::ScaleTo* scaleAct1 = cocos2d::ScaleTo::create(actTime, randScale);
+    
+    //-------------act 2
+    dropDuration -= delay;
+    dropDuration = MAX(dropDuration, 0.f);
+    
+    //-------------act 3
+    actTime = 0.9f;
+    cocos2d::Vec2 startPt = this->getPosition()+jumpDt;
+    cocos2d::Vec2 ctlDeltaPt1 = m_aimPos-startPt;
+    ctlDeltaPt1 = ctlDeltaPt1.getNormalized()*0.25;
+    
+    cocos2d::Vec2 ctlDeltaPt2 = ctlDeltaPt1.rotate(cocos2d::Vec2::forAngle(m_sign*M_PI_2));
+    int range = (int)resSize.width*3;
+    float height = (float)(rand()%(range*10))/10.f;//keep 1 decimal,eg:8.8...
+    ctlDeltaPt2 = ctlDeltaPt2.getNormalized()*height;
+    
+    cocos2d::ccBezierConfig bezierCfg;
+    bezierCfg.controlPoint_1 = this->getPosition();
+    bezierCfg.controlPoint_2 = startPt+ctlDeltaPt1+ctlDeltaPt2;
+    bezierCfg.endPosition = m_aimPos;
+    cocos2d::BezierTo* bezierAct = cocos2d::BezierTo::create(actTime, bezierCfg);
+    cocos2d::ScaleTo* scaleAct2 = m_aimW < randScale*resSize.width ? cocos2d::ScaleTo::create(actTime, m_aimW/resSize.width) : NULL;
+    
+    //--------------act final
+    cocos2d::Sequence* actSeq = cocos2d::Sequence::create(cocos2d::DelayTime::create(delay)
+                                                            ,cocos2d::Spawn::create(jumpAct,scaleAct1, NULL)
+                                                            ,cocos2d::DelayTime::create(dropDuration)
+                                                            ,cocos2d::EaseSineIn::create(cocos2d::Spawn::create(bezierAct,scaleAct2, NULL))
+                                                            ,cocos2d::CallFunc::create(CC_CALLBACK_0(EffectBaseAnimation::onFinishAnimation, this))
+                                                            ,nullptr);
+    this->runAction(actSeq);
+}
