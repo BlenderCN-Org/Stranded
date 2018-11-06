@@ -1,13 +1,5 @@
 /*
-* $Id: YKSchedulerView.cpp 2010-1-28 11:21:03Z soarchin $
-* 
 * Thie file is part of Scheduler for util function operation
-* 
-* Copyright (C)2006-2010 永凯软件技术(上海)有限公司 
-* 
-* Author yp
-* 
-* version 1.0
 */
 // YKSchedulerView.cpp : implementation of the CYKSchedulerView class
 //
