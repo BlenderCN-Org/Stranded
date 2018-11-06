@@ -1,0 +1,2 @@
+excel < cfg.txt
+pause
