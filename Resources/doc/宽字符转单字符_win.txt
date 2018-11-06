@@ -1,0 +1,105 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <Windows.h>
+using namespace std;
+
+
+//wstring 转换 string
+string W2A_S(const wstring& strIn)
+{   
+string str;
+
+
+LPCWSTR lpw = strIn.c_str();
+
+
+int wLen = (int)(wcslen( lpw ) + 1);
+
+
+int aLen=WideCharToMultiByte(
+CP_ACP,
+0,
+lpw,
+wLen,
+NULL,
+0,
+NULL,
+NULL);
+
+
+LPSTR lpa = new char [aLen];
+
+
+WideCharToMultiByte(
+CP_ACP,
+0,
+lpw,
+wLen,
+lpa,
+aLen,
+NULL,
+NULL);
+str = lpa;
+delete [] lpa;
+
+
+return str;
+}
+
+
+//string 转换为 wstring
+wstring A2W_S(const string& strIn)
+{
+wstring str;
+
+
+LPCSTR lpa = strIn.c_str();
+
+
+int aLen = (int)(strlen( lpa ) + 1);
+
+
+int wLen = MultiByteToWideChar(
+CP_ACP,
+0,
+lpa,
+aLen,
+NULL,
+0);
+
+
+LPOLESTR lpw = new WCHAR [wLen];
+MultiByteToWideChar(
+CP_ACP,
+0,
+lpa,
+aLen,
+lpw,
+wLen);
+
+
+str = lpw;
+
+
+delete [] lpw;
+
+
+return str;
+}
+//由 string 输出内容到文件中
+void OutStrContext( string& fileDir, string& strContext )
+{
+ofstream fileOut(fileDir,ios::out /*| ios::app*/ );
+fileOut<<strContext.c_str();
+fileOut.close();
+}
+
+
+//由 wstring  输出内容到文件中
+void OutWstrContext( string& fileDir, wstring& strContext )
+{
+ofstream fileOut(fileDir,ios::out /*| ios::app*/ );
+fileOut<<W2A_S(strContext).c_str();
+fileOut.close();
+}

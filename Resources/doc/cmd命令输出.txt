@@ -1,0 +1,20 @@
+例如：将Ping命令的加长包输出到D盘的ping.txt文本文件。
+1、在D:目录下创建文本文件ping.txt（这步可以省略，偶尔提示无法创建文件时需要）
+2、在提示符下输入ping www.idoo.org.ru －t > D:ping.txt
+3、这时候发现D盘下面的ping.txt里面已经记录了所有的信息
+备注：
+只用“>”是覆盖现有的结果，每一个命令结果会覆盖现有的txt文件，如果要保存很多命令结果的话，就需要建立不同文件名的txt文件。
+那么有没有在一个更好的办法只用一个txt文件呢？答案是肯定的，要在同一个txt文件里面追加cmd命令结果，就要用“>>”替换“>” 就可以了.
+
+
+C:\Users\nine>cd C:\boost_1_57_0
+
+C:\boost_1_57_0>bjam.exe stage --toolset=msvc-12.0 --stagedir="C:\boost_1_57_0\v
+c12" link=static runtime-link=shared runtime-link=static threading=multi debug r
+elease >> output.log
+
+
+//
+
+启动QQ云输入法.
+javascript:(function(q){q?q.toggle():function(d,j){j=d.createElement('script');j.async=true;j.src='//ime.qq.com/fcgi-bin/getjs';j.setAttribute('ime-cfg','lt=2');d=d.getElementsByTagName('head')[0];d.insertBefore(j,d.firstChild)}(document)})(window.QQWebIME)

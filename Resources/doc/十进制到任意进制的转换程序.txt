@@ -1,0 +1,91 @@
+十进制到任意进制的转换程序
+
+
+源程序如下：
+#include<stdio.h>
+#include<math.h>
+void main()
+{
+ int i=0,n,j,a[20],b[20],k,c=0;
+ double m,x,d;
+ printf("请输入需要转换的数:");
+ scanf("%lf",&x);
+ printf("请输入要转换成的进制(1<N<=16):");
+ scanf("%d",&n);
+ if(x<0)
+  m=fabs(x);
+ else
+  m=x;
+ k=(int)m;//强制类型转换，可以使用k=(int)m;代替，从而更加的一目了然
+ while(k)//判定需要转换的数是否变为0
+ {
+  a[i++]=k%n;//取余，进行进制转换，但是顺序与正确值相反
+  k/=n;//转换一位之后进行相应的变化
+ }
+ if(m!=(int)m)//选择性计算，如果是整数就不用进行这一步的计算了，这样可以节约程序的运行时间
+ { 
+  d=m-(int)m;//取小数部分
+  while(d!=0)
+  {
+   b[c]=(int)(d*n);//算法为×N取整
+   d=d*n-b[c];
+   c++;
+   if(c>=10)
+    break;//主要是控制小数后面万一出现无限小数的时候好跳出循环以免出现死循环
+  }
+ }
+ printf("转换结果为:");
+ if(x<0)
+  printf("-");
+ for(j=i-1;j>=0;j--)//反序输出,大于10的数字进行相应的变化
+ {
+  if(a[j]==10)
+   printf("A");
+  else
+   if(a[j]==11)
+    printf("B");
+   else
+    if(a[j]==12)
+     printf("C");
+    else
+     if(a[j]==13)
+      printf("D");
+     else
+      if(a[j]==14)
+       printf("E");
+      else
+       if(a[j]==15)
+        printf("F");
+       else
+        printf("%d",a[j]);
+ }
+ if(m!=(int)m)//选择性输出，这样可以节约输出时间和程序的运行时间
+ {
+  printf(".");
+  for(j=0;j<c;j++)//正序输出
+  {
+   if(b[j]==10)
+    printf("A");
+   else
+    if(b[j]==11)
+     printf("B");
+    else
+     if(b[j]==12)
+      printf("C");
+     else
+      if(b[j]==13)
+       printf("D");
+      else
+       if(b[j]==14)
+        printf("E");
+       else
+        if(b[j]==15)
+         printf("F");
+        else
+         printf("%d",b[j]);
+  }
+ }
+ if(c>=10)//如果是无限小数则在后以省略号表示
+  printf("......");
+ printf("\n");//输出换行，以使程序的输出结果美观
+} 

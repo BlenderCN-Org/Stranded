@@ -1,0 +1,9 @@
+char szTemp[512] = {0};
+for (int j = 0; j < *pSignDataSize; j++)
+{
+	sprintf((char *)&szTemp[j*2], "%02x", g_sign[j]^0);
+}
+	
+Trace(L_INFO, __FILE__, __LINE__, NULL, "szTemp=[%s]", szTemp);
+
+//其中不可打印字符串为g_sign[Len]，实际长度为*pSignDataSize

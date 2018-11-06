@@ -1,0 +1,9 @@
+# This is an example of a comment.
+
+teapotColor 0.0 0.0 1.0
+cameraPosition 0.0 0.0 -5.0
+
+# These are not used.
+
+totalTeapots 1
+description This just a teapot in a 3D scene!

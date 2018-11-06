@@ -1,0 +1,66 @@
+General
+	Project = D:\Stranded\Resources\music\XactAudioProject.xap
+	Build Platform = Windows
+	Timestamp = Tue Oct 11 20:04:27 2016
+	Content Version = 46
+
+Referenced Variables (0)
+
+Referenced Categories (2)
+	Category = Global
+	Parent = <none>
+	Instance Limit = <none>
+	Instance Limit Behavior = <none>
+
+	Category = Default
+	Parent = Global
+	Instance Limit = <none>
+	Instance Limit Behavior = <none>
+
+Valid Cues (1)
+	clip
+	Sound Bank = Sound Bank
+	Interactive = Non-Interactive
+	Looping = Non-Looping
+	Instance Limit = <none>
+	Instance Limit Behavior = <none>
+	Dependant Wave Banks = Wave Bank
+	Cue Instance Variables = <none>
+	Global Variables = <none>
+	Notes = <none>
+
+Referenced Wave Banks (1)
+	Wave Bank = Wave Bank
+	Type = In-Memory
+	Wave Names = Omitted
+	Num Waves = 1
+	Dependant Sound Banks = Sound Bank
+
+Sound Banks (1)
+	Sound Bank = Sound Bank
+	Cue Names = Included
+	Dependant Wave Banks = Wave Bank
+
+Unreferenced Waves (0)
+
+Unreferenced Sounds (0)
+
+Unreferenced Wave Banks (0)
+
+Unreferenced Variables (4)
+	Variable = OrientationAngle
+	Variable = DopplerPitchScalar
+	Variable = SpeedOfSound
+	Variable = Distance
+
+Unreferenced Categories (1)
+	Category = Music
+
+Unreferenced RPC Presets (0)
+
+Unreferenced DSP Presets (0)
+
+Invalid Cues (0)
+
+Invalid Sounds (0)
+

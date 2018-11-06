@@ -1,0 +1,47 @@
+# 自定义模型格式 （Ultimate Model Format, UMF）
+# 二进制格式，可以保存顶点位置、纹理坐标、法线值、顶点颜色和三角形索引。
+
+# 文件中的所有数值都是整形，每个整形四个字节。
+# 涉及到模型几何图形的所有信息由浮点值构成。
+
+# 开始是文件ID，用于检查正在加载的文件是否是有效的模型文件.指定文件格式
+# 之后，分块列出其余的数据。
+#
+# 开始是模型中的网格总数，每个模型可以有多个与其关联的网格。
+# 网格总数之后完整地列出每个网格的内容。
+# 开始是网格的材质信息。在基本的材质信息之后，读取顶点位置，然后是顶点法线、顶点颜色、纹理坐标及三角形数据。
+# 可以指定某些属性而无需指定保存在文件中的全部属性.
+# 法线数目应该和颜色数目、顶点、纹理坐标等匹配。
+# 读取完三角形数据后，读取下一个网格的材质信息。一直持续到加载完所有网格为止。
+
+# 布局
+
+File id (must be 9000)
+
+Number of meshes in model
+
+(Mesh 1)
+Diffuse, specular, and power material data
+
+Number of vertices
+	Vertices data
+
+Number of normals
+	Normals data
+
+Number of colors
+	Colors data
+
+Number of texture coordinates
+	Texture coordinate data
+
+Number of faces
+	faces data
+
+(Mesh 2)
+Diffuse, specular, and power material data
+
+Number of vertices
+	Vertices data
+
+(And so on until we read the last mesh)

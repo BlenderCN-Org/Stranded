@@ -1,0 +1,138 @@
+编译boost
+http://www.cnblogs.com/wondering/archive/2009/05/21/boost_setup.html
+
+——更新于2011/7/19，目前我已对boost的安装和使用有了新的认识，因此也会对两年前写的这篇文章做大幅修改，网上转载版本泛滥，请以本文为准。
+
+——更新于2013/3/20，增加ARM Linux下的编译配置方法。 
+
+理论上，本文适用于boost的各个版本，尤其是最新版本1.48.0；适用于各种C++编译器，如VC6.0（部分库不支持），VS2003，VS2005，VS2008，VS2010，V2012，gcc，arm-linux-gcc，C++ Builder等。
+
+先总结一下Windows系统。
+
+一、下载
+
+首先从boost官方主页http://www.boost.org/下载最新版boost安装包，或者使用Subversion获取最新版本，地址是：http://svn.boost.org/svn/boost/trunk。本人现在一般都用svn，这样可以很方便的进行update和build，而不是每次都下载新的安装包并rebuild。
+
+二、安装
+
+如果是使用下载的安装包，那么请将boost安装包解压至本地目录，如：E:\SDK\boost；如果是用svn的，也可以将boost的代码checkout到这个目录。因为boost一部分类是需要编译成库才能使用的，所以我们还需要准备好boost专用的编译辅助工具bjam。在命令提示符（cmd.exe）中执行根目录下的bootstrap.bat，编译后的bjam.exe会自动拷贝到该目录下（bjam必须与boost-build.jam在同级目录）。
+
+三、编译
+
+接下来就是最重要的编译步骤了。需要打开命令提示符（cmd.exe）窗口并执行bjam，可以使用--help参数来查看命令帮助。这里详细讲解一下bjam的命令行参数，因为它非常重要。首先，它涉及到编程环境的搭建，你需要根据自己今后具体的使用环境来选择合适的命令行参数；其次，它影响到你的硬盘空间，完全编译的话据说在3G以上，如果你同时拥有2个以上的IDE（如VC6和VC9共存）而且都要用到boost，那么占用多少硬盘就自己算吧……虽说如今大家的硬盘空间都不成问题，但就像本人一样崇尚合理利用资源不习惯铺张浪费提倡节俭的童鞋应该大有人在，所以不需要的配置和不需要的库就可以不编译了。综合以上两点因素，本人使用的bjam命令如下：
+ 
+bjam stage --toolset=msvc-9.0 --without-graph --without-graph_parallel --without-math --without-mpi --without-python --without-serialization --without-wave --stagedir="E:\SDK\boost\bin\vc9" link=static runtime-link=shared runtime-link=static threading=multi debug release
+ 
+
+下面详细解释一下每个参数的含义：
+
+stage/install：stage表示只生成库（dll和lib），install还会生成包含头文件的include目录。本人推荐使用stage，因为install生成的这个include目录实际就是boost安装包解压缩后的boost目录（E:\SDK\boost\boost，只比include目录多几个非hpp文件，都很小），所以可以直接使用，而且不同的IDE都可以使用同一套头文件，这样既节省编译时间，也节省硬盘空间。
+ 
+toolset：指定编译器，可选的如borland、gcc、msvc（VC6）、msvc-9.0（VS2008）等。
+ 
+without/with：选择不编译/编译哪些库。因为python、mpi等库我都用不着，所以排除之。还有wave、graph、math、regex、test、program_options、serialization、signals这几个库编出的静态lib都非常大，所以不需要的也可以without掉。这可以根据各人需要进行选择，默认是全部编译。但是需要注意，如果选择编译python的话，是需要python语言支持的，应该到python官方主页http://www.python.org/下载安装。查看boost包含库的命令是bjam --show-libraries。
+ 
+stagedir/prefix：stage时使用stagedir，install时使用prefix，表示编译生成文件的路径。推荐给不同的IDE指定不同的目录，如VS2008对应的是E:\SDK\boost\bin\vc9，VC6对应的是E:\SDK\boost\bin\vc6，否则都生成到一个目录下面，难以管理。如果使用了install参数，那么还将生成头文件目录，vc9对应的就是E:\SDK\boost\bin\vc9\include\boost-1_46\boost,vc6类似（光这路径都这样累赘，还是使用stage好）。
+ 
+build-dir：编译生成的中间文件的路径。这个本人这里没用到，默认就在根目录（E:\SDK\boost）下，目录名为bin.v2，等编译完成后可将这个目录全部删除（没用了），所以不需要去设置。
+ 
+link：生成动态链接库/静态链接库。生成动态链接库需使用shared方式，生成静态链接库需使用static方式。一般boost库可能都是以static方式编译，因为最终发布程序带着boost的dll感觉会比较累赘。
+ 
+runtime-link：动态/静态链接C/C++运行时库。同样有shared和static两种方式，这样runtime-link和link一共可以产生4种组合方式，各人可以根据自己的需要选择编译。一般link只选static的话，只需要编译2种组合即可，即link=static runtime-link=shared和link=static runtime-link=static，本人一般就编这两种组合。
+ 
+threading：单/多线程编译。一般都写多线程程序，当然要指定multi方式了；如果需要编写单线程程序，那么还需要编译单线程库，可以使用single方式。
+ 
+debug/release：编译debug/release版本。一般都是程序的debug版本对应库的debug版本，所以两个都编译。
+ 
+本人按以上方式分别编译了静态链接和动态链接两个版本后，整个E:\SDK\boost目录有1.28G。如果不打算将来再升级boost版本，那么可以将编译生成的中间文件bin.v2目录删除，这样整个目录（包括安装包解压缩文件和编译生成的库文件）会减小至不到800MB，如果runtime-link只选了一种方式，那么整个目录只有600MB。事实上编译完成后除了boost和bin目录之外其他目录和文件已经可以删除了，这样还可以腾出350MB的空间来。不过我又研究了一下，其实libs这个目录也很有用，它提供了所有Boost类的使用范例，平时可以作为参考；另外doc目录是一个完整的boost使用帮助文档，当然最好也不要删了。其他几个目录和文件加起来也就几十兆，索性都给它们留一条生路吧。
+ 
+呵呵，一个完整而又完美的boost目录就此诞生了。
+需要注意的是，如果使用VS2008编译boost（其他版本VC未作测试，可能也有类似问题），那么假如你调用boost的主程序添加了_BIND_TO_CURRENT_VCLIBS_VERSION预定义宏来强制使用最新版本的Windows CRT库，那么你的boost也需要添加这个预定义宏来进行编译，否则会导致程序因为各模块使用的CRT库版本不统一而出现“在某些机器上运行提示‘由于应用程序配置不正确，应用程序未能启动’的问题”，关于该问题请参考我的另外一篇文章：【原】解决VS2008编译的程序在某些机器上运行提示“由于应用程序配置不正确，应用程序未能启动”的问题。添加该预定义宏的方法是：打开boost安装根目录下的boost\config\compiler\visualc.hpp，在最上面增加：
+
+// Added by terry, 2011/4/19, Force the linker to use the latest version of CRT/MFC/ATL dll
+#ifndef _BIND_TO_CURRENT_VCLIBS_VERSION
+#define _BIND_TO_CURRENT_VCLIBS_VERSION    1
+#endif // _BIND_TO_CURRENT_VCLIBS_VERSION 
+ 
+
+这种方法修改了boost的源码，并非我所愿， 但是无奈没有找到更好的方法，如果有人知道希望能够留言告诉我。
+
+如果图省事，不想了解这么多，那么有简单的方法，可以使用命令：
+ 
+bjam --toolset=msvc-9.0 --build-type=complete
+ 
+直接指定编译器以完全模式编译即可，这样可以满足今后的一切使用场合，但同时带来的后果是：
+1、占用3G以上的硬盘空间
+2、占用若干小时的编译时间
+3、头文件和库文件存放于C:\Boost（本人非常反感）
+4、生成的很多文件可以永远也用不上
+
+四、配置
+
+include目录：E:\SDK\boost
+library目录：E:\SDK\boost\bin\vc9\lib
+添加到IDE相应的路径下面即可。
+
+五、使用
+
+使用举例：
+ 
+#include <boost\thread.hpp>
+ 
+此时，不用包含库文件，boost的auto-link机制将会自动帮我们包含对应的静态lib。也就是说，boost默认是以静态方式链接的，这样我们的工程属性最好也设为Multi-threaded (Debug)。如果想使用dll动态方式链接，需要预先定义宏：
+ 
+#define BOOST_ALL_DYN_LINK
+ 
+同样，此时boost也会默认帮我们包含对应的lib。如果不想使用boost提供的auto-link机制，或者对它的自动链接不太放心的话（其实大可不必担心），可以预先定义宏：
+ 
+#define BOOST_ALL_NO_LIB
+ 
+然后使用以下方法链接：
+ 
+#pragma comment(lib, "boost_thread-vc90-mt-1_47.lib")
+或
+#pragma comment(lib, "boost_thread-vc90-mt.lib")
+ 
+这两个lib其实是一样的，实在不明白boost编译时为什么每个库都要复制一份，难道是因为后者在升级boost版本后不用改代码？另外还有一个比较有用的宏：
+ 
+#define BOOST_LIB_DIAGNOSTIC
+ 
+它可以让VC在编译时的output窗口中输出程序具体链接了哪些boost库以及链接顺序。
+ 
+关于boost的auto-link机制，详细可以看看boost\config\auto_link.hpp里的代码，很容易可以读懂，并且值得我们学习。
+
+六、Linux下编译与配置的区别：
+
+我的Linux与Windows使用了共享目录，将Windows下的E:\SDK目录映射成了Linux下的/mnt/hgfs/sdk目录。
+所以我的boost源文件根目录就是/mnt/hgfs/sdk/boost，cd进去。
+首先需要编译bjam：
+ 
+./bootstrap.sh
+ 
+编译完成后，会在当前目录下生成bjam，接下来开始编译boost：
+ 
+./bjam stage --toolset=gcc --with-date_time --with-thread --with-filesystem --with-program_options --stagedir="/mnt/hgfs/sdk/boost/bin/gcc" link=static runtime-link=static threading=multi debug release
+ 
+这些参数的意义与Windows下完全一样，只不过编译器改成gcc，其他选项根据自己的需要进行设置。
+生成的库文件就在bin/gcc/lib目录下，与vc9编译的一样。
+如果将来不会再升级boost版本，那么可以把中间文件全部删掉，包括bin.v2目录和tools/jam/stage目录。
+关于boost库的使用，为了不用每次写makefile都把boost的头文件和库文件的路径带着，而且为了让跨平台程序公用一套代码，
+可以将boost的头文件和库文件路径加到Linux的环境变量中。打开/etc/profile，加入以下gcc环境变量： 
+ 
+CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:"/mnt/hgfs/sdk/boost"
+export CPLUS_INCLUDE_PATH
+
+LIBRARY_PATH=$LIBRARY_PATH:"/mnt/hgfs/sdk/boost/bin/gcc/lib"
+export LIBRARY_PATH
+ 
+这样就可以直接使用boost的头文件和库文件了，并且与Windows共用一套代码，非常方便。
+
+七、ARM Linux下编译与配置的区别：
+
+编辑project-config.jam，修改using gcc这行。改为： 
+using gcc : arm : arm-linux-gcc ;
+
+注意空格不能删掉，必须保留；arm-linux-gcc可以换成你自己使用的编译器。使用bjam开始编译：
+
+./bjam stage
+注意这里，编译arm就不能像上面Windows和Linux那样带许多参数，否则编译出错；在网上看到别人可以使用--with或--without属性，我没尝试，应该是可以的，但其他参数可能就不支持了，有兴趣的话可以试验一下。
