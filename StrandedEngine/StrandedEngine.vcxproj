@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{73550B87-7F50-4D33-B279-5A2E3876D5BF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>StrandedEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141_xp</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)\lib\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)\lib\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="bone.h" />
+    <ClInclude Include="BoundingGeometry.h" />
+    <ClInclude Include="CDirectMusic.h" />
+    <ClInclude Include="CommandScript.h" />
+    <ClInclude Include="D3DRenderer.h" />
+    <ClInclude Include="defines.h" />
+    <ClInclude Include="deletefuncs.h" />
+    <ClInclude Include="DirectInput.h" />
+    <ClInclude Include="engine.h" />
+    <ClInclude Include="GameScriptInclude.h" />
+    <ClInclude Include="GUI.h" />
+    <ClInclude Include="InputInterface.h" />
+    <ClInclude Include="light.h" />
+    <ClInclude Include="material.h" />
+    <ClInclude Include="mathDefines.h" />
+    <ClInclude Include="mathLibrary.h" />
+    <ClInclude Include="matrix.h" />
+    <ClInclude Include="objLoader.h" />
+    <ClInclude Include="physics.h" />
+    <ClInclude Include="plane.h" />
+    <ClInclude Include="polygon.h" />
+    <ClInclude Include="PropertyScript.h" />
+    <ClInclude Include="quaternion.h" />
+    <ClInclude Include="RainPS.h" />
+    <ClInclude Include="ray.h" />
+    <ClInclude Include="RenderInterface.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Route.h" />
+    <ClInclude Include="soundcue.h" />
+    <ClInclude Include="SoundInterface.h" />
+    <ClInclude Include="structs.h" />
+    <ClInclude Include="token.h" />
+    <ClInclude Include="UMFLoader.h" />
+    <ClInclude Include="vector.h" />
+    <ClInclude Include="XACT3Audio.h" />
+    <ClInclude Include="xactdefs.h" />
+    <ClInclude Include="XMesh.h" />
+    <ClInclude Include="XStructure.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BoundingGeometry.cpp" />
+    <ClCompile Include="CDirectMusic.cpp" />
+    <ClCompile Include="CommandScript.cpp" />
+    <ClCompile Include="D3DRenderer.cpp" />
+    <ClCompile Include="DirectInput.cpp" />
+    <ClCompile Include="GUI.cpp" />
+    <ClCompile Include="matrix.cpp" />
+    <ClCompile Include="objLoader.cpp" />
+    <ClCompile Include="plane.cpp" />
+    <ClCompile Include="polygon.cpp" />
+    <ClCompile Include="PropertyScript.cpp" />
+    <ClCompile Include="quaternion.cpp" />
+    <ClCompile Include="RainPS.cpp" />
+    <ClCompile Include="ray.cpp" />
+    <ClCompile Include="Route.cpp" />
+    <ClCompile Include="token.cpp" />
+    <ClCompile Include="UMFLoader.cpp" />
+    <ClCompile Include="vector.cpp" />
+    <ClCompile Include="XACT3Audio.cpp" />
+    <ClCompile Include="XMesh.cpp" />
+    <ClCompile Include="XStructure.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="StrandedEngine.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

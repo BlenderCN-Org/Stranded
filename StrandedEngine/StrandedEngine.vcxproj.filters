@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="matrix.cpp">
+      <Filter>GameMath</Filter>
+    </ClCompile>
+    <ClCompile Include="vector.cpp">
+      <Filter>GameMath</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyScript.cpp">
+      <Filter>GameScript</Filter>
+    </ClCompile>
+    <ClCompile Include="token.cpp">
+      <Filter>GameScript</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandScript.cpp">
+      <Filter>GameScript</Filter>
+    </ClCompile>
+    <ClCompile Include="ray.cpp">
+      <Filter>GameMath</Filter>
+    </ClCompile>
+    <ClCompile Include="plane.cpp">
+      <Filter>GameMath</Filter>
+    </ClCompile>
+    <ClCompile Include="polygon.cpp">
+      <Filter>GameMath</Filter>
+    </ClCompile>
+    <ClCompile Include="quaternion.cpp">
+      <Filter>GameMath</Filter>
+    </ClCompile>
+    <ClCompile Include="BoundingGeometry.cpp" />
+    <ClCompile Include="DirectInput.cpp">
+      <Filter>GameInput</Filter>
+    </ClCompile>
+    <ClCompile Include="CDirectMusic.cpp">
+      <Filter>GameMusic</Filter>
+    </ClCompile>
+    <ClCompile Include="objLoader.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="UMFLoader.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="RainPS.cpp">
+      <Filter>ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DRenderer.cpp">
+      <Filter>GameRender</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI.cpp">
+      <Filter>GameGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Route.cpp">
+      <Filter>GamePath</Filter>
+    </ClCompile>
+    <ClCompile Include="XMesh.cpp">
+      <Filter>GamePath</Filter>
+    </ClCompile>
+    <ClCompile Include="XStructure.cpp">
+      <Filter>GamePath</Filter>
+    </ClCompile>
+    <ClCompile Include="XACT3Audio.cpp">
+      <Filter>GameMusic</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="defines.h" />
+    <ClInclude Include="engine.h" />
+    <ClInclude Include="light.h" />
+    <ClInclude Include="material.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="structs.h" />
+    <ClInclude Include="matrix.h">
+      <Filter>GameMath</Filter>
+    </ClInclude>
+    <ClInclude Include="vector.h">
+      <Filter>GameMath</Filter>
+    </ClInclude>
+    <ClInclude Include="mathDefines.h">
+      <Filter>GameMath</Filter>
+    </ClInclude>
+    <ClInclude Include="mathLibrary.h">
+      <Filter>GameMath</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyScript.h">
+      <Filter>GameScript</Filter>
+    </ClInclude>
+    <ClInclude Include="token.h">
+      <Filter>GameScript</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandScript.h">
+      <Filter>GameScript</Filter>
+    </ClInclude>
+    <ClInclude Include="ray.h">
+      <Filter>GameMath</Filter>
+    </ClInclude>
+    <ClInclude Include="plane.h">
+      <Filter>GameMath</Filter>
+    </ClInclude>
+    <ClInclude Include="polygon.h">
+      <Filter>GameMath</Filter>
+    </ClInclude>
+    <ClInclude Include="physics.h">
+      <Filter>GameMath</Filter>
+    </ClInclude>
+    <ClInclude Include="quaternion.h">
+      <Filter>GameMath</Filter>
+    </ClInclude>
+    <ClInclude Include="BoundingGeometry.h" />
+    <ClInclude Include="InputInterface.h">
+      <Filter>GameInput</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectInput.h">
+      <Filter>GameInput</Filter>
+    </ClInclude>
+    <ClInclude Include="CDirectMusic.h">
+      <Filter>GameMusic</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundInterface.h">
+      <Filter>GameMusic</Filter>
+    </ClInclude>
+    <ClInclude Include="objLoader.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="UMFLoader.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="RainPS.h">
+      <Filter>ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScriptInclude.h">
+      <Filter>GameScript</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderInterface.h">
+      <Filter>GameRender</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DRenderer.h">
+      <Filter>GameRender</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI.h">
+      <Filter>GameGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Route.h">
+      <Filter>GamePath</Filter>
+    </ClInclude>
+    <ClInclude Include="bone.h">
+      <Filter>GamePath</Filter>
+    </ClInclude>
+    <ClInclude Include="XMesh.h">
+      <Filter>GamePath</Filter>
+    </ClInclude>
+    <ClInclude Include="XStructure.h">
+      <Filter>GamePath</Filter>
+    </ClInclude>
+    <ClInclude Include="XACT3Audio.h">
+      <Filter>GameMusic</Filter>
+    </ClInclude>
+    <ClInclude Include="soundcue.h">
+      <Filter>GameMusic</Filter>
+    </ClInclude>
+    <ClInclude Include="xactdefs.h">
+      <Filter>GameMusic</Filter>
+    </ClInclude>
+    <ClInclude Include="deletefuncs.h">
+      <Filter>GameMusic</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="StrandedEngine.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="GameMath">
+      <UniqueIdentifier>{d49284e9-cc0e-4dc2-8cd4-5163073acfef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScript">
+      <UniqueIdentifier>{0df24c03-dda0-4035-a935-b803419e5b37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameInput">
+      <UniqueIdentifier>{b8775725-32f3-486a-b1e5-76e7cfb04da6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameMusic">
+      <UniqueIdentifier>{a1e8d812-5b3f-4163-bd73-4ffaabbc2d2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{24b83f47-cfd8-46d4-93ee-40eda5c9a5fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ParticleSystem">
+      <UniqueIdentifier>{8ea8f283-0751-4484-a4b2-cef35a3139ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameRender">
+      <UniqueIdentifier>{e2e34721-ee5e-4f46-aa0a-1ecf580492ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameGUI">
+      <UniqueIdentifier>{4976ef61-3ac3-4f15-a7b2-3219e5fdbe85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GamePath">
+      <UniqueIdentifier>{f75a0e70-1fb2-4c47-b51f-e3fd8847fe83}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
