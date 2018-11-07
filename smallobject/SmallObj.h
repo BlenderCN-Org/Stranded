@@ -1,6 +1,6 @@
 #pragma once
 
-#include "YKThreadPolicy.h"
+#include "ThreadPolicy.h"
 #include <vector>
 
 #ifndef DEFAULT_CHUNK_SIZE
@@ -88,31 +88,31 @@ private:
 template <template <class> class ThreadPolicy = POLICY_THREAD::SingleThread,
 	std::size_t chunkSize = DEFAULT_CHUNK_SIZE, 
 	std::size_t maxSmallObjectSize = MAX_SMALL_OBJECT_SIZE>
-class YKSmallObject : public ThreadPolicy<YKSmallObject<ThreadPolicy, chunkSize, maxSmallObjectSize> >
+class SmallObject : public ThreadPolicy<SmallObject<ThreadPolicy, chunkSize, maxSmallObjectSize> >
 {
-	typedef ThreadPolicy< YKSmallObject<ThreadPolicy, chunkSize, maxSmallObjectSize> > YKThreadPolicy;
+	typedef ThreadPolicy< SmallObject<ThreadPolicy, chunkSize, maxSmallObjectSize> > ThreadPolicy;
 
-	struct YKSmallObjAllocator : public SmallObjAllocator
+	struct SmallObjAllocator : public SmallObjAllocator
 	{
-		YKSmallObjAllocator() 
+		SmallObjAllocator() 
 			: SmallObjAllocator(chunkSize, maxSmallObjectSize)
 		{}
 
-		static YKSmallObjAllocator& Instance()
+		static SmallObjAllocator& Instance()
 		{
 			return m_Obj;
 		}
 
-		static YKSmallObjAllocator m_Obj;
+		static SmallObjAllocator m_Obj;
 	};
 public:
 	static void* operator new(std::size_t size)
 	{
 #if (MAX_SMALL_OBJECT_SIZE != 0) && (DEFAULT_CHUNK_SIZE != 0)
-		typename YKThreadPolicy::Lock lock;
+		typename ThreadPolicy::Lock lock;
 		(void)lock;
 
-		return YKSmallObjAllocator::Instance().Allocate(size);
+		return SmallObjAllocator::Instance().Allocate(size);
 #else
 		return ::operator new(size);
 #endif
@@ -121,19 +121,19 @@ public:
 	static void operator delete(void* p, std::size_t size)
 	{
 #if (MAX_SMALL_OBJECT_SIZE != 0) && (DEFAULT_CHUNK_SIZE != 0)
-		typename YKThreadPolicy::Lock lock;
+		typename ThreadPolicy::Lock lock;
 		(void)lock;
 
-		YKSmallObjAllocator::Instance().Deallocate(p, size);
+		SmallObjAllocator::Instance().Deallocate(p, size);
 #else
 		::operator delete(p);
 #endif
 	}
-	virtual ~YKSmallObject(void);
+	virtual ~SmallObject(void);
 };
 
 template <template <class> class ThreadPolicy,
 	std::size_t chunkSize, 
 	std::size_t maxSmallObjectSize>
-	typename YKSmallObject<ThreadPolicy, chunkSize, maxSmallObjectSize>::YKSmallObjAllocator
-	YKSmallObject<ThreadPolicy, chunkSize, maxSmallObjectSize>::YKSmallObjAllocator::m_Obj;
+	typename SmallObject<ThreadPolicy, chunkSize, maxSmallObjectSize>::SmallObjAllocator
+	SmallObject<ThreadPolicy, chunkSize, maxSmallObjectSize>::SmallObjAllocator::m_Obj;

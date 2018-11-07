@@ -1,13 +1,13 @@
-// YKScheduler.cpp : Defines the class behaviors for the application.
+// Scheduler.cpp : Defines the class behaviors for the application.
 //
 
 #include "stdafx.h"
-#include "YKScheduler.h"
+#include "Scheduler.h"
 #include "MainFrm.h"
 
 #include "ChildFrm.h"
-#include "YKSchedulerDoc.h"
-#include "YKSchedulerView.h"
+#include "SchedulerDoc.h"
+#include "SchedulerView.h"
 #include "ComFunc.h"
 
 #include "FileFilter.h"
@@ -234,132 +234,132 @@ unsigned int WINAPI RunSendCInfo(void * pPara)
 	return 0;
 }
 #endif
-// CYKSchedulerApp
+// CSchedulerApp
 
-BEGIN_MESSAGE_MAP(CYKSchedulerApp, CWinApp)
+BEGIN_MESSAGE_MAP(CSchedulerApp, CWinApp)
 	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
 	// Standard file based document commands
 	ON_COMMAND(ID_FILE_NEW, CWinApp::OnFileNew)
 	//ON_COMMAND(ID_FILE_OPEN, CWinApp::OnFileOpen)
 	// Standard print setup command
 	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
-	ON_COMMAND(ID_FILE_OPEN, &CYKSchedulerApp::OnFileOpen)
+	ON_COMMAND(ID_FILE_OPEN, &CSchedulerApp::OnFileOpen)
 	//ON_COMMAND(ID_FILE_OPEN, COutputBar::ShowImportInfo) // add
-	ON_UPDATE_COMMAND_UI(ID_YK_CLOSE_FILE, &CYKSchedulerApp::OnUpdateYkCloseFile)
-	ON_COMMAND(ID_YK_CLOSE_FILE, &CYKSchedulerApp::OnYkCloseFile)
-	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, &CYKSchedulerApp::OnUpdateFileSave)
-	ON_COMMAND(ID_FILE_SAVE, &CYKSchedulerApp::OnFileSave)
-	ON_UPDATE_COMMAND_UI(ID_YK_LOAD_SCH, &CYKSchedulerApp::OnUpdateYkLoadSch)
-	ON_COMMAND(ID_YK_LOAD_SCH, &CYKSchedulerApp::OnYkLoadSch)
-	ON_UPDATE_COMMAND_UI(ID_YK_SAVE_AS, &CYKSchedulerApp::OnUpdateYkSaveAs)
-	ON_COMMAND(ID_YK_SAVE_AS, &CYKSchedulerApp::OnYkSaveAs)
-	ON_COMMAND(ID_ExportCsv, &CYKSchedulerApp::OnExportcsv)
-	ON_UPDATE_COMMAND_UI(ID_YK_SCHEDULER, &CYKSchedulerApp::OnUpdateYkScheduler)
+	ON_UPDATE_COMMAND_UI(ID_YK_CLOSE_FILE, &CSchedulerApp::OnUpdateYkCloseFile)
+	ON_COMMAND(ID_YK_CLOSE_FILE, &CSchedulerApp::OnYkCloseFile)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, &CSchedulerApp::OnUpdateFileSave)
+	ON_COMMAND(ID_FILE_SAVE, &CSchedulerApp::OnFileSave)
+	ON_UPDATE_COMMAND_UI(ID_YK_LOAD_SCH, &CSchedulerApp::OnUpdateYkLoadSch)
+	ON_COMMAND(ID_YK_LOAD_SCH, &CSchedulerApp::OnYkLoadSch)
+	ON_UPDATE_COMMAND_UI(ID_YK_SAVE_AS, &CSchedulerApp::OnUpdateYkSaveAs)
+	ON_COMMAND(ID_YK_SAVE_AS, &CSchedulerApp::OnYkSaveAs)
+	ON_COMMAND(ID_ExportCsv, &CSchedulerApp::OnExportcsv)
+	ON_UPDATE_COMMAND_UI(ID_YK_SCHEDULER, &CSchedulerApp::OnUpdateYkScheduler)
 	
-	ON_UPDATE_COMMAND_UI(ID_YK_RES_GANTT, &CYKSchedulerApp::OnUpdateYkResGantt)
-	ON_UPDATE_COMMAND_UI(ID_YK_ORDER_GANTT, &CYKSchedulerApp::OnUpdateYkOrderGantt)
-	ON_UPDATE_COMMAND_UI(ID_YK_RES_RATE, &CYKSchedulerApp::OnUpdateYkResRate)
-	ON_UPDATE_COMMAND_UI(ID_YK_STAG_RATE, &CYKSchedulerApp::OnUpdateYkStagRate)
-	ON_UPDATE_COMMAND_UI(ID_QUERYS, &CYKSchedulerApp::OnUpdateQuerys)
-	ON_UPDATE_COMMAND_UI(IDM_ITEM_GATHER_GL, &CYKSchedulerApp::OnUpdateYkItemGather_GL)
-	ON_UPDATE_COMMAND_UI(IDM_ITEM_GATHER_GRID, &CYKSchedulerApp::OnUpdateYkItemGather_Grid)
-	ON_UPDATE_COMMAND_UI(IDM_DAYSHIFT_GD, &CYKSchedulerApp::OnUpdateYkDayShift_Grid)
+	ON_UPDATE_COMMAND_UI(ID_YK_RES_GANTT, &CSchedulerApp::OnUpdateYkResGantt)
+	ON_UPDATE_COMMAND_UI(ID_YK_ORDER_GANTT, &CSchedulerApp::OnUpdateYkOrderGantt)
+	ON_UPDATE_COMMAND_UI(ID_YK_RES_RATE, &CSchedulerApp::OnUpdateYkResRate)
+	ON_UPDATE_COMMAND_UI(ID_YK_STAG_RATE, &CSchedulerApp::OnUpdateYkStagRate)
+	ON_UPDATE_COMMAND_UI(ID_QUERYS, &CSchedulerApp::OnUpdateQuerys)
+	ON_UPDATE_COMMAND_UI(IDM_ITEM_GATHER_GL, &CSchedulerApp::OnUpdateYkItemGather_GL)
+	ON_UPDATE_COMMAND_UI(IDM_ITEM_GATHER_GRID, &CSchedulerApp::OnUpdateYkItemGather_Grid)
+	ON_UPDATE_COMMAND_UI(IDM_DAYSHIFT_GD, &CSchedulerApp::OnUpdateYkDayShift_Grid)
 
-	ON_COMMAND(ID_ALL_FIX, &CYKSchedulerApp::OnAllFix)
-	ON_COMMAND(ID_TIMEFIX, &CYKSchedulerApp::OnTimeFix)
-	ON_COMMAND(ID_ALONE_SURE, &CYKSchedulerApp::OnAloneSure)
-	ON_COMMAND(ID_COMPLETE, &CYKSchedulerApp::OnCompleteOder)
-	ON_COMMAND(ID_PLANOVER, &CYKSchedulerApp::OnPlanOver)
-	ON_COMMAND(ID_ALL_WORK, &CYKSchedulerApp::OnAllWork)
-	ON_COMMAND(ID_RES_FIX, &CYKSchedulerApp::OnResFix)
-	ON_COMMAND(ID_REFIX, &CYKSchedulerApp::OnReFix)
-	ON_UPDATE_COMMAND_UI(ID_ALL_FIX, &CYKSchedulerApp::OnAllFix)
-	ON_UPDATE_COMMAND_UI(ID_TIMEFIX, &CYKSchedulerApp::OnTimeFix)
-	ON_UPDATE_COMMAND_UI(ID_ALONE_SURE, &CYKSchedulerApp::OnAloneSure)
-	ON_UPDATE_COMMAND_UI(ID_COMPLETE, &CYKSchedulerApp::OnCompleteOder)
-	ON_UPDATE_COMMAND_UI(ID_PLANOVER, &CYKSchedulerApp::OnPlanOver)
-	ON_UPDATE_COMMAND_UI(ID_ALL_WORK, &CYKSchedulerApp::OnAllWork)
-	ON_UPDATE_COMMAND_UI(ID_RES_FIX, &CYKSchedulerApp::OnResFix)
-	ON_UPDATE_COMMAND_UI(ID_REFIX, &CYKSchedulerApp::OnReFix)
-	ON_UPDATE_COMMAND_UI(ID_TOOL_FILTER, &CYKSchedulerApp::OnUpdateYKFilter)
-	ON_UPDATE_COMMAND_UI(ID_TOOL_UNFILTER, &CYKSchedulerApp::OnUpdateUnYKFilter)
+	ON_COMMAND(ID_ALL_FIX, &CSchedulerApp::OnAllFix)
+	ON_COMMAND(ID_TIMEFIX, &CSchedulerApp::OnTimeFix)
+	ON_COMMAND(ID_ALONE_SURE, &CSchedulerApp::OnAloneSure)
+	ON_COMMAND(ID_COMPLETE, &CSchedulerApp::OnCompleteOder)
+	ON_COMMAND(ID_PLANOVER, &CSchedulerApp::OnPlanOver)
+	ON_COMMAND(ID_ALL_WORK, &CSchedulerApp::OnAllWork)
+	ON_COMMAND(ID_RES_FIX, &CSchedulerApp::OnResFix)
+	ON_COMMAND(ID_REFIX, &CSchedulerApp::OnReFix)
+	ON_UPDATE_COMMAND_UI(ID_ALL_FIX, &CSchedulerApp::OnAllFix)
+	ON_UPDATE_COMMAND_UI(ID_TIMEFIX, &CSchedulerApp::OnTimeFix)
+	ON_UPDATE_COMMAND_UI(ID_ALONE_SURE, &CSchedulerApp::OnAloneSure)
+	ON_UPDATE_COMMAND_UI(ID_COMPLETE, &CSchedulerApp::OnCompleteOder)
+	ON_UPDATE_COMMAND_UI(ID_PLANOVER, &CSchedulerApp::OnPlanOver)
+	ON_UPDATE_COMMAND_UI(ID_ALL_WORK, &CSchedulerApp::OnAllWork)
+	ON_UPDATE_COMMAND_UI(ID_RES_FIX, &CSchedulerApp::OnResFix)
+	ON_UPDATE_COMMAND_UI(ID_REFIX, &CSchedulerApp::OnReFix)
+	ON_UPDATE_COMMAND_UI(ID_TOOL_FILTER, &CSchedulerApp::OnUpdateYKFilter)
+	ON_UPDATE_COMMAND_UI(ID_TOOL_UNFILTER, &CSchedulerApp::OnUpdateUnYKFilter)
 
-	ON_UPDATE_COMMAND_UI(ID_STOP_MULTISCHE, &CYKSchedulerApp::OnUpdateStopMultiSch)
-	ON_UPDATE_COMMAND_UI(ID_SCHE_MULTI, &CYKSchedulerApp::OnUpdateMultiSch)
+	ON_UPDATE_COMMAND_UI(ID_STOP_MULTISCHE, &CSchedulerApp::OnUpdateStopMultiSch)
+	ON_UPDATE_COMMAND_UI(ID_SCHE_MULTI, &CSchedulerApp::OnUpdateMultiSch)
 
-	ON_UPDATE_COMMAND_UI(ID_UNDO, &CYKSchedulerApp::OnUpdateUndo)
-	ON_UPDATE_COMMAND_UI(ID_REDO, &CYKSchedulerApp::OnUpdateRedo)
-	ON_COMMAND(ID_UNDO, &CYKSchedulerApp::OnUndo)
-	ON_COMMAND(ID_REDO, &CYKSchedulerApp::OnRedo)
-	ON_COMMAND(ID_MY_SAVE, &CYKSchedulerApp::OnMySave)
+	ON_UPDATE_COMMAND_UI(ID_UNDO, &CSchedulerApp::OnUpdateUndo)
+	ON_UPDATE_COMMAND_UI(ID_REDO, &CSchedulerApp::OnUpdateRedo)
+	ON_COMMAND(ID_UNDO, &CSchedulerApp::OnUndo)
+	ON_COMMAND(ID_REDO, &CSchedulerApp::OnRedo)
+	ON_COMMAND(ID_MY_SAVE, &CSchedulerApp::OnMySave)
 
-	ON_COMMAND(ID_YKHELP, &CYKSchedulerApp::OnYkhelp)
-	ON_COMMAND(ID_DELETF12,&CYKSchedulerApp::OnDeleteF12)
-	ON_UPDATE_COMMAND_UI(ID_ExportCsv, &CYKSchedulerApp::OnUpdateExportcsv)
-	ON_UPDATE_COMMAND_UI(ID_MY_SAVE, &CYKSchedulerApp::OnUpdateMySave)
-	ON_COMMAND(ID_YK_PRINT, &CYKSchedulerApp::OnYkPrint)
-	ON_UPDATE_COMMAND_UI(ID_YK_PRINT, &CYKSchedulerApp::OnUpdateYkPrint)
-	ON_COMMAND(ID_Menu_NEW, &CYKSchedulerApp::OnMenuNew)
-	ON_UPDATE_COMMAND_UI(ID_Menu_NEW, &CYKSchedulerApp::OnUpdateMenuNew)
+	ON_COMMAND(ID_YKHELP, &CSchedulerApp::OnYkhelp)
+	ON_COMMAND(ID_DELETF12,&CSchedulerApp::OnDeleteF12)
+	ON_UPDATE_COMMAND_UI(ID_ExportCsv, &CSchedulerApp::OnUpdateExportcsv)
+	ON_UPDATE_COMMAND_UI(ID_MY_SAVE, &CSchedulerApp::OnUpdateMySave)
+	ON_COMMAND(ID_YK_PRINT, &CSchedulerApp::OnYkPrint)
+	ON_UPDATE_COMMAND_UI(ID_YK_PRINT, &CSchedulerApp::OnUpdateYkPrint)
+	ON_COMMAND(ID_Menu_NEW, &CSchedulerApp::OnMenuNew)
+	ON_UPDATE_COMMAND_UI(ID_Menu_NEW, &CSchedulerApp::OnUpdateMenuNew)
 
-	ON_COMMAND(ID_LOAD_FILE_SETTING,&CYKSchedulerApp::OnLoadFileSetting)
-	ON_UPDATE_COMMAND_UI(ID_LOAD_FILE_SETTING,&CYKSchedulerApp::OnUpdateLoadFileSetting)
-	ON_UPDATE_COMMAND_UI(ID_AUTO_ENSURE_WORK, &CYKSchedulerApp::OnUpdateAutoEnsureWork)
-	ON_COMMAND(ID_CREATRESSEQUENCE, &CYKSchedulerApp::OnCreatressequence)
-	ON_COMMAND(ID_CREATITEMSEQUENCE, &CYKSchedulerApp::OnCreatitemsequence)
-	ON_COMMAND(ID_RESINFO, &CYKSchedulerApp::OnResinfo)
-	ON_UPDATE_COMMAND_UI(ID_CREATRESSEQUENCE, &CYKSchedulerApp::OnUpdateCreatressequence)
-	ON_UPDATE_COMMAND_UI(ID_CREATITEMSEQUENCE, &CYKSchedulerApp::OnUpdateCreatitemsequence)
-	ON_UPDATE_COMMAND_UI(ID_RESINFO, &CYKSchedulerApp::OnUpdateResinfo)
-	ON_COMMAND(ID_CREATEUSERES, &CYKSchedulerApp::OnCreatuseres)
-	ON_COMMAND(ID_CREATEPROINDIA, &CYKSchedulerApp::OnCreatepro)
-	ON_UPDATE_COMMAND_UI(ID_CREATEUSERES, &CYKSchedulerApp::OnUpdateCreatuseres)
-	ON_UPDATE_COMMAND_UI(ID_CREATEPROINDIA, &CYKSchedulerApp::OnUpdateCreatepro)
-	ON_COMMAND(ID_CREATWORKCHANGE, &CYKSchedulerApp::OnCreatworkchange)
-	ON_UPDATE_COMMAND_UI(ID_CREATWORKCHANGE, &CYKSchedulerApp::OnUpdateCreatworkchange)
+	ON_COMMAND(ID_LOAD_FILE_SETTING,&CSchedulerApp::OnLoadFileSetting)
+	ON_UPDATE_COMMAND_UI(ID_LOAD_FILE_SETTING,&CSchedulerApp::OnUpdateLoadFileSetting)
+	ON_UPDATE_COMMAND_UI(ID_AUTO_ENSURE_WORK, &CSchedulerApp::OnUpdateAutoEnsureWork)
+	ON_COMMAND(ID_CREATRESSEQUENCE, &CSchedulerApp::OnCreatressequence)
+	ON_COMMAND(ID_CREATITEMSEQUENCE, &CSchedulerApp::OnCreatitemsequence)
+	ON_COMMAND(ID_RESINFO, &CSchedulerApp::OnResinfo)
+	ON_UPDATE_COMMAND_UI(ID_CREATRESSEQUENCE, &CSchedulerApp::OnUpdateCreatressequence)
+	ON_UPDATE_COMMAND_UI(ID_CREATITEMSEQUENCE, &CSchedulerApp::OnUpdateCreatitemsequence)
+	ON_UPDATE_COMMAND_UI(ID_RESINFO, &CSchedulerApp::OnUpdateResinfo)
+	ON_COMMAND(ID_CREATEUSERES, &CSchedulerApp::OnCreatuseres)
+	ON_COMMAND(ID_CREATEPROINDIA, &CSchedulerApp::OnCreatepro)
+	ON_UPDATE_COMMAND_UI(ID_CREATEUSERES, &CSchedulerApp::OnUpdateCreatuseres)
+	ON_UPDATE_COMMAND_UI(ID_CREATEPROINDIA, &CSchedulerApp::OnUpdateCreatepro)
+	ON_COMMAND(ID_CREATWORKCHANGE, &CSchedulerApp::OnCreatworkchange)
+	ON_UPDATE_COMMAND_UI(ID_CREATWORKCHANGE, &CSchedulerApp::OnUpdateCreatworkchange)
 
-	ON_UPDATE_COMMAND_UI(ID_BUTTON_TOGETHOR_RUN, &CYKSchedulerApp::OnUpdateTogethorRun)
-	ON_UPDATE_COMMAND_UI(ID_BUTTON_TOGETHOR_SELECT, &CYKSchedulerApp::OnUpdateTogethorSelect)
+	ON_UPDATE_COMMAND_UI(ID_BUTTON_TOGETHOR_RUN, &CSchedulerApp::OnUpdateTogethorRun)
+	ON_UPDATE_COMMAND_UI(ID_BUTTON_TOGETHOR_SELECT, &CSchedulerApp::OnUpdateTogethorSelect)
 	
-	ON_COMMAND(ID_BUTTON_TOGETHOR_SELECT, &CYKSchedulerApp::OnTogethorSelect)
-	ON_COMMAND(ID_WORKSEQUENCE, &CYKSchedulerApp::OnWorksequence)
-	ON_COMMAND(ID_OUTPUT_RES_RATE, &CYKSchedulerApp::OnOutputResRate)
-	ON_UPDATE_COMMAND_UI(ID_WORKSEQUENCE, &CYKSchedulerApp::OnUpdateWorksequence)
-	ON_UPDATE_COMMAND_UI(ID_OUTPUT_RES_RATE,&CYKSchedulerApp::OnUpdateOutputResRate)
+	ON_COMMAND(ID_BUTTON_TOGETHOR_SELECT, &CSchedulerApp::OnTogethorSelect)
+	ON_COMMAND(ID_WORKSEQUENCE, &CSchedulerApp::OnWorksequence)
+	ON_COMMAND(ID_OUTPUT_RES_RATE, &CSchedulerApp::OnOutputResRate)
+	ON_UPDATE_COMMAND_UI(ID_WORKSEQUENCE, &CSchedulerApp::OnUpdateWorksequence)
+	ON_UPDATE_COMMAND_UI(ID_OUTPUT_RES_RATE,&CSchedulerApp::OnUpdateOutputResRate)
 
-	ON_UPDATE_COMMAND_UI(ID_QUICK_BUILD_MODE,&CYKSchedulerApp::OnUpdateQuickBuildMode)
-	ON_COMMAND(ID_QUICK_BUILD_MODE, &CYKSchedulerApp::OnQuickBuildMode)
+	ON_UPDATE_COMMAND_UI(ID_QUICK_BUILD_MODE,&CSchedulerApp::OnUpdateQuickBuildMode)
+	ON_COMMAND(ID_QUICK_BUILD_MODE, &CSchedulerApp::OnQuickBuildMode)
 	
-	ON_COMMAND(ID_MBUTTON, &CYKSchedulerApp::OnYkhelp)
-	ON_COMMAND(ID_FRAME_MENU_GRIDSHOWTIP, &CYKSchedulerApp::OnFrameMenuGridshowtip)
-	ON_UPDATE_COMMAND_UI(ID_FRAME_MENU_GRIDSHOWTIP, &CYKSchedulerApp::OnUpdateFrameMenuGridshowtip)
-	ON_COMMAND(ID_INPUTSYS, &CYKSchedulerApp::OnInputsys)
-	ON_UPDATE_COMMAND_UI(ID_INPUTSYS, &CYKSchedulerApp::OnUpdateInputsys)
-	ON_COMMAND(ID_OUTPUTSYS, &CYKSchedulerApp::OnOutputsys)
-	ON_UPDATE_COMMAND_UI(ID_OUTPUTSYS, &CYKSchedulerApp::OnUpdateOutputsys)
-	ON_COMMAND(ID_DOWNLOAD, &CYKSchedulerApp::OnDownload)
-	ON_UPDATE_COMMAND_UI(ID_DOWNLOAD, &CYKSchedulerApp::OnUpdateDownload)
-	ON_COMMAND(ID_SUBMIT, &CYKSchedulerApp::OnSubmit)
-	ON_UPDATE_COMMAND_UI(ID_SUBMIT, &CYKSchedulerApp::OnUpdateSubmit)
-	ON_COMMAND(ID_LOADING, &CYKSchedulerApp::OnLoading)
-	ON_UPDATE_COMMAND_UI(ID_ConflictSolve, &CYKSchedulerApp::OnUpdateConflictSolve)
-	ON_UPDATE_COMMAND_UI(ID_LOADING, &CYKSchedulerApp::OnUpdateLOADING)
-	ON_COMMAND(ID_SendDemand, &CYKSchedulerApp::OnSenddemand)
-	ON_UPDATE_COMMAND_UI(ID_SendDemand, &CYKSchedulerApp::OnUpdateSenddemand)
-	ON_COMMAND(ID_GetDemand, &CYKSchedulerApp::OnGetdemand)
-	ON_UPDATE_COMMAND_UI(ID_GetDemand, &CYKSchedulerApp::OnUpdateGetdemand)
-	ON_COMMAND(ID_FEEDBACK, &CYKSchedulerApp::OnFeedback)
-	ON_UPDATE_COMMAND_UI(ID_FEEDBACK, &CYKSchedulerApp::OnUpdateFeedback)
-	ON_COMMAND(ID_ACCETPFEEDBACK, &CYKSchedulerApp::OnAccetpFeedback)
-	ON_UPDATE_COMMAND_UI(ID_ACCETPFEEDBACK, &CYKSchedulerApp::OnUpdateAccetpFeedback)
-	ON_COMMAND(IDM_HELP_REGISTER, &CYKSchedulerApp::OnHelpRegister)
-	ON_UPDATE_COMMAND_UI(ID_FILE_PRINT_SETUP, &CYKSchedulerApp::OnUpdateFilePrintSetup)
+	ON_COMMAND(ID_MBUTTON, &CSchedulerApp::OnYkhelp)
+	ON_COMMAND(ID_FRAME_MENU_GRIDSHOWTIP, &CSchedulerApp::OnFrameMenuGridshowtip)
+	ON_UPDATE_COMMAND_UI(ID_FRAME_MENU_GRIDSHOWTIP, &CSchedulerApp::OnUpdateFrameMenuGridshowtip)
+	ON_COMMAND(ID_INPUTSYS, &CSchedulerApp::OnInputsys)
+	ON_UPDATE_COMMAND_UI(ID_INPUTSYS, &CSchedulerApp::OnUpdateInputsys)
+	ON_COMMAND(ID_OUTPUTSYS, &CSchedulerApp::OnOutputsys)
+	ON_UPDATE_COMMAND_UI(ID_OUTPUTSYS, &CSchedulerApp::OnUpdateOutputsys)
+	ON_COMMAND(ID_DOWNLOAD, &CSchedulerApp::OnDownload)
+	ON_UPDATE_COMMAND_UI(ID_DOWNLOAD, &CSchedulerApp::OnUpdateDownload)
+	ON_COMMAND(ID_SUBMIT, &CSchedulerApp::OnSubmit)
+	ON_UPDATE_COMMAND_UI(ID_SUBMIT, &CSchedulerApp::OnUpdateSubmit)
+	ON_COMMAND(ID_LOADING, &CSchedulerApp::OnLoading)
+	ON_UPDATE_COMMAND_UI(ID_ConflictSolve, &CSchedulerApp::OnUpdateConflictSolve)
+	ON_UPDATE_COMMAND_UI(ID_LOADING, &CSchedulerApp::OnUpdateLOADING)
+	ON_COMMAND(ID_SendDemand, &CSchedulerApp::OnSenddemand)
+	ON_UPDATE_COMMAND_UI(ID_SendDemand, &CSchedulerApp::OnUpdateSenddemand)
+	ON_COMMAND(ID_GetDemand, &CSchedulerApp::OnGetdemand)
+	ON_UPDATE_COMMAND_UI(ID_GetDemand, &CSchedulerApp::OnUpdateGetdemand)
+	ON_COMMAND(ID_FEEDBACK, &CSchedulerApp::OnFeedback)
+	ON_UPDATE_COMMAND_UI(ID_FEEDBACK, &CSchedulerApp::OnUpdateFeedback)
+	ON_COMMAND(ID_ACCETPFEEDBACK, &CSchedulerApp::OnAccetpFeedback)
+	ON_UPDATE_COMMAND_UI(ID_ACCETPFEEDBACK, &CSchedulerApp::OnUpdateAccetpFeedback)
+	ON_COMMAND(IDM_HELP_REGISTER, &CSchedulerApp::OnHelpRegister)
+	ON_UPDATE_COMMAND_UI(ID_FILE_PRINT_SETUP, &CSchedulerApp::OnUpdateFilePrintSetup)
 	END_MESSAGE_MAP()
 
 
-// CYKSchedulerApp construction
+// CSchedulerApp construction
 
-CYKSchedulerApp::CYKSchedulerApp() :
+CSchedulerApp::CSchedulerApp() :
 	CBCGPWorkspace (TRUE /* m_bResourceSmartUpdate */)
 		,m_bOpen(FALSE)
 		,m_bIsLoad(FALSE)
@@ -388,12 +388,12 @@ CYKSchedulerApp::CYKSchedulerApp() :
 }
 
 
-// The one and only CYKSchedulerApp object
+// The one and only CSchedulerApp object
 
-CYKSchedulerApp theApp;
+CSchedulerApp theApp;
 
 
-BOOL CYKSchedulerApp::ProctDog()
+BOOL CSchedulerApp::ProctDog()
 {
 	try
 	{
@@ -492,7 +492,7 @@ BOOL CYKSchedulerApp::ProctDog()
 	return TRUE;
 }
 
-BOOL CYKSchedulerApp::IsProctDogOverdue()
+BOOL CSchedulerApp::IsProctDogOverdue()
 {
 #ifndef _USEMACRO
 	Yukon::LEASEINFO& lf = g_protector.GetLeaseInfo();
@@ -503,9 +503,9 @@ BOOL CYKSchedulerApp::IsProctDogOverdue()
 		return FALSE;
 }
 
-// CYKSchedulerApp initialization
+// CSchedulerApp initialization
 
-BOOL CYKSchedulerApp::InitInstance()
+BOOL CSchedulerApp::InitInstance()
 {
 
 #ifdef _DEBUG
@@ -866,9 +866,9 @@ BOOL CYKSchedulerApp::InitInstance()
 #endif
 }
 
-// CYKSchedulerApp message handlers
+// CSchedulerApp message handlers
 
-int CYKSchedulerApp::ExitInstance() 
+int CSchedulerApp::ExitInstance() 
 {
 #ifdef _OCXPACK
 
@@ -962,7 +962,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 END_MESSAGE_MAP()
 
 // App command to run the dialog
-void CYKSchedulerApp::OnAppAbout()
+void CSchedulerApp::OnAppAbout()
 {
 	CAboutDlg aboutDlg;
 	aboutDlg.SetVerison(m_strVersion);
@@ -1018,10 +1018,10 @@ BOOL CAboutDlg::OnInitDialog()
 }
 
 
-// CYKSchedulerApp message handlers
+// CSchedulerApp message handlers
 
 
-void CYKSchedulerApp::PreLoadState ()
+void CSchedulerApp::PreLoadState ()
 {
 
 	//GetContextMenuManager()->AddMenu (_T("My menu"), IDR_CONTEXT_MENU);
@@ -1030,7 +1030,7 @@ void CYKSchedulerApp::PreLoadState ()
 }
 // isNeedInitData 是否需要加载数据  跳转的时候不需要加载数据 
 // 数据ID列表放在VIEW中的FindList中  add 2010-5-17 by ll
-bool CYKSchedulerApp::OpenTblPage(UINT tblType,BOOL isNeedInitData)
+bool CSchedulerApp::OpenTblPage(UINT tblType,BOOL isNeedInitData)
 {
 	if (HideTable(tblType))
 		return true;
@@ -1079,7 +1079,7 @@ bool CYKSchedulerApp::OpenTblPage(UINT tblType,BOOL isNeedInitData)
 	return true;
 }
 
-bool CYKSchedulerApp::Open(CString strPath, int nAuto)
+bool CSchedulerApp::Open(CString strPath, int nAuto)
 {
 	BIZAPI::EnterDataBaseCriSel();
 
@@ -1216,7 +1216,7 @@ bool CYKSchedulerApp::Open(CString strPath, int nAuto)
 	return true;
 }
 
-bool CYKSchedulerApp::OpenCaseDialog()
+bool CSchedulerApp::OpenCaseDialog()
 {
 	//Add 2012-01-13 添加打开YKS 系统提示是否要保存信息
 	YK_UINT nResult = FinalClose();
@@ -1259,7 +1259,7 @@ bool CYKSchedulerApp::OpenCaseDialog()
 	return true;
 }
 
-bool CYKSchedulerApp::SaveAs()
+bool CSchedulerApp::SaveAs()
 {
 	TCHAR szFilters[]= _T("YukonSys data (*.yks)|*.yks|All Files (*.*)|*.*||");
 
@@ -1304,7 +1304,7 @@ bool CYKSchedulerApp::SaveAs()
 
 
 
-bool CYKSchedulerApp::Close()
+bool CSchedulerApp::Close()
 {
 	//if(IsOnConnectNet())
 	//{
@@ -1323,7 +1323,7 @@ bool CYKSchedulerApp::Close()
 
 }
 //  关闭撤销
-bool CYKSchedulerApp::CloseForLoadSch()
+bool CSchedulerApp::CloseForLoadSch()
 {
 	m_strFile.Empty();
 	m_bOpen = FALSE;
@@ -1341,18 +1341,18 @@ bool CYKSchedulerApp::CloseForLoadSch()
 }
 
 
-void CYKSchedulerApp::OnFileOpen()
+void CSchedulerApp::OnFileOpen()
 {	
 	OpenCaseDialog();
 }
 
-void CYKSchedulerApp::OnUpdateYkCloseFile(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateYkCloseFile(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnYkCloseFile()
+void CSchedulerApp::OnYkCloseFile()
 {
 	// TODO: Add your command handler code here
 	//static_cast<CMainFrame*>(m_pMainWnd)->sShowCloseFile(m_strFile);
@@ -1361,13 +1361,13 @@ void CYKSchedulerApp::OnYkCloseFile()
 	m_bOpen = FALSE;
 }
 
-void CYKSchedulerApp::OnUpdateFileSave(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateFileSave(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnFileSave()
+void CSchedulerApp::OnFileSave()
 {
 	// TODO: Add your command handler code here
 	//BeginWaitCursor();
@@ -1392,7 +1392,7 @@ void CYKSchedulerApp::OnFileSave()
 	}
 }
 
-void CYKSchedulerApp::OnUpdateYkLoadSch(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateYkLoadSch(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	//pCmdUI->Enable(TRUE);
@@ -1421,7 +1421,7 @@ void CYKSchedulerApp::OnUpdateYkLoadSch(CCmdUI *pCmdUI)
 //	return 0;
 //}
 
-void CYKSchedulerApp::OnYkLoadSch()
+void CSchedulerApp::OnYkLoadSch()
 {
 	// TODO: Add your command handler code here
 	YK_SHORT nOpType = AfxMessageBox( GetRemarkFiled(ID_PROMT_IMPORT).c_str() ,MB_YESNO|MB_ICONQUESTION);
@@ -1528,20 +1528,20 @@ void CYKSchedulerApp::OnYkLoadSch()
 	}
 }
 
-void CYKSchedulerApp::OnUpdateYkSaveAs(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateYkSaveAs(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnYkSaveAs()
+void CSchedulerApp::OnYkSaveAs()
 {
 	// TODO: Add your command handler code here
 	SaveAs();
 }
 
 
-CString CYKSchedulerApp::OpenDir()
+CString CSchedulerApp::OpenDir()
 {
 	CString strDir;
 
@@ -1585,7 +1585,7 @@ CString CYKSchedulerApp::OpenDir()
 
 
 
-void CYKSchedulerApp::OnExportcsv()
+void CSchedulerApp::OnExportcsv()
 {
 	YK_SHORT nOpType = AfxMessageBox( GetRemarkFiled(ID_PROMT_EXPORT).c_str() ,MB_YESNO|MB_ICONQUESTION);
 	if ( nOpType == IDNO )
@@ -1633,7 +1633,7 @@ void CYKSchedulerApp::OnExportcsv()
 	}
 }
 
-void CYKSchedulerApp::OnUpdateYkScheduler(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateYkScheduler(CCmdUI *pCmdUI)
 {
 	_LIMIT_CHECK_
 	if(m_bOpen && (BIZAPI::GetBizMap()->GetApsParam() != NULL && BIZAPI::GetBizMap()->GetApsParam()->GetStopPatchCondition() != 2))
@@ -1642,7 +1642,7 @@ void CYKSchedulerApp::OnUpdateYkScheduler(CCmdUI *pCmdUI)
 		pCmdUI->Enable(FALSE);
 }
 
-void CYKSchedulerApp::OnUpdateYkResGantt(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateYkResGantt(CCmdUI *pCmdUI)
 {
 	_LIMIT_CHECK_;
 	if (HideTable(ID_GANTT_RES_GL))
@@ -1650,7 +1650,7 @@ void CYKSchedulerApp::OnUpdateYkResGantt(CCmdUI *pCmdUI)
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnUpdateYkOrderGantt(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateYkOrderGantt(CCmdUI *pCmdUI)
 {
 	_LIMIT_CHECK_;
 	if (HideTable(ID_GANTT_ORDER_GL))
@@ -1658,7 +1658,7 @@ void CYKSchedulerApp::OnUpdateYkOrderGantt(CCmdUI *pCmdUI)
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnUpdateYkResRate(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateYkResRate(CCmdUI *pCmdUI)
 {
 	_LIMIT_CHECK_;
 	if (HideTable(ID_RATE_RES_GL))
@@ -1666,7 +1666,7 @@ void CYKSchedulerApp::OnUpdateYkResRate(CCmdUI *pCmdUI)
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnUpdateYkStagRate(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateYkStagRate(CCmdUI *pCmdUI)
 {
 	_LIMIT_CHECK_;
 	if (HideTable(ID_RATE_STA_GL))
@@ -1674,7 +1674,7 @@ void CYKSchedulerApp::OnUpdateYkStagRate(CCmdUI *pCmdUI)
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnUpdateQuerys(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateQuerys(CCmdUI *pCmdUI)
 {
 	_LIMIT_CHECK_
 	
@@ -1686,7 +1686,7 @@ void CYKSchedulerApp::OnUpdateQuerys(CCmdUI *pCmdUI)
 	pCmdUI->Enable(bEnable);
 }
 
- void CYKSchedulerApp::OnUpdateYKFilter(CCmdUI *pCmdUI)
+ void CSchedulerApp::OnUpdateYKFilter(CCmdUI *pCmdUI)
  {
 	 _LIMIT_CHECK_
 
@@ -1712,7 +1712,7 @@ void CYKSchedulerApp::OnUpdateQuerys(CCmdUI *pCmdUI)
 
 	 pCmdUI->Enable(bEnable);
  }
- void CYKSchedulerApp::OnUpdateUnYKFilter(CCmdUI *pCmdUI)
+ void CSchedulerApp::OnUpdateUnYKFilter(CCmdUI *pCmdUI)
  {
 	 _LIMIT_CHECK_
 
@@ -1739,7 +1739,7 @@ void CYKSchedulerApp::OnUpdateQuerys(CCmdUI *pCmdUI)
  }
 
 
-void CYKSchedulerApp::OnAllFix()
+void CSchedulerApp::OnAllFix()
 {
 	void* workSq = GetWorkSequence();
 	if( workSq != NULL)
@@ -1754,7 +1754,7 @@ void CYKSchedulerApp::OnAllFix()
 	}
 }
 
-void CYKSchedulerApp::OnTimeFix()
+void CSchedulerApp::OnTimeFix()
 {
 	void* workSq = GetWorkSequence();
 	if( workSq != NULL)
@@ -1769,7 +1769,7 @@ void CYKSchedulerApp::OnTimeFix()
 	}
 }
 
-void CYKSchedulerApp::OnAloneSure()
+void CSchedulerApp::OnAloneSure()
 {
 	void* workSq = GetWorkSequence();
 	if( workSq != NULL)
@@ -1784,7 +1784,7 @@ void CYKSchedulerApp::OnAloneSure()
 	}
 }
 
-void CYKSchedulerApp::OnCompleteOder()
+void CSchedulerApp::OnCompleteOder()
 {
 	void* workSq = GetWorkSequence();
 	if( workSq != NULL)
@@ -1799,7 +1799,7 @@ void CYKSchedulerApp::OnCompleteOder()
 	}
 }
 
-void CYKSchedulerApp::OnPlanOver()
+void CSchedulerApp::OnPlanOver()
 {
 	void* workSq = GetWorkSequence();
 	if( workSq != NULL)
@@ -1814,14 +1814,14 @@ void CYKSchedulerApp::OnPlanOver()
 	}
 }
 
-void CYKSchedulerApp::OnAllWork()
+void CSchedulerApp::OnAllWork()
 {
 	CYKSchedulerView* pCurView = (DYNAMIC_DOWNCAST(CMainFrame, m_pMainWnd))->GetActiveView();
 	if (NULL != pCurView)
 		GanttCommonApi::OnAllSelect(pCurView->GetTblType());
 }
 
-void CYKSchedulerApp::OnResFix()
+void CSchedulerApp::OnResFix()
 {
 	void* workSq = GetWorkSequence();
 	if( workSq != NULL)
@@ -1835,7 +1835,7 @@ void CYKSchedulerApp::OnResFix()
 			GanttCommonApi::OnResFix(pCurView->GetTblType());
 	}
 }
-void CYKSchedulerApp::OnReFix()
+void CSchedulerApp::OnReFix()
 {
 	void* workSq = GetWorkSequence();
 	if( workSq != NULL)
@@ -1850,7 +1850,7 @@ void CYKSchedulerApp::OnReFix()
 	}
 }
 
-void CYKSchedulerApp::OnAllFix(CCmdUI *pCmdUI)
+void CSchedulerApp::OnAllFix(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
@@ -1864,7 +1864,7 @@ void CYKSchedulerApp::OnAllFix(CCmdUI *pCmdUI)
 		&&!BIZAPI::GetCommLimit(  TblOrder ))
 		pCmdUI->Enable(FALSE);
 }
-void CYKSchedulerApp::OnTimeFix(CCmdUI *pCmdUI)
+void CSchedulerApp::OnTimeFix(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
@@ -1878,7 +1878,7 @@ void CYKSchedulerApp::OnTimeFix(CCmdUI *pCmdUI)
 		&&!BIZAPI::GetCommLimit(  TblOrder ))
 		pCmdUI->Enable(FALSE);
 }
-void CYKSchedulerApp::OnAloneSure(CCmdUI *pCmdUI)
+void CSchedulerApp::OnAloneSure(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
@@ -1892,7 +1892,7 @@ void CYKSchedulerApp::OnAloneSure(CCmdUI *pCmdUI)
 		&&!BIZAPI::GetCommLimit(  TblOrder ))
 		pCmdUI->Enable(FALSE);
 }
-void CYKSchedulerApp::OnCompleteOder(CCmdUI *pCmdUI)
+void CSchedulerApp::OnCompleteOder(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
@@ -1906,7 +1906,7 @@ void CYKSchedulerApp::OnCompleteOder(CCmdUI *pCmdUI)
 		&&!BIZAPI::GetCommLimit(  TblOrder ))
 		pCmdUI->Enable(FALSE);
 }
-void CYKSchedulerApp::OnPlanOver(CCmdUI *pCmdUI)
+void CSchedulerApp::OnPlanOver(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
@@ -1920,7 +1920,7 @@ void CYKSchedulerApp::OnPlanOver(CCmdUI *pCmdUI)
 		&&!BIZAPI::GetCommLimit(  TblOrder ))
 		pCmdUI->Enable(FALSE);
 }
-void CYKSchedulerApp::OnAllWork(CCmdUI *pCmdUI)
+void CSchedulerApp::OnAllWork(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
@@ -1934,7 +1934,7 @@ void CYKSchedulerApp::OnAllWork(CCmdUI *pCmdUI)
 		&&!BIZAPI::GetCommLimit(  TblOrder ))
 		pCmdUI->Enable(FALSE);
 }
-void CYKSchedulerApp::OnResFix(CCmdUI *pCmdUI)
+void CSchedulerApp::OnResFix(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
@@ -1949,7 +1949,7 @@ void CYKSchedulerApp::OnResFix(CCmdUI *pCmdUI)
 		pCmdUI->Enable(FALSE);
 }
 
-void CYKSchedulerApp::OnReFix(CCmdUI *pCmdUI)
+void CSchedulerApp::OnReFix(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
@@ -1964,7 +1964,7 @@ void CYKSchedulerApp::OnReFix(CCmdUI *pCmdUI)
 		pCmdUI->Enable(FALSE);
 }
 
-bool CYKSchedulerApp::IsGanttOpen( UINT type )
+bool CSchedulerApp::IsGanttOpen( UINT type )
 {
 	if (g_tblType <= 0) 
 	{		
@@ -1993,7 +1993,7 @@ bool CYKSchedulerApp::IsGanttOpen( UINT type )
 	return false;
 }
 
-void CYKSchedulerApp::OnUndo()
+void CSchedulerApp::OnUndo()
 {
 	BIZAPI::Undo();
 	CYKSchedulerView* pCurView = (DYNAMIC_DOWNCAST(CMainFrame, m_pMainWnd))->GetActiveView();
@@ -2051,7 +2051,7 @@ void CYKSchedulerApp::OnUndo()
 	}*/
 }
 
-void CYKSchedulerApp::OnRedo()
+void CSchedulerApp::OnRedo()
 {
 	BIZAPI::Redo();
 	CYKSchedulerView* pCurView = (DYNAMIC_DOWNCAST(CMainFrame, m_pMainWnd))->GetActiveView();
@@ -2108,7 +2108,7 @@ void CYKSchedulerApp::OnRedo()
 // 	}
 }
 
-void CYKSchedulerApp::OnUpdateUndo(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateUndo(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(BIZAPI::CanUndo() ? TRUE : FALSE);
 // 	CUndoRedoManager* pURMgr = BIZAPI::GetURMgr();
@@ -2124,7 +2124,7 @@ void CYKSchedulerApp::OnUpdateUndo(CCmdUI *pCmdUI)
 // 		pCmdUI->Enable(FALSE);
 }
 
-void CYKSchedulerApp::OnUpdateRedo(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateRedo(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(BIZAPI::CanRedo() ? TRUE : FALSE);
 	/*CUndoRedoManager* pURMgr = BIZAPI::GetURMgr();
@@ -2140,7 +2140,7 @@ void CYKSchedulerApp::OnUpdateRedo(CCmdUI *pCmdUI)
 		pCmdUI->Enable(FALSE);*/
 }
 
-CString CYKSchedulerApp::GetTempFileName()
+CString CSchedulerApp::GetTempFileName()
 {
 	CString strPath;
 
@@ -2156,7 +2156,7 @@ CString CYKSchedulerApp::GetTempFileName()
 	return strPath;
 }
 
-void CYKSchedulerApp::OnMySave()
+void CSchedulerApp::OnMySave()
 {
 	// TODO: Add your command handler code here
 	//SaveAs();
@@ -2171,7 +2171,7 @@ void CYKSchedulerApp::OnMySave()
 	SaveOrSaveAs();
 }
 
-bool CYKSchedulerApp::SaveOrSaveAs()
+bool CSchedulerApp::SaveOrSaveAs()
 {
 	//保存界面
 	if ( m_bOpen && !m_strFile.IsEmpty())
@@ -2237,7 +2237,7 @@ bool CYKSchedulerApp::SaveOrSaveAs()
 }
 
 #include "DialogPSI.h"
-void CYKSchedulerApp::OnYkhelp()
+void CSchedulerApp::OnYkhelp()
 {
 
 	if(m_pszHelpFilePath != NULL)
@@ -2276,21 +2276,21 @@ void CYKSchedulerApp::OnYkhelp()
 #endif
 }
 
-void CYKSchedulerApp::OnUpdateExportcsv(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateExportcsv(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnUpdateMySave(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateMySave(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(m_bOpen);
 	// TODO: Add your command update UI handler code here
 }
 
 
-void CYKSchedulerApp::OnYkPrint()
+void CSchedulerApp::OnYkPrint()
 {
 	if(IsGanttOpen(ID_GANTT_RES_GL)) 
 	{
@@ -2343,14 +2343,14 @@ void CYKSchedulerApp::OnYkPrint()
 	}
 }
 
-void CYKSchedulerApp::OnUpdateYkPrint(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateYkPrint(CCmdUI *pCmdUI)
 {
 	_LIMIT_CHECK_
 
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnMenuNew()
+void CSchedulerApp::OnMenuNew()
 {
 
 	TCHAR szFilters[]= _T("YukonSys data (*.yks)|*.yks|All Files (*.*)|*.*||");
@@ -2432,7 +2432,7 @@ void CYKSchedulerApp::OnMenuNew()
 
 }
 
-int CYKSchedulerApp::FinalClose()
+int CSchedulerApp::FinalClose()
 {
 	if (m_bOpen)
 	{
@@ -2443,7 +2443,7 @@ int CYKSchedulerApp::FinalClose()
 }
 
 
-BOOL CYKSchedulerApp::OpenSystemSet(int& bAuto, CString& strPath)
+BOOL CSchedulerApp::OpenSystemSet(int& bAuto, CString& strPath)
 {
 	BOOL bOK = FALSE;
 	YKBizMap* pMap = BIZAPI::GetBizMap();
@@ -2491,7 +2491,7 @@ BOOL CYKSchedulerApp::OpenSystemSet(int& bAuto, CString& strPath)
 	return bOK;
 }
 
-BOOL CYKSchedulerApp::SaveSystemSet()
+BOOL CSchedulerApp::SaveSystemSet()
 {
 	if(!m_bOpen) return FALSE;
 	YKBizMap* pMap = BIZAPI::GetBizMap();
@@ -2539,7 +2539,7 @@ BOOL CYKSchedulerApp::SaveSystemSet()
 }
 
 //去掉最后一个'\\'后的字符串
-CString CYKSchedulerApp::GetFilePath( CString& strFileName )
+CString CSchedulerApp::GetFilePath( CString& strFileName )
 {
 	WCHAR strFind(L'\\');
 	int index = strFileName.ReverseFind(strFind);
@@ -2547,7 +2547,7 @@ CString CYKSchedulerApp::GetFilePath( CString& strFileName )
 	return str;
 }
 
-void CYKSchedulerApp::OnUpdateMenuNew(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateMenuNew(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
@@ -2555,38 +2555,38 @@ void CYKSchedulerApp::OnUpdateMenuNew(CCmdUI *pCmdUI)
 }
 
 
-void CYKSchedulerApp::HtmlHelp(DWORD_PTR dwData, UINT nCmd)
+void CSchedulerApp::HtmlHelp(DWORD_PTR dwData, UINT nCmd)
 {
 	// TODO: Add your specialized code here and/or call the base class
 
 	__super::HtmlHelp(dwData, nCmd);
 }
 
-CDocument* CYKSchedulerApp::OpenDocumentFile(LPCTSTR lpszFileName)
+CDocument* CSchedulerApp::OpenDocumentFile(LPCTSTR lpszFileName)
 {
 	// TODO: Add your specialized code here and/or call the base class
 
 	return __super::OpenDocumentFile(lpszFileName);
 }
 
-void CYKSchedulerApp::OnDeleteF12()
+void CSchedulerApp::OnDeleteF12()
 {
 
 }
 
-void CYKSchedulerApp::OnLoadFileSetting()
+void CSchedulerApp::OnLoadFileSetting()
 {
 	//g_tblType=TblLoadFileInfo;
-	//CYKSchedulerApp::OnFileNew();
+	//CSchedulerApp::OnFileNew();
 	OpenTblPage(TblLoadFileInfo);
 	
 }
-void CYKSchedulerApp::OnUpdateLoadFileSetting(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateLoadFileSetting(CCmdUI *pCmdUI)
 {
 	_LIMIT_CHECK_
 	pCmdUI->Enable(m_bOpen);
 }
-void CYKSchedulerApp::ShowDataErrorView(UINT tblType,short errType,int row,int cor,YK_WSTRING strItem,YK_ULONG itemid)
+void CSchedulerApp::ShowDataErrorView(UINT tblType,short errType,int row,int cor,YK_WSTRING strItem,YK_ULONG itemid)
 {
 	return ;		// 不提示
 	switch(errType)
@@ -2676,7 +2676,7 @@ void CYKSchedulerApp::ShowDataErrorView(UINT tblType,short errType,int row,int c
 	::SendMessage(m_pMainWnd->GetSafeHwnd(),ID_MESSAGE_FLASH_OUTPUTWND,0,0);
 }
 
-void CYKSchedulerApp::CheckInputData()
+void CSchedulerApp::CheckInputData()
 {
 	/*int index=0;
 	for (BIZAPI::GetBizMap()->GetYKOperAvbResPtrMap()->Begin();BIZAPI::GetBizMap()->GetYKOperAvbResPtrMap()->NotEnd()
@@ -2703,7 +2703,7 @@ void CYKSchedulerApp::CheckInputData()
 			}
 	}*/
 }
-void CYKSchedulerApp::OnUpdateAutoEnsureWork(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateAutoEnsureWork(CCmdUI *pCmdUI)
 {
 	_LIMIT_CHECK_
 
@@ -2711,7 +2711,7 @@ void CYKSchedulerApp::OnUpdateAutoEnsureWork(CCmdUI *pCmdUI)
 		return pCmdUI->Enable(FALSE);
 	pCmdUI->Enable(m_bOpen);
 }
-void CYKSchedulerApp::OnCreatressequence()
+void CSchedulerApp::OnCreatressequence()
 {
 	// TODO: Add your command handler code here
 	YKBizMap* bMap=BIZAPI::GetBizMap();
@@ -2729,7 +2729,7 @@ void CYKSchedulerApp::OnCreatressequence()
 	OpenTblPage(TblResourceSequence);
 }
 
-void CYKSchedulerApp::OnCreatitemsequence()
+void CSchedulerApp::OnCreatitemsequence()
 {
 	// TODO: Add your command handler code here
 	YKBizMap* bMap=BIZAPI::GetBizMap();
@@ -2747,7 +2747,7 @@ void CYKSchedulerApp::OnCreatitemsequence()
 	OpenTblPage(TblCategorySequence);
 }
 
-void CYKSchedulerApp::OnResinfo()
+void CSchedulerApp::OnResinfo()
 {
 	// TODO: Add your command handler code here
 	BIZAPI::Estimate();
@@ -2759,28 +2759,28 @@ void CYKSchedulerApp::OnResinfo()
 	OpenTblPage(TblRestrictInfo);
 }
 
-void CYKSchedulerApp::OnUpdateCreatressequence(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateCreatressequence(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnUpdateCreatitemsequence(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateCreatitemsequence(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnUpdateResinfo(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateResinfo(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnCreatuseres()
+void CSchedulerApp::OnCreatuseres()
 {
 	// TODO: Add your command handler code here
 	YKBizMap* bMap=BIZAPI::GetBizMap();
@@ -2793,7 +2793,7 @@ void CYKSchedulerApp::OnCreatuseres()
 	SendMessage(m_pMainWnd->GetSafeHwnd(),_ACTIVITE_VIWE_,123,0);
 }
 
-void CYKSchedulerApp::OnCreatepro()
+void CSchedulerApp::OnCreatepro()
 {
 	// TODO: Add your command handler code here
 	YKBizMap* bMap=BIZAPI::GetBizMap();
@@ -2807,14 +2807,14 @@ void CYKSchedulerApp::OnCreatepro()
 
 }
 
-void CYKSchedulerApp::OnUpdateCreatuseres(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateCreatuseres(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnUpdateCreatepro(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateCreatepro(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_;
@@ -2823,7 +2823,7 @@ void CYKSchedulerApp::OnUpdateCreatepro(CCmdUI *pCmdUI)
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnCreatworkchange()
+void CSchedulerApp::OnCreatworkchange()
 {
 	// TODO: Add your command handler code here
 	// 工作计划变更
@@ -2836,7 +2836,7 @@ void CYKSchedulerApp::OnCreatworkchange()
 	theApp.OpenTblPage(TblWorkChange);
 }
 
-void CYKSchedulerApp::OnUpdateCreatworkchange(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateCreatworkchange(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_;
@@ -2845,7 +2845,7 @@ void CYKSchedulerApp::OnUpdateCreatworkchange(CCmdUI *pCmdUI)
 	pCmdUI->Enable(m_bOpen&&m_couldCreatWorkChange);
 }
 
-void CYKSchedulerApp::OnUpdateTogethorRun( CCmdUI *pCmdUI )
+void CSchedulerApp::OnUpdateTogethorRun( CCmdUI *pCmdUI )
 {
 	_LIMIT_CHECK_
 	if(BIZAPI::EnterDataBaseCriSel())
@@ -2863,7 +2863,7 @@ void CYKSchedulerApp::OnUpdateTogethorRun( CCmdUI *pCmdUI )
 	pCmdUI->Enable(FALSE);
 }
 
-void CYKSchedulerApp::OnUpdateTogethorSelect( CCmdUI *pCmdUI )
+void CSchedulerApp::OnUpdateTogethorSelect( CCmdUI *pCmdUI )
 {
 	_LIMIT_CHECK_
 	if(IsGanttOpen())
@@ -2876,7 +2876,7 @@ void CYKSchedulerApp::OnUpdateTogethorSelect( CCmdUI *pCmdUI )
 
 
 
-void CYKSchedulerApp::OnTogethorSelect()
+void CSchedulerApp::OnTogethorSelect()
 {
 	CNewModelDlg  dlg;
 	//dlg.SetShowRect(showRect);
@@ -2919,7 +2919,7 @@ void CYKSchedulerApp::OnTogethorSelect()
 
 }
 
-void CYKSchedulerApp::RegVsFlexGrid()
+void CSchedulerApp::RegVsFlexGrid()
 {
 	{
 		HKEY	hKey = HKEY_CLASSES_ROOT;
@@ -2976,13 +2976,13 @@ void CYKSchedulerApp::RegVsFlexGrid()
 
 }
 
-void CYKSchedulerApp::OnWorksequence()
+void CSchedulerApp::OnWorksequence()
 {
 	// TODO: Add your command handler code here
 	OpenTblPage(ID_WORK_RESOURCE_GD);
 }
 
-void CYKSchedulerApp::OnUpdateWorksequence(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateWorksequence(CCmdUI *pCmdUI)
 {
 	_LIMIT_CHECK_;
 	if (HideTable(ID_WORK_RESOURCE_GD))
@@ -2991,14 +2991,14 @@ void CYKSchedulerApp::OnUpdateWorksequence(CCmdUI *pCmdUI)
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnUpdateOutputResRate(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateOutputResRate(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
 	pCmdUI->Enable(m_bOpen&&IsGanttOpen(ID_RATE_RES_GL));
 }
 
-void CYKSchedulerApp::OnOutputResRate()
+void CSchedulerApp::OnOutputResRate()
 {
 	// TODO: Add your command handler code here
 	//OpenTblPage(ID_WORK_RESOURCE_GD);
@@ -3025,7 +3025,7 @@ void CYKSchedulerApp::OnOutputResRate()
 }
 
 //判断是否工作顺序表打开
-void* CYKSchedulerApp::GetWorkSequence()
+void* CSchedulerApp::GetWorkSequence()
 {
 	if (g_tblType <= 0) 
 	{		
@@ -3040,7 +3040,7 @@ void* CYKSchedulerApp::GetWorkSequence()
 	return NULL;
 }
 
-void CYKSchedulerApp::OnUpdateMultiSch( CCmdUI *pCmdUI )
+void CSchedulerApp::OnUpdateMultiSch( CCmdUI *pCmdUI )
 {
 	_LIMIT_CHECK_
 	if(m_bOpen && (BIZAPI::GetBizMap()->GetApsParam()->GetStopPatchCondition() == 2))
@@ -3049,7 +3049,7 @@ void CYKSchedulerApp::OnUpdateMultiSch( CCmdUI *pCmdUI )
 		pCmdUI->Enable(FALSE);
 }
 
-void CYKSchedulerApp::OnUpdateStopMultiSch( CCmdUI *pCmdUI )
+void CSchedulerApp::OnUpdateStopMultiSch( CCmdUI *pCmdUI )
 {
 	_LIMIT_CHECK_
 	if(m_bOpen && (BIZAPI::GetBizMap()->GetApsParam()->GetStopPatchCondition() == 2))
@@ -3058,12 +3058,12 @@ void CYKSchedulerApp::OnUpdateStopMultiSch( CCmdUI *pCmdUI )
 		pCmdUI->Enable(FALSE);
 }
 
-void CYKSchedulerApp::OnUpdateQuickBuildMode(CCmdUI* pCmdUI)
+void CSchedulerApp::OnUpdateQuickBuildMode(CCmdUI* pCmdUI)
 {
 	_LIMIT_CHECK_
 	pCmdUI->Enable(!m_bOpen);
 }
-void CYKSchedulerApp::OnQuickBuildMode()
+void CSchedulerApp::OnQuickBuildMode()
 {
 	//if (!m_bOpen)
 	//{
@@ -3078,7 +3078,7 @@ void CYKSchedulerApp::OnQuickBuildMode()
 }
 
 
-BOOL CYKSchedulerApp::IsOutlineGrid()
+BOOL CSchedulerApp::IsOutlineGrid()
 {
 	BOOL bOK = FALSE;
 	CYKSchedulerView* pCurView = (DYNAMIC_DOWNCAST(CMainFrame, m_pMainWnd))->GetActiveView();
@@ -3093,7 +3093,7 @@ BOOL CYKSchedulerApp::IsOutlineGrid()
 }
 
 // 导入导出  新建 打开  信息提示  add 2010-4-15
-unsigned long CYKSchedulerApp::SetMsgInfo( YK_ULONG infoId ,CString& code,BOOL b,long msgType)
+unsigned long CSchedulerApp::SetMsgInfo( YK_ULONG infoId ,CString& code,BOOL b,long msgType)
 {
 	//CMessageData* mesData=CMessageData::NewMsgData();
 	CMessageData mesData; mesData.New();
@@ -3134,7 +3134,7 @@ BOOL CAboutDlg::OnEraseBkgnd(CDC* pDC)
 	return TRUE;
 }
 
-int CYKSchedulerApp::ProctDogMsg( int type )
+int CSchedulerApp::ProctDogMsg( int type )
 {
 #ifdef NOTTRYOUT
 	//add by yp 2011.06.10
@@ -3170,7 +3170,7 @@ int CYKSchedulerApp::ProctDogMsg( int type )
 }
 
 
-void CYKSchedulerApp::SetMainFrmText()
+void CSchedulerApp::SetMainFrmText()
 {
 	CString str;
 	if (m_pMainWnd != NULL)
@@ -3187,7 +3187,7 @@ void CYKSchedulerApp::SetMainFrmText()
 	
 }
 
-time_t CYKSchedulerApp::GetInstalTime()
+time_t CSchedulerApp::GetInstalTime()
 {
 	time_t insTm(0);
 
@@ -3230,7 +3230,7 @@ time_t CYKSchedulerApp::GetInstalTime()
 	return insTm;
 }
 
-LRESULT CYKSchedulerApp::ChangeTitle()
+LRESULT CSchedulerApp::ChangeTitle()
 {
 	CString title = GetRemarkFiled(ID_UI_MAINFRM_TITLE).c_str();;
 //	title.LoadString(AFX_IDS_APP_TITLE);
@@ -3241,7 +3241,7 @@ LRESULT CYKSchedulerApp::ChangeTitle()
 
 }
 
-void CYKSchedulerApp::OpenLastTable()
+void CSchedulerApp::OpenLastTable()
 {
 
 	UINT curOpenTbl = 0;
@@ -3279,7 +3279,7 @@ void CYKSchedulerApp::OpenLastTable()
 		OpenTblPage(curOpenTbl);  
 }
 
-//void CYKSchedulerApp::ShowGridLabelState()
+//void CSchedulerApp::ShowGridLabelState()
 //{
 //	CMDIChildWnd* child = static_cast<CMainFrame*>(m_pMainWnd)->MDIGetActive();
 //	if (child != NULL)
@@ -3295,7 +3295,7 @@ void CYKSchedulerApp::OpenLastTable()
 //	}
 //}
 
-void CYKSchedulerApp::OnFrameMenuGridshowtip()
+void CSchedulerApp::OnFrameMenuGridshowtip()
 {
 	// TODO: Add your command handler code here
 	// 表格视图
@@ -3306,7 +3306,7 @@ void CYKSchedulerApp::OnFrameMenuGridshowtip()
 		pCurView->AdjustGridView();
 }
 
-void CYKSchedulerApp::OnUpdateFrameMenuGridshowtip(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateFrameMenuGridshowtip(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
@@ -3332,7 +3332,7 @@ void CYKSchedulerApp::OnUpdateFrameMenuGridshowtip(CCmdUI *pCmdUI)
 	pCmdUI->Enable(FALSE);
 }
 
-bool CYKSchedulerApp::GanttMourseWheel( int nCode,WPARAM wParam,LPARAM lParam )
+bool CSchedulerApp::GanttMourseWheel( int nCode,WPARAM wParam,LPARAM lParam )
 {
 	//CMDIChildWnd* child = static_cast<CMainFrame*>(m_pMainWnd)->MDIGetActive();
 	//if (child != NULL)
@@ -3354,7 +3354,7 @@ bool CYKSchedulerApp::GanttMourseWheel( int nCode,WPARAM wParam,LPARAM lParam )
 }
 
 
-void CYKSchedulerApp::OnInputsys()
+void CSchedulerApp::OnInputsys()
 {
 	// TODO: Add your command handler code here
 	TCHAR szFilters[]= _T("YukonSys data (*.yks)|*.yks|All Files (*.*)|*.*||");
@@ -3382,14 +3382,14 @@ void CYKSchedulerApp::OnInputsys()
 	}
 }
 
-void CYKSchedulerApp::OnUpdateInputsys(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateInputsys(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
 	pCmdUI->Enable(theApp.m_bOpen);
 }
 
-void CYKSchedulerApp::OnOutputsys()
+void CSchedulerApp::OnOutputsys()
 {
 	// TODO: Add your command handler code here
 	TCHAR szFilters[]= _T("YukonSys data (*.yks)|*.yks|All Files (*.*)|*.*||");
@@ -3403,34 +3403,34 @@ void CYKSchedulerApp::OnOutputsys()
 	}
 }
 
-void CYKSchedulerApp::OnUpdateOutputsys(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateOutputsys(CCmdUI *pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	_LIMIT_CHECK_
 	pCmdUI->Enable(theApp.m_bOpen);
 }
 
-void CYKSchedulerApp::SetSchudlingFlg( bool flg )
+void CSchedulerApp::SetSchudlingFlg( bool flg )
 {
 	m_bSchduling = flg;
 }
 
-bool CYKSchedulerApp::GetSchudlingFlg()
+bool CSchedulerApp::GetSchudlingFlg()
 {
 	return m_bSchduling;
 }
 
-void CYKSchedulerApp::SetCanSchedStep( bool flg )
+void CSchedulerApp::SetCanSchedStep( bool flg )
 {
 	m_bCanSchedStep = flg;
 }
 
-bool CYKSchedulerApp::GetCanSchedStep()
+bool CSchedulerApp::GetCanSchedStep()
 {
 	return m_bCanSchedStep;
 }
 
-void CYKSchedulerApp::OnUpdateYkItemGather_GL( CCmdUI *pCmdUI )
+void CSchedulerApp::OnUpdateYkItemGather_GL( CCmdUI *pCmdUI )
 {
 	_LIMIT_CHECK_;
 	if (HideTable(ID_Item_Gather_GL))
@@ -3438,7 +3438,7 @@ void CYKSchedulerApp::OnUpdateYkItemGather_GL( CCmdUI *pCmdUI )
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnUpdateYkItemGather_Grid( CCmdUI *pCmdUI )
+void CSchedulerApp::OnUpdateYkItemGather_Grid( CCmdUI *pCmdUI )
 {
 	_LIMIT_CHECK_;
 	if (HideTable(ID_Item_Gather_GL))
@@ -3468,7 +3468,7 @@ void CYKSchedulerApp::OnUpdateYkItemGather_Grid( CCmdUI *pCmdUI )
 //	return 1;
 //}
 
-void CYKSchedulerApp::OnDownload()
+void CSchedulerApp::OnDownload()
 {
 #ifdef OLDNETCONNET
 	map<unsigned long,bool> renewTable;
@@ -3522,13 +3522,13 @@ void CYKSchedulerApp::OnDownload()
 	}
 }
 
-void CYKSchedulerApp::OnUpdateDownload(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateDownload(CCmdUI *pCmdUI)
 {
 	_LIMIT_CHECK_;
 	pCmdUI->Enable(IsOnConnectNet());
 }
 
-void CYKSchedulerApp::OnSubmit()
+void CSchedulerApp::OnSubmit()
 {
 #ifdef OLDNETCONNET
 	map<unsigned long,bool> renewTable;
@@ -3579,13 +3579,13 @@ void CYKSchedulerApp::OnSubmit()
 
 }
 
-void CYKSchedulerApp::OnUpdateSubmit(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateSubmit(CCmdUI *pCmdUI)
 {
 	_LIMIT_CHECK_;
 	pCmdUI->Enable(IsOnConnectNet());
 }
 
-void CYKSchedulerApp::OnLoading()
+void CSchedulerApp::OnLoading()
 {
 	CApsLoggin loggin;
 	if( loggin.DoModal() == IDOK )
@@ -3598,35 +3598,35 @@ void CYKSchedulerApp::OnLoading()
 	}
 }
 
-bool CYKSchedulerApp::IsOnConnectNet()
+bool CSchedulerApp::IsOnConnectNet()
 {
 	return theApp.m_bOpen &&m_bNetLoaded ;
 }
 
-void CYKSchedulerApp::ConnectedNet()
+void CSchedulerApp::ConnectedNet()
 {
 	m_bNetLoaded = true;
 }
 
-void CYKSchedulerApp::OffConnectedNet()
+void CSchedulerApp::OffConnectedNet()
 {
 	m_bNetLoaded = false;
 //	::SendMessage(theApp.g_hMainFrm,ID_STATUSBAR_TEXT,0,0);
 
 }
 
-void CYKSchedulerApp::OnUpdateLOADING( CCmdUI *pCmdUI )
+void CSchedulerApp::OnUpdateLOADING( CCmdUI *pCmdUI )
 {
 	pCmdUI->Enable(TRUE);
 	//pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::OnUpdateConflictSolve( CCmdUI *pCmdUI )
+void CSchedulerApp::OnUpdateConflictSolve( CCmdUI *pCmdUI )
 {
 	pCmdUI->Enable(m_bOpen);
 }
 
-int CYKSchedulerApp::GetCurViewType()
+int CSchedulerApp::GetCurViewType()
 {
 	int nTblType = 0;
 	CYKSchedulerView* pCurView = (DYNAMIC_DOWNCAST(CMainFrame, m_pMainWnd))->GetActiveView();
@@ -3636,7 +3636,7 @@ int CYKSchedulerApp::GetCurViewType()
 	return nTblType;
 }
 
-CVsflexgridn1* CYKSchedulerApp::GetCurDataGridCtrl()
+CVsflexgridn1* CSchedulerApp::GetCurDataGridCtrl()
 {
 	CYKSchedulerView* pCurView = (DYNAMIC_DOWNCAST(CMainFrame, m_pMainWnd))->GetActiveView();
 	if (NULL != pCurView && pCurView->m_bIsTalbe)
@@ -3649,7 +3649,7 @@ CVsflexgridn1* CYKSchedulerApp::GetCurDataGridCtrl()
 	return NULL;
 }
 
-void CYKSchedulerApp::FlashActiveView()
+void CSchedulerApp::FlashActiveView()
 {
 	CYKSchedulerView* pCurView = (DYNAMIC_DOWNCAST(CMainFrame, m_pMainWnd))->GetActiveView();
 	if (NULL != pCurView)
@@ -3662,7 +3662,7 @@ void CYKSchedulerApp::FlashActiveView()
 	}
 }
 
-bool CYKSchedulerApp::ClearAllData()
+bool CSchedulerApp::ClearAllData()
 {
 	CWindowsState::Clear();
 	GanttCommonApi::Reset();
@@ -3683,7 +3683,7 @@ bool CYKSchedulerApp::ClearAllData()
 	return true;
 }
 
-bool CYKSchedulerApp::HideTable( UINT tblType )
+bool CSchedulerApp::HideTable( UINT tblType )
 {
 	switch (tblType)
 	{
@@ -3718,7 +3718,7 @@ bool CYKSchedulerApp::HideTable( UINT tblType )
 	return false;
 }
 
-void CYKSchedulerApp::OnUpdateYkDayShift_Grid( CCmdUI *pCmdUI )
+void CSchedulerApp::OnUpdateYkDayShift_Grid( CCmdUI *pCmdUI )
 {
 	_LIMIT_CHECK_;
 	if (HideTable(ID_DayShift_GD))
@@ -3726,7 +3726,7 @@ void CYKSchedulerApp::OnUpdateYkDayShift_Grid( CCmdUI *pCmdUI )
 	pCmdUI->Enable(m_bOpen);
 }
 
-void CYKSchedulerApp::InitIconForGrid()
+void CSchedulerApp::InitIconForGrid()
 {
 	if (m_iList.Create(IDB_BITMAP_GREEN, 16, 0, COLOR_Image1/*RGB (192,192, 192)*/))
 	{
@@ -3748,12 +3748,12 @@ void CYKSchedulerApp::InitIconForGrid()
 	}
 }
 
-CYKSchedulerApp::~CYKSchedulerApp()
+CSchedulerApp::~CSchedulerApp()
 {
 
 }
 
-void CYKSchedulerApp::OnSenddemand()
+void CSchedulerApp::OnSenddemand()
 {
 	BIZAPI::Work2Demand();
 	BIZAPI::SetTableFlashFlg(TRUE,TblManufactureDemand);
@@ -3772,12 +3772,12 @@ void CYKSchedulerApp::OnSenddemand()
 	//}
 }
 
-void CYKSchedulerApp::OnUpdateSenddemand(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateSenddemand(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(IsOnConnectNet());
 }
 
-void CYKSchedulerApp::OnGetdemand()
+void CSchedulerApp::OnGetdemand()
 {
 	BIZAPI::Demand2Order();
 	BIZAPI::SetTableFlashFlg(TRUE,TblOrder);
@@ -3800,13 +3800,13 @@ void CYKSchedulerApp::OnGetdemand()
 	//}
 }
 
-void CYKSchedulerApp::OnUpdateGetdemand(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateGetdemand(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(IsOnConnectNet());
 }
 
 
-CString CYKSchedulerApp::GetStatusBarText(LPCTSTR lpszNewText)
+CString CSchedulerApp::GetStatusBarText(LPCTSTR lpszNewText)
 {
 	if(lpszNewText != NULL)
 	{
@@ -3829,7 +3829,7 @@ CString CYKSchedulerApp::GetStatusBarText(LPCTSTR lpszNewText)
 	}
 	return lpszNewText;
 }
-void CYKSchedulerApp::OnFeedback()
+void CSchedulerApp::OnFeedback()
 {
 
 	//YK_WSTRING excess;                            //用于接收上次设定的时间值
@@ -3852,12 +3852,12 @@ void CYKSchedulerApp::OnFeedback()
 		//SaveTimeExcessStr(excess);                //调用函数保存设定的时间值
 }
 
-void CYKSchedulerApp::OnUpdateFeedback(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateFeedback(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(IsOnConnectNet());
 }
 
-void CYKSchedulerApp::OnAccetpFeedback()
+void CSchedulerApp::OnAccetpFeedback()
 {
 	BIZAPI::AcceptFeedBackDemand();
 	BIZAPI::SetTableFlashFlg(TRUE,TblOrder);
@@ -3866,12 +3866,12 @@ void CYKSchedulerApp::OnAccetpFeedback()
 
 }
 
-void CYKSchedulerApp::OnUpdateAccetpFeedback(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateAccetpFeedback(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(IsOnConnectNet());
 }
 
-BOOL CYKSchedulerApp::SeveSelectInfo(map<unsigned long,bool>& renewTable)
+BOOL CSchedulerApp::SeveSelectInfo(map<unsigned long,bool>& renewTable)
 {
 
 	CBCGPRegistry reg(FALSE,FALSE);
@@ -3894,7 +3894,7 @@ BOOL CYKSchedulerApp::SeveSelectInfo(map<unsigned long,bool>& renewTable)
 	return TRUE;
 }
 
-BOOL CYKSchedulerApp::GetSelectInfo( map<unsigned long,bool>& renewTable )
+BOOL CSchedulerApp::GetSelectInfo( map<unsigned long,bool>& renewTable )
 {
 	CBCGPRegistry reg(FALSE,FALSE);
 	CString strKey(_T("YKSystemSet\\SelectTable"));
@@ -3921,7 +3921,7 @@ BOOL CYKSchedulerApp::GetSelectInfo( map<unsigned long,bool>& renewTable )
 	return TRUE;
 }
 
-BOOL CYKSchedulerApp::SaveTimeExcessStr(YK_WSTRING & val)
+BOOL CSchedulerApp::SaveTimeExcessStr(YK_WSTRING & val)
 {
 
 	CBCGPRegistry reg(FALSE,FALSE);
@@ -3943,7 +3943,7 @@ BOOL CYKSchedulerApp::SaveTimeExcessStr(YK_WSTRING & val)
 	return TRUE;
 }
 
-BOOL CYKSchedulerApp::GetTimeExcessStr( YK_WSTRING & val )
+BOOL CSchedulerApp::GetTimeExcessStr( YK_WSTRING & val )
 {
 	CBCGPRegistry reg(FALSE,FALSE);
 	CString strKey(_T("YKSystemSet\\TimeExcessTable"));
@@ -3962,7 +3962,7 @@ BOOL CYKSchedulerApp::GetTimeExcessStr( YK_WSTRING & val )
 }
 
 
-void CYKSchedulerApp::OnHelpRegister()
+void CSchedulerApp::OnHelpRegister()
 {
 	// TODO: Add your command handler code here
 	CDlgRegister dlgReg;
@@ -3970,7 +3970,7 @@ void CYKSchedulerApp::OnHelpRegister()
 	dlgReg.DoModal();
 }
 
-BOOL CYKSchedulerApp::PreTranslateMessage(MSG* pMsg)
+BOOL CSchedulerApp::PreTranslateMessage(MSG* pMsg)
 {
 	// TODO: Add your specialized code here and/or call the base class
 	if (CSplashScreenEx::PreTranslateAppMessage(pMsg))
@@ -3979,7 +3979,7 @@ BOOL CYKSchedulerApp::PreTranslateMessage(MSG* pMsg)
 	return __super::PreTranslateMessage(pMsg);
 }
 
-void CYKSchedulerApp::OnUpdateFilePrintSetup(CCmdUI *pCmdUI)
+void CSchedulerApp::OnUpdateFilePrintSetup(CCmdUI *pCmdUI)
 {
 	_LIMIT_CHECK_
 
@@ -3987,7 +3987,7 @@ void CYKSchedulerApp::OnUpdateFilePrintSetup(CCmdUI *pCmdUI)
 }
 
 //Add 2012-03-14 判断是否显示提示信息
-YK_SHORT CYKSchedulerApp::IsShowTopInfor()
+YK_SHORT CSchedulerApp::IsShowTopInfor()
 {
 	HKEY hKey;
 	LONG lRet;

@@ -1,10 +1,10 @@
-// YKSchedulerDoc.cpp : implementation of the CYKSchedulerDoc class
+// SchedulerDoc.cpp : implementation of the CSchedulerDoc class
 //
 
 #include "stdafx.h"
-#include "YKScheduler.h"
+#include "Scheduler.h"
 
-#include "YKSchedulerDoc.h"
+#include "SchedulerDoc.h"
 //#include "TblInfo.h"
 #include  "Biz_API.h"
 #include "LanguagePack.h"
@@ -14,29 +14,29 @@
 #endif
 
 
-// CYKSchedulerDoc
+// CSchedulerDoc
 
-IMPLEMENT_DYNCREATE(CYKSchedulerDoc, CDocument)
+IMPLEMENT_DYNCREATE(CSchedulerDoc, CDocument)
 
-BEGIN_MESSAGE_MAP(CYKSchedulerDoc, CDocument)
+BEGIN_MESSAGE_MAP(CSchedulerDoc, CDocument)
 END_MESSAGE_MAP()
 
 
-// CYKSchedulerDoc construction/destruction
+// CSchedulerDoc construction/destruction
 
-CYKSchedulerDoc::CYKSchedulerDoc()
+CSchedulerDoc::CSchedulerDoc()
 {
 	// TODO: add one-time construction code here
 
 }
 
-CYKSchedulerDoc::~CYKSchedulerDoc()
+CSchedulerDoc::~CSchedulerDoc()
 {
 
 	//theApp.g_viewTips.Delete(1);
 }
 
-BOOL CYKSchedulerDoc::OnNewDocument()
+BOOL CSchedulerDoc::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
@@ -58,9 +58,9 @@ BOOL CYKSchedulerDoc::OnNewDocument()
 
 
 
-// CYKSchedulerDoc serialization
+// CSchedulerDoc serialization
 
-void CYKSchedulerDoc::Serialize(CArchive& ar)
+void CSchedulerDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
@@ -73,24 +73,24 @@ void CYKSchedulerDoc::Serialize(CArchive& ar)
 }
 
 
-// CYKSchedulerDoc diagnostics
+// CSchedulerDoc diagnostics
 
 #ifdef _DEBUG
-void CYKSchedulerDoc::AssertValid() const
+void CSchedulerDoc::AssertValid() const
 {
 	CDocument::AssertValid();
 }
 
-void CYKSchedulerDoc::Dump(CDumpContext& dc) const
+void CSchedulerDoc::Dump(CDumpContext& dc) const
 {
 	CDocument::Dump(dc);
 }
 #endif //_DEBUG
 
 
-// CYKSchedulerDoc commands
+// CSchedulerDoc commands
 
-void CYKSchedulerDoc::OnChangedViewList()
+void CSchedulerDoc::OnChangedViewList()
 {
 	// TODO: Add your specialized code here and/or call the base class
 

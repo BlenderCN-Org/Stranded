@@ -1,9 +1,9 @@
 #pragma once
 
-#include "YKMapManager.h"
+#include "MapManager.h"
 
 template <typename T>
-class YKWeakPtr
+class WeakPtr
 {
 public:
 	typedef typename YKSmartPtr<T>					value_type;
@@ -12,14 +12,14 @@ public:
 	typedef typename value_type::reference			reference;
 	typedef typename value_type::const_reference	const_reference;
 public:
-	YKWeakPtr() : m_nId(0), m_pObj(0) {}
+	WeakPtr() : m_nId(0), m_pObj(0) {}
 
-	YKWeakPtr(const YKWeakPtr& rhs)
+	WeakPtr(const WeakPtr& rhs)
 		: m_nId(rhs.m_nId), m_pObj(rhs.m_pObj)
 	{}
 
 	template <typename T1>
-	YKWeakPtr(const YKWeakPtr<T1>& rhs)
+	WeakPtr(const WeakPtr<T1>& rhs)
 		: m_nId(rhs.m_nId), m_pObj(rhs.m_pObj)
 	{}
 
@@ -27,14 +27,14 @@ public:
 		template <class> class OP1,
 		template <class> class KP1,
 		template <class> class SP1>
-	YKWeakPtr(YKSmartPtr<T1, OP1, KP1, SP1>& rhs)
+	WeakPtr(YKSmartPtr<T1, OP1, KP1, SP1>& rhs)
 	{
 		m_nId = rhs.ValidObj() ? rhs->GetId() : 0;
 		m_pObj = 0;
 	}
 
 	template <typename T1>
-	YKWeakPtr& operator= (const YKWeakPtr<T1>& rhs)
+	WeakPtr& operator= (const WeakPtr<T1>& rhs)
 	{
 		m_nId = rhs.m_nId;
 		m_pObj = rhs.m_pObj;
@@ -45,7 +45,7 @@ public:
 		template <class> class OP1,
 		template <class> class KP1,
 		template <class> class SP1>
-	YKWeakPtr& operator= (const YKSmartPtr<T1, OP1, KP1, SP1>& rhs)
+	WeakPtr& operator= (const YKSmartPtr<T1, OP1, KP1, SP1>& rhs)
 	{
 		m_nId = rhs.ValidObj() ? rhs->GetId() : 0;
 		m_pObj = 0;
@@ -56,7 +56,7 @@ public:
 		template <class> class OP1,
 		template <class> class KP1,
 		template <class> class SP1>
-	YKWeakPtr& operator= (YKSmartPtr<T1, OP1, KP1, SP1>& rhs)
+	WeakPtr& operator= (YKSmartPtr<T1, OP1, KP1, SP1>& rhs)
 	{
 		m_nId = rhs.ValidObj() ? rhs->GetId() : 0;
 		m_pObj = 0;
@@ -249,7 +249,7 @@ public:
 	}
 
 	template <typename T1>
-	void Insert(YKWeakPtr<T1>& rhs)
+	void Insert(WeakPtr<T1>& rhs)
 	{
 		Insert(rhs.m_nId);
 	}
@@ -260,7 +260,7 @@ public:
 		template <class> class SP1>
 	void Insert(YKSmartPtr<T1, OP1, KP1, SP1>& rhs)
 	{
-		YKWeakPtr<T1> obj = rhs;
+		WeakPtr<T1> obj = rhs;
 		Insert(obj);
 	}
 

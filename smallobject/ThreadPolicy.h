@@ -84,7 +84,7 @@ namespace POLICY_THREAD
 
 		static IntType AtomicIncrement(volatile IntType& lval)
 		{
-#ifdef YK_X64
+#ifdef __x86_64__
 			return InterlockedIncrement64(&const_cast<IntType&>(lval)); 
 #else
 			return InterlockedIncrement(&const_cast<IntType&>(lval)); 
@@ -93,7 +93,7 @@ namespace POLICY_THREAD
 
 		static IntType AtomicDecrement(volatile IntType& lval)
 		{
-#ifdef YK_X64
+#ifdef __x86_64__
 			return InterlockedDecrement64(&const_cast<IntType&>(lval)); 
 #else
 			return InterlockedDecrement(&const_cast<IntType&>(lval)); 
@@ -102,7 +102,7 @@ namespace POLICY_THREAD
 
 		static void AtomicAssign(volatile IntType& lval, IntType val)
 		{
-#ifdef YK_X64
+#ifdef __x86_64__
 			InterlockedExchange64(&const_cast<IntType&>(lval), val); 
 #else
 			InterlockedExchange(&const_cast<IntType&>(lval), val); 
@@ -111,7 +111,7 @@ namespace POLICY_THREAD
 
 		static void AtomicAssign(IntType& lval, volatile IntType& val)
 		{
-#ifdef YK_X64
+#ifdef __x86_64__
 			InterlockedExchange64(&lval, val); 
 #else
 			InterlockedExchange(&lval, val); 
@@ -166,7 +166,7 @@ namespace POLICY_THREAD
 
 		static IntType AtomicIncrement(volatile IntType& lval)
 		{
-#ifdef YK_X64
+#ifdef __x86_64__
 			return InterlockedIncrement64(&const_cast<IntType&>(lval));
 #else
 			return InterlockedIncrement(&const_cast<IntType&>(lval));
@@ -175,7 +175,7 @@ namespace POLICY_THREAD
 
 		static IntType AtomicDecrement(volatile IntType& lval)
 		{
-#ifdef YK_X64
+#ifdef __x86_64__
 			return InterlockedDecrement64(&const_cast<IntType&>(lval)); 
 #else
 			return InterlockedDecrement(&const_cast<IntType&>(lval)); 
@@ -184,7 +184,7 @@ namespace POLICY_THREAD
 
 		static void AtomicAssign(volatile IntType& lval, IntType val)
 		{
-#ifdef YK_X64
+#ifdef __x86_64__
 			InterlockedExchange64(&const_cast<IntType&>(lval), val); 
 #else
 			InterlockedExchange(&const_cast<IntType&>(lval), val); 
@@ -193,7 +193,7 @@ namespace POLICY_THREAD
 
 		static void AtomicAssign(IntType& lval, volatile IntType& val)
 		{
-#ifdef YK_X64
+#ifdef __x86_64__
 			InterlockedExchange64(&lval, val); 
 #else
 			InterlockedExchange(&lval, val); 

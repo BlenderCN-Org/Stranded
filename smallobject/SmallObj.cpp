@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include "YKSmallObj.h"
+#include "SmallObj.h"
 
 #include <assert.h>
 #include <algorithm>

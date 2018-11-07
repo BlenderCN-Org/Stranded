@@ -1,14 +1,14 @@
 /*
 * Thie file is part of Scheduler for util function operation
 */
-// YKSchedulerView.cpp : implementation of the CYKSchedulerView class
+// SchedulerView.cpp : implementation of the CSchedulerView class
 //
 
 #include "stdafx.h"
-#include "YKScheduler.h"
+#include "Scheduler.h"
 
-#include "YKSchedulerDoc.h"
-#include "YKSchedulerView.h"
+#include "SchedulerDoc.h"
+#include "SchedulerView.h"
 
 #include "DataGridCtrl.h"
 #include "DtAccess.h"
@@ -59,11 +59,11 @@
 #else
 #define  CLOCK_PASE(tm)  
 #endif
-// CYKSchedulerView
+// CSchedulerView
 
-IMPLEMENT_DYNCREATE(CYKSchedulerView, CView)
+IMPLEMENT_DYNCREATE(CSchedulerView, CView)
 
-BEGIN_MESSAGE_MAP(CYKSchedulerView, CView)
+BEGIN_MESSAGE_MAP(CSchedulerView, CView)
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, OnFilePrintPreview)
@@ -77,9 +77,9 @@ BEGIN_MESSAGE_MAP(CYKSchedulerView, CView)
 
 END_MESSAGE_MAP()
 
-// CYKSchedulerView construction/destruction
+// CSchedulerView construction/destruction
 
-CYKSchedulerView::CYKSchedulerView()
+CSchedulerView::CSchedulerView()
 :m_bIsTalbe(FALSE)
 ,m_bFindFlg(FALSE)
 ,m_nFindType(-1)
@@ -97,7 +97,7 @@ CYKSchedulerView::CYKSchedulerView()
 	m_bIsUpTabChangeOrderWork = false;
 }
 
-CYKSchedulerView::~CYKSchedulerView()
+CSchedulerView::~CSchedulerView()
 {
 	Close();
 #ifndef _REMOVE_ITEMGATHER_
@@ -107,7 +107,7 @@ CYKSchedulerView::~CYKSchedulerView()
 
 }
 
-BOOL CYKSchedulerView::PreCreateWindow(CREATESTRUCT& cs)
+BOOL CSchedulerView::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
@@ -115,9 +115,9 @@ BOOL CYKSchedulerView::PreCreateWindow(CREATESTRUCT& cs)
 	return CView::PreCreateWindow(cs);
 }
 
-// CYKSchedulerView drawing
+// CSchedulerView drawing
 
-void CYKSchedulerView::OnDraw(CDC* /*pDC*/)
+void CSchedulerView::OnDraw(CDC* /*pDC*/)
 {
 	CYKSchedulerDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
@@ -126,44 +126,44 @@ void CYKSchedulerView::OnDraw(CDC* /*pDC*/)
 }
 
 
-// CYKSchedulerView printing
+// CSchedulerView printing
 
-void CYKSchedulerView::OnFilePrintPreview()
+void CSchedulerView::OnFilePrintPreview()
 {
 	BCGPPrintPreview (this);
 }
 
-BOOL CYKSchedulerView::OnPreparePrinting(CPrintInfo* pInfo)
+BOOL CSchedulerView::OnPreparePrinting(CPrintInfo* pInfo)
 {
 	// default preparation
 	return DoPreparePrinting(pInfo);
 }
 
-void CYKSchedulerView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
+void CSchedulerView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
 	// TODO: add extra initialization before printing
 }
 
-void CYKSchedulerView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
+void CSchedulerView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
 	// TODO: add cleanup after printing
 }
 
 
-// CYKSchedulerView diagnostics
+// CSchedulerView diagnostics
 
 #ifdef _DEBUG
-void CYKSchedulerView::AssertValid() const
+void CSchedulerView::AssertValid() const
 {
 	CView::AssertValid();
 }
 
-void CYKSchedulerView::Dump(CDumpContext& dc) const
+void CSchedulerView::Dump(CDumpContext& dc) const
 {
 	CView::Dump(dc);
 }
 
-CYKSchedulerDoc* CYKSchedulerView::GetDocument() const // non-debug version is inline
+CYKSchedulerDoc* CSchedulerView::GetDocument() const // non-debug version is inline
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CYKSchedulerDoc)));
 	return (CYKSchedulerDoc*)m_pDocument;
@@ -171,9 +171,9 @@ CYKSchedulerDoc* CYKSchedulerView::GetDocument() const // non-debug version is i
 #endif //_DEBUG
 
 
-// CYKSchedulerView message handlers
+// CSchedulerView message handlers
 
-void CYKSchedulerView::InitKeyList()
+void CSchedulerView::InitKeyList()
 {
 	if (m_tblType > 0 && m_nFindType == -1)
 	{
@@ -186,7 +186,7 @@ void CYKSchedulerView::InitKeyList()
 	}
 }
 
-int CYKSchedulerView::OnCreate(LPCREATESTRUCT lpCreateStruct)
+int CSchedulerView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CView::OnCreate(lpCreateStruct) == -1)
 		return -1;
@@ -350,7 +350,7 @@ int CYKSchedulerView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 }
 
 //设置区域位置
-void CYKSchedulerView::OnSize(UINT nType, int cx, int cy)
+void CSchedulerView::OnSize(UINT nType, int cx, int cy)
 {
 	CView::OnSize(nType, cx, cy);
 	
@@ -413,7 +413,7 @@ void CYKSchedulerView::OnSize(UINT nType, int cx, int cy)
 	}
 }
 
-void CYKSchedulerView::OpenPage(stTable& table)
+void CSchedulerView::OpenPage(stTable& table)
 {
 	CWnd * pWnd = new CWnd;
 	pWnd->Create(NULL,table.GetName().c_str(),WS_CHILD | WS_VISIBLE, 
@@ -423,7 +423,7 @@ void CYKSchedulerView::OpenPage(stTable& table)
 	m_tabWndLst.push_back(pWnd);
 }
 
-void CYKSchedulerView::RemovePage()
+void CSchedulerView::RemovePage()
 {
 	if (ID_GANTT_RES_GL == m_tblType || ID_GANTT_ORDER_GL == m_tblType ||
 		ID_RATE_RES_GL == m_tblType || ID_RATE_STA_GL == m_tblType ||
@@ -443,14 +443,14 @@ void CYKSchedulerView::RemovePage()
 	}
 }
 
-void CYKSchedulerView::PreSubclassWindow()
+void CSchedulerView::PreSubclassWindow()
 {
 	// TODO: Add your specialized code here and/or call the base class
 
 	CView::PreSubclassWindow();
 }
 
-void CYKSchedulerView::SaveViewTip()
+void CSchedulerView::SaveViewTip()
 {
 	wstring str;
 	if (theApp.g_tblType == ID_GANTT_RES_GL)
@@ -493,7 +493,7 @@ void CYKSchedulerView::SaveViewTip()
 	}
 }
 
-void CYKSchedulerView::ClearViewTip()
+void CSchedulerView::ClearViewTip()
 {
 	theApp.g_viewTips.Delete(m_viewId);
 //	Node node;
@@ -504,13 +504,13 @@ void CYKSchedulerView::ClearViewTip()
 	//}
 }
 
-void CYKSchedulerView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView)
+void CSchedulerView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView)
 {
 	// TODO: Add your specialized code here and/or call the base class
 	CView::OnActivateView(bActivate, pActivateView, pDeactiveView);
 }
 
-void CYKSchedulerView::OnInitialUpdate()
+void CSchedulerView::OnInitialUpdate()
 {
 	CView::OnInitialUpdate();
 
@@ -534,7 +534,7 @@ void CYKSchedulerView::OnInitialUpdate()
 	}
 }
 
-void  CYKSchedulerView::UpdateActiveGrid(BOOL tblFlash)
+void  CSchedulerView::UpdateActiveGrid(BOOL tblFlash)
 {
 	if (m_tblType <= 0/* || m_tblType == TblProduceIndication*/)
 		return;
@@ -560,7 +560,7 @@ void  CYKSchedulerView::UpdateActiveGrid(BOOL tblFlash)
 }
 
 // 查找  查找到得数据ID已经放到 m_findRowKeyList中了
-void CYKSchedulerView::Find( UINT findType )
+void CSchedulerView::Find( UINT findType )
 {
 	if (m_pGdCtrl.GetSafeHwnd())
 	{
@@ -575,7 +575,7 @@ void CYKSchedulerView::Find( UINT findType )
 
 }
 // 设置新的stable到数据源中，页签改变使用
-void CYKSchedulerView::UpdateGrid(short GridType)
+void CSchedulerView::UpdateGrid(short GridType)
 {
 	CString strTemp;
 	CWnd* pWnd = m_wndTabs.GetTabWnd(m_wndTabs.GetActiveTab());
@@ -607,7 +607,7 @@ void CYKSchedulerView::UpdateGrid(short GridType)
 	}
 }
 
-LRESULT CYKSchedulerView::DefWindowProc(UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CSchedulerView::DefWindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
 	// TODO: Add your specialized code here and/or call the base class
 	if(message == WM_MOUSE_DOWNS)
@@ -829,18 +829,18 @@ LRESULT CYKSchedulerView::DefWindowProc(UINT message, WPARAM wParam, LPARAM lPar
 		return NULL;
 }
 
-void CYKSchedulerView::OnSetFocus(CWnd* pOldWnd)
+void CSchedulerView::OnSetFocus(CWnd* pOldWnd)
 {
 	CView::OnSetFocus(pOldWnd);
 	//GanttCommonApi::SetFocus(m_tblType,pOldWnd);
 }
-void CYKSchedulerView::ViewKillFocusDo()
+void CSchedulerView::ViewKillFocusDo()
 {
 	m_pGdCtrl.ViewKillFocusDo();
 	//m_BOMInfo.SetUnError();
 
 }
-void CYKSchedulerView::OnKillFocus(CWnd* pNewWnd)
+void CSchedulerView::OnKillFocus(CWnd* pNewWnd)
 {
 	CView::OnKillFocus(pNewWnd);
 	// TODO: Add your message handler code here
@@ -853,7 +853,7 @@ void CYKSchedulerView::OnKillFocus(CWnd* pNewWnd)
 // 否则：不重新读取数据  更改数据的stble就好了  add 2010-5-17 by ll
 // tblFlash:是否全部数据刷新标志
 // 默认 tblFlash=TRUE
-void CYKSchedulerView::Flash(BOOL tblFlash)
+void CSchedulerView::Flash(BOOL tblFlash)
 {
 	switch (m_tblType)
 	{
@@ -894,7 +894,7 @@ void CYKSchedulerView::Flash(BOOL tblFlash)
 }
 
 
-void CYKSchedulerView::Close()
+void CSchedulerView::Close()
 {
 //	CWindowsStateOper::Delete( GetTblType() );
 
@@ -938,7 +938,7 @@ void CYKSchedulerView::Close()
 	}
 }
 
-void CYKSchedulerView::EnsureWorkInEnsureArea()
+void CSchedulerView::EnsureWorkInEnsureArea()
 {
 	if (m_tblType == ID_GANTT_RES_GL)
 	{
@@ -951,7 +951,7 @@ void CYKSchedulerView::EnsureWorkInEnsureArea()
 	}
 }
 //是否可以复制
-BOOL CYKSchedulerView::IsCanCopy()
+BOOL CSchedulerView::IsCanCopy()
 {
 	BOOL bOK = FALSE;
 
@@ -982,7 +982,7 @@ BOOL CYKSchedulerView::IsCanCopy()
 	return bOK;
 }
 
-BOOL CYKSchedulerView::IsCanCut()
+BOOL CSchedulerView::IsCanCut()
 {
 	BOOL bOK = FALSE;
 
@@ -1014,7 +1014,7 @@ BOOL CYKSchedulerView::IsCanCut()
 }
 
 //是否可以粘贴
-BOOL CYKSchedulerView::IsCanPaste()
+BOOL CSchedulerView::IsCanPaste()
 {
 	BOOL bOK = FALSE;
 
@@ -1041,7 +1041,7 @@ BOOL CYKSchedulerView::IsCanPaste()
 	return bOK;
 }
 
-CDataGridCtrl* CYKSchedulerView::GetActiveGridCtrl()
+CDataGridCtrl* CSchedulerView::GetActiveGridCtrl()
 {
 	
 	if (m_pGdCtrl.GetSafeHwnd())
@@ -1052,12 +1052,12 @@ CDataGridCtrl* CYKSchedulerView::GetActiveGridCtrl()
 	return NULL;
 }
 
-CBOMInfo* CYKSchedulerView::GetBOMGridCtrl()
+CBOMInfo* CSchedulerView::GetBOMGridCtrl()
 {
 	return &m_BOMInfo;
 }
 
-void CYKSchedulerView::SureWillOrder()
+void CSchedulerView::SureWillOrder()
 {
 	int actTab = m_wndTabs.GetActiveTab();
 	if (actTab >= 0)
@@ -1072,7 +1072,7 @@ void CYKSchedulerView::SureWillOrder()
 	}
 }
 
-void CYKSchedulerView::CancelWillOrder()
+void CSchedulerView::CancelWillOrder()
 {
 	int actTab = m_wndTabs.GetActiveTab();
 	if (actTab >= 0)
@@ -1087,7 +1087,7 @@ void CYKSchedulerView::CancelWillOrder()
 	}
 }
 
-void CYKSchedulerView::SetFindType( UINT nType )
+void CSchedulerView::SetFindType( UINT nType )
 {
 	m_nFindType = nType;
 
@@ -1095,7 +1095,7 @@ void CYKSchedulerView::SetFindType( UINT nType )
 		m_pGdCtrl.SetFindType(m_nFindType);*/
 }
 
-void CYKSchedulerView::GLFind( vector<UINT>& fList/*int kind,vector<UINT>& findList*/ )
+void CSchedulerView::GLFind( vector<UINT>& fList/*int kind,vector<UINT>& findList*/ )
 {
 
 	if (m_tblType==ID_GANTT_RES_GL)
@@ -1130,7 +1130,7 @@ void CYKSchedulerView::GLFind( vector<UINT>& fList/*int kind,vector<UINT>& findL
 	}
 }
 
-int CYKSchedulerView::GetSelectFiled()
+int CSchedulerView::GetSelectFiled()
 {
 	int result = HI_HID_Default;
 	if (m_tblType == ID_GANTT_RES_GL)
@@ -1183,7 +1183,7 @@ int CYKSchedulerView::GetSelectFiled()
 	return result;
 }
 
-int CYKSchedulerView::DoTypeHelpId( int tblType )
+int CSchedulerView::DoTypeHelpId( int tblType )
 {
 	YK_ULONG  TblEnmuId=HI_HID_Default;
 
@@ -1337,7 +1337,7 @@ int CYKSchedulerView::DoTypeHelpId( int tblType )
 
 
 //工作拆分
-void CYKSchedulerView::WorkSplit( ULONG workId )
+void CSchedulerView::WorkSplit( ULONG workId )
 {
 #ifndef PMCMODE
 	YKBizMap* bizMap =	BIZAPI::GetBizMap();
@@ -1397,7 +1397,7 @@ void CYKSchedulerView::WorkSplit( ULONG workId )
 }
 
 //订单拆分
-void CYKSchedulerView::OrderSplit( ULONG workId )
+void CSchedulerView::OrderSplit( ULONG workId )
 {
 #ifndef PMCMODE
 	YKBizMap* bizMap =	BIZAPI::GetBizMap();
@@ -1457,7 +1457,7 @@ void CYKSchedulerView::OrderSplit( ULONG workId )
 }
 
 //工作合并
-void CYKSchedulerView::WorkComb( ULONG workId )
+void CSchedulerView::WorkComb( ULONG workId )
 {
 #ifndef PMCMODE
 	YKBizMap* bizMap =	BIZAPI::GetBizMap();
@@ -1505,7 +1505,7 @@ void CYKSchedulerView::WorkComb( ULONG workId )
 }
 
 //订单合并
-void CYKSchedulerView::OrderComb( ULONG workId )
+void CSchedulerView::OrderComb( ULONG workId )
 {
 #ifndef PMCMODE
 
@@ -1561,14 +1561,14 @@ void CYKSchedulerView::OrderComb( ULONG workId )
 #endif
 }
 
-void CYKSchedulerView::UpdateEntiyGrid()
+void CSchedulerView::UpdateEntiyGrid()
 {
 	UpdateGrid(3);
 	//m_entityGrid.Flash();
 }
 
 
-void CYKSchedulerView::ResetView()
+void CSchedulerView::ResetView()
 {
 	ViewTip vt;
 	if (theApp.g_viewTips.Find(m_tblType,vt))
@@ -1589,7 +1589,7 @@ void CYKSchedulerView::ResetView()
 	Flash();
 }
 
-void CYKSchedulerView::GetWorkToUseResource( vector<GridRowInfo>& idList ,UINT workId)
+void CSchedulerView::GetWorkToUseResource( vector<GridRowInfo>& idList ,UINT workId)
 {
 	idList.clear();
 
@@ -1631,7 +1631,7 @@ void CYKSchedulerView::GetWorkToUseResource( vector<GridRowInfo>& idList ,UINT w
 }
 
 //工作对应工作关联关系
-void CYKSchedulerView::GetWorkToWorkRelation( vector<GridRowInfo>& idList ,UINT workId )
+void CSchedulerView::GetWorkToWorkRelation( vector<GridRowInfo>& idList ,UINT workId )
 {
 	idList.clear();
 
@@ -1666,7 +1666,7 @@ void CYKSchedulerView::GetWorkToWorkRelation( vector<GridRowInfo>& idList ,UINT 
 	}
 }
 
-void CYKSchedulerView::AdjustGridView()
+void CSchedulerView::AdjustGridView()
 {
 	m_showGridLable = theApp.m_gridShowLabel;
 	int needH = 20;
@@ -1703,7 +1703,7 @@ void CYKSchedulerView::AdjustGridView()
 
 
 
-void CYKSchedulerView::GtFind(unsigned long id,int type)
+void CSchedulerView::GtFind(unsigned long id,int type)
 {
      if (m_tblType==ID_GANTT_RES_GL)
      {
@@ -1766,7 +1766,7 @@ void CYKSchedulerView::GtFind(unsigned long id,int type)
 }
 
 #ifndef _REMOVE_ITEMGATHER_
-void CYKSchedulerView::ItemGatherGridCtrlRelease()
+void CSchedulerView::ItemGatherGridCtrlRelease()
 {
 	if (m_itemGtherGridCtrl != NULL)
 	{
@@ -1776,28 +1776,28 @@ void CYKSchedulerView::ItemGatherGridCtrlRelease()
 
 }
 
-CItemGatherGridCtrl* CYKSchedulerView::GetItemGatherGridCtrl()
+CItemGatherGridCtrl* CSchedulerView::GetItemGatherGridCtrl()
 {
 	if (m_itemGtherGridCtrl == NULL)
 		m_itemGtherGridCtrl = new CItemGatherGridCtrl();
 	return m_itemGtherGridCtrl;
 }
 #endif
-void CYKSchedulerView::OnClose()
+void CSchedulerView::OnClose()
 {
 	// TODO: Add your message handler code here and/or call default
 	Close();
 	CView::OnClose();
 }
 
-CDayShiftGridCtrl* CYKSchedulerView::GetDayShiftGridCtrl()
+CDayShiftGridCtrl* CSchedulerView::GetDayShiftGridCtrl()
 {
 	if (m_dayShiftGridCtrl == NULL)
 		m_dayShiftGridCtrl = new CDayShiftGridCtrl();
 	return m_dayShiftGridCtrl;
 }
 
-void CYKSchedulerView::DayShiftGridCtrlRelease()
+void CSchedulerView::DayShiftGridCtrlRelease()
 {
 	
 	if (m_dayShiftGridCtrl != NULL)
@@ -1807,17 +1807,17 @@ void CYKSchedulerView::DayShiftGridCtrlRelease()
 	}
 }
 
-void CYKSchedulerView::FlexGridUpdate(bool bFlashed)
+void CSchedulerView::FlexGridUpdate(bool bFlashed)
 {
 	if (m_pGdCtrl.GetSafeHwnd())
 		m_pGdCtrl.UpdateFlexGrid(bFlashed);
 }
-void CYKSchedulerView::FlexGridSort()
+void CSchedulerView::FlexGridSort()
 {
 	if (m_pGdCtrl.GetSafeHwnd())
 		m_pGdCtrl.SortTable();
 }
-void CYKSchedulerView::OnPrint(CDC* pDC, CPrintInfo* pInfo)
+void CSchedulerView::OnPrint(CDC* pDC, CPrintInfo* pInfo)
 {
 	// TODO: Add your specialized code here and/or call the base class
 	if(ID_GANTT_RES_GL == GetTblType() ) 
@@ -1849,7 +1849,7 @@ void CYKSchedulerView::OnPrint(CDC* pDC, CPrintInfo* pInfo)
 
 
 	//表格打印质量不好，暂时去掉
-	//CYKSchedulerView* pCurView = (DYNAMIC_DOWNCAST(CMainFrame, m_pMainWnd))->GetActiveView();
+	//CSchedulerView* pCurView = (DYNAMIC_DOWNCAST(CMainFrame, m_pMainWnd))->GetActiveView();
 	//if (NULL != pCurView)
 	//{
 	//	if(pCurView->m_pGdCtrl.GetSafeHwnd())

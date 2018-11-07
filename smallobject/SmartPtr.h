@@ -2,18 +2,18 @@
 #ifndef _SMARTPTR_H__
 #define _SMARTPTR_H__
 
-#include "YKMemoryPolicy.h"
-#include "YKSmallObj.h"
+#include "MemoryPolicy.h"
+#include "SmallObj.h"
 
 template <class Target, class Source>
-inline Target YK_Safe_DownCast(Source* x)
+inline Target Safe_DownCast(Source* x)
 {
 	assert(dynamic_cast<Target>(x) == x);
 	return static_cast<Target>(x);
 }
 
 template <bool flag, typename T, typename U>
-struct YKSelect
+struct Select
 {
 	template <bool flag>
 	struct In
@@ -46,7 +46,7 @@ public:
 	void NewCount()
 	{
  		pCount = static_cast<unsigned int*>(
- 			YKSmallObject<>::operator new(sizeof(unsigned int)));
+ 			SmallObject<>::operator new(sizeof(unsigned int)));
 		//pCount = new unsigned int;
 		assert(pCount);
 		*pCount = 1;
@@ -63,7 +63,7 @@ public:
 	{
 		if (pCount && (!--*pCount))
 		{
-			YKSmallObject<>::operator delete(pCount, sizeof(unsigned int));
+			SmallObject<>::operator delete(pCount, sizeof(unsigned int));
 			//delete pCount;
 			pCount = 0;
 			return true;
@@ -99,7 +99,7 @@ struct RefCountedMTAdj
 		void NewCount()
 		{
 			pCount = static_cast<CountPtrType>(
-				YKSmallObject<ThreadingPolicy>::operator new(sizeof(*pCount)));
+				SmallObject<ThreadingPolicy>::operator new(sizeof(*pCount)));
 			//pCount = new unsigned int;
 			assert(pCount);
 			*pCount = 1;
@@ -125,7 +125,7 @@ struct RefCountedMTAdj
 		{
 			if (pCount && !ThreadingPolicy<RefCountedMT>::AtomicDecrement(*pCount))
 			{
-				YKSmallObject<ThreadingPolicy>::operator delete(
+				SmallObject<ThreadingPolicy>::operator delete(
 					const_cast<CountType *>(pCount), 
 					sizeof(*pCount));
 				return true;
@@ -207,7 +207,7 @@ template <typename T,
 		template <class> class OwnershipPolicy = RefCounted,
 		template <class> class CheckingPolicy = NoCheck,
 		template <class> class MemoryPolicy = MemPolicyCached>
-class YKSmartPtr : public MemoryPolicy<T>
+class SmartPtr : public MemoryPolicy<T>
 	, public OwnershipPolicy<typename MemoryPolicy<T>::pointer>
 	, public CheckingPolicy<typename MemoryPolicy<T>::stored_type>
 {
@@ -223,9 +223,9 @@ public:
 
 	enum {YK_destructiveCopy = OP::destructiveCopy};
 
-	typedef typename YKSelect<YK_destructiveCopy, YKSmartPtr, const YKSmartPtr>::Result		copySelect;	
+	typedef typename Select<YK_destructiveCopy, SmartPtr, const SmartPtr>::Result		copySelect;	
 public:
-	YKSmartPtr(bool bNew = false)
+	SmartPtr(bool bNew = false)
 	{
 		if (bNew)
 		{
@@ -234,20 +234,20 @@ public:
 		}
 	}
 
-	YKSmartPtr(int rhs)
+	SmartPtr(int rhs)
 	{
 		assert(rhs == 0);
-		YKSmartPtr temp;
+		SmartPtr temp;
 		temp.Swap(*this);
 	}
 
-	YKSmartPtr(YKSmartPtr& rhs)
+	SmartPtr(SmartPtr& rhs)
 		: MP(rhs), OP(rhs), KP(rhs)
 	{
 		GetImplRef(*this) = OP::Clone(GetImplRef(rhs));
 	}
 
-	/*YKSmartPtr(pointer pObj)
+	/*SmartPtr(pointer pObj)
 	{
 		Create();
 		Copy(pObj);
@@ -258,25 +258,25 @@ public:
 		template <class> class OP1,
 		template <class> class KP1,
 		template <class> class MP1>
-	YKSmartPtr(const YKSmartPtr<T1, OP1, KP1, MP1>& rhs)
+	SmartPtr(const SmartPtr<T1, OP1, KP1, MP1>& rhs)
 		: MP(rhs), OP(rhs), KP(rhs)
 	{
-		GetImplRef(*this) = OP::Clone(YK_Safe_DownCast<pointer>(GetImplRef(rhs)));
+		GetImplRef(*this) = OP::Clone(Safe_DownCast<pointer>(GetImplRef(rhs)));
 	}
 
 	template <typename T1, 
 		template <class> class OP1,
 		template <class> class KP1,
 		template <class> class MP1>
-	YKSmartPtr(YKSmartPtr<T1, OP1, KP1, MP1>& rhs)
+	SmartPtr(SmartPtr<T1, OP1, KP1, MP1>& rhs)
 		: MP(rhs), OP(rhs), KP(rhs)
 	{
-		GetImplRef(*this) = OP::Clone(YK_Safe_DownCast<pointer>(GetImplRef(rhs)));
+		GetImplRef(*this) = OP::Clone(Safe_DownCast<pointer>(GetImplRef(rhs)));
 	}
 
-	YKSmartPtr& operator= (copySelect& rhs)
+	SmartPtr& operator= (copySelect& rhs)
 	{
-		YKSmartPtr temp(rhs);
+		SmartPtr temp(rhs);
 		temp.Swap(*this);
 		return *this;
 	}
@@ -285,9 +285,9 @@ public:
 		template <class> class OP1,
 		template <class> class KP1,
 		template <class> class MP1>
-	YKSmartPtr& operator= (const YKSmartPtr<T1, OP1, KP1, MP1>& rhs)
+	SmartPtr& operator= (const SmartPtr<T1, OP1, KP1, MP1>& rhs)
 	{
-		YKSmartPtr temp(rhs);
+		SmartPtr temp(rhs);
 		temp.Swap(*this);
 		return *this;
 	}
@@ -296,21 +296,21 @@ public:
 		template <class> class OP1,
 		template <class> class KP1,
 		template <class> class MP1>
-	YKSmartPtr& operator= (YKSmartPtr<T1, OP1, KP1, MP1>& rhs)
+	SmartPtr& operator= (SmartPtr<T1, OP1, KP1, MP1>& rhs)
 	{
-		YKSmartPtr temp(rhs);
+		SmartPtr temp(rhs);
 		temp.Swap(*this);
 		return *this;
 	}
 
-	void Swap(YKSmartPtr& rhs)
+	void Swap(SmartPtr& rhs)
 	{
 		OP::Swap(rhs);
 		KP::Swap(rhs);
 		MP::Swap(rhs);
 	}
 
-	~YKSmartPtr() 
+	~SmartPtr() 
 	{
 		if (OP::Release(GetImpl(*static_cast<MP*>(this))))
 		{
@@ -342,34 +342,34 @@ public:
 		return MP::operator *();
 	}
 
-	inline friend bool operator== (const YKSmartPtr& lhs, const_pointer rhs)
+	inline friend bool operator== (const SmartPtr& lhs, const_pointer rhs)
 	{return GetImpl(lhs) == rhs;}
-	inline friend bool operator== (const_pointer lhs, const YKSmartPtr& rhs)
+	inline friend bool operator== (const_pointer lhs, const SmartPtr& rhs)
 	{return rhs == lhs;}
-	inline friend bool operator!= (const YKSmartPtr& lhs, const_pointer rhs)
+	inline friend bool operator!= (const SmartPtr& lhs, const_pointer rhs)
 	{return !(lhs == rhs);}
-	inline friend bool operator!= (const_pointer lhs, const YKSmartPtr& rhs)
+	inline friend bool operator!= (const_pointer lhs, const SmartPtr& rhs)
 	{return rhs != lhs;}
 
 	template <typename T1, 
 		template <class> class OP1,
 		template <class> class KP1,
 		template <class> class MP1>
-	bool operator== (const YKSmartPtr<T1, OP1, KP1, MP1>& rhs) const
+	bool operator== (const SmartPtr<T1, OP1, KP1, MP1>& rhs) const
 	{return *this == GetImpl(rhs);}
 
 	template <typename T1, 
 		template <class> class OP1,
 		template <class> class KP1,
 		template <class> class MP1>
-	bool operator!= (const YKSmartPtr<T1, OP1, KP1, MP1>& rhs) const
+	bool operator!= (const SmartPtr<T1, OP1, KP1, MP1>& rhs) const
 	{return !(*this == rhs);}
 
 // 	template <typename T1, 
 // 		template <class> class OP1,
 // 		template <class> class KP1,
 // 		template <class> class MP1>
-// 	bool operator< (const YKSmartPtr<T1, OP1, KP1, MP1>& rhs) const
+// 	bool operator< (const SmartPtr<T1, OP1, KP1, MP1>& rhs) const
 // 	{return *this < GetImpl(rhs);}
 
 	bool ValidObj()

@@ -5,7 +5,7 @@
 #include <assert.h>
 #include <vector>
 
-struct YKChunk
+struct Chunk
 {
 public:
 	void Init(std::size_t blockSize, unsigned char blocks)
@@ -202,7 +202,7 @@ public:
 	}
 
 public:
-	typedef typename YKChunk		chunk_type;
+	typedef typename Chunk		chunk_type;
 private:
 	static std::vector<chunk_type> m_vecChunks;
 	static chunk_type*		m_pAllocChunk;
