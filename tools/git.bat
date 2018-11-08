@@ -28,7 +28,7 @@ git.exe pull --progress -v --no-rebase "origin" release
 cd "D:\program\CRYENGINE\CRYENGINE"
 git.exe pull --progress -v --no-rebase "origin"
 
-cd "D:\program\Stranded\doom3.gpl"
+cd "D:\program\Stranded\tools\doom3.gpl"
 git.exe pull --progress -v --no-rebase "origin" master
 
 cd "D:\program\qt5"
