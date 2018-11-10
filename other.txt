@@ -1,1 +1,21 @@
+git config --global https.proxy https://127.0.0.1:49978
+git config --global http.proxy http://127.0.0.1:49978
+
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
+https://www.zhihu.com/question/34541107
+https://github.com/ptresearch/mmdetect/blob/master/mmdetect.py
+https://www.jianshu.com/u/8fad76e7e05c
+
+Bluestacks:
+获取root权限 机型选择S4
+安装命令:
+C:\Program Files (x86)\BluestacksCN\Engine\ProgramFiles>HD-Adb.exe -s emulator-5554 push C:\Users\chendian.nine\Downloads\.config_user.db /sdcard/download
+C:\Program Files (x86)\BluestacksCN\Engine\ProgramFiles>HD-Adb.exe -s emulator-5554 shell
+shell@t03g:/ $ su
+shell@t03g:/ # cp /sdcard/download/.config_user.db /data/data
+shell@t03g:/ # cd /data/data
+shell@t03g:/data/data # chmod 777 .config_user.db
+
 https://learnopengl-cn.github.io/01%20Getting%20started/04%20Hello%20Triangle/

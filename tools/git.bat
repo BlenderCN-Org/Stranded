@@ -6,6 +6,12 @@ git.exe pull --progress -v --no-rebase "origin"
 git.exe submodule update --init -- "third_party/benchmark"
 git.exe submodule update --init -- "third_party/googletest"
 
+cd "D:\program\Stranded\decoda"
+git.exe pull --progress -v --no-rebase "origin" master
+
+cd "D:\program\Stranded\nedmalloc"
+git.exe pull --progress -v --no-rebase "origin"
+
 cd "D:\program\Stranded\ThirdParty\glfw"
 git.exe pull --progress -v --no-rebase "origin"
 
