@@ -9,10 +9,7 @@ git.exe submodule update --init -- "third_party/googletest"
 cd "D:\program\Stranded"
 git.exe pull --progress -v --no-rebase "origin"
 
-cd "D:\program\Stranded\decoda"
-git.exe pull --progress -v --no-rebase "origin" master
-
-cd "D:\program\Stranded\nedmalloc"
+cd "D:\program\Stranded\ThirdParty\nedmalloc"
 git.exe pull --progress -v --no-rebase "origin"
 
 cd "D:\program\Stranded\ThirdParty\glfw"
@@ -28,6 +25,12 @@ git.exe submodule update --progress --init -- "thirdparty/gtest"
 cd "D:\program\Stranded\ThirdParty\tinyxml2"
 git.exe pull --progress -v --no-rebase "origin"
 
+cd "D:\program\Stranded\tools\decoda"
+git.exe pull --progress -v --no-rebase "origin" master
+
+cd "D:\program\Stranded\tools\doom3.gpl"
+git.exe pull --progress -v --no-rebase "origin" master
+
 cd "D:\program\CRYENGINE\vs-cryengine-mono-debugger"
 git.exe pull --progress -v --no-rebase "origin" master
 
@@ -36,9 +39,6 @@ git.exe pull --progress -v --no-rebase "origin" release
 
 cd "D:\program\CRYENGINE\CRYENGINE"
 git.exe pull --progress -v --no-rebase "origin"
-
-cd "D:\program\Stranded\tools\doom3.gpl"
-git.exe pull --progress -v --no-rebase "origin" master
 
 cd "D:\program\qt5"
 git.exe pull --progress -v --no-rebase "origin"
