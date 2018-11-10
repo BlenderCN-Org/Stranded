@@ -6,6 +6,9 @@ git.exe pull --progress -v --no-rebase "origin"
 git.exe submodule update --init -- "third_party/benchmark"
 git.exe submodule update --init -- "third_party/googletest"
 
+cd "D:\program\Stranded"
+git.exe pull --progress -v --no-rebase "origin"
+
 cd "D:\program\Stranded\decoda"
 git.exe pull --progress -v --no-rebase "origin" master
 
