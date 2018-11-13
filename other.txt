@@ -19,3 +19,4 @@ shell@t03g:/ # cd /data/data
 shell@t03g:/data/data # chmod 777 .config_user.db
 
 https://learnopengl-cn.github.io/01%20Getting%20started/04%20Hello%20Triangle/
+https://github.com/appleseedhq/appleseed/wiki/Building-appleseed-on-Windows
