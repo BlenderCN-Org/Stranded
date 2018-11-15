@@ -34,6 +34,7 @@
     <outline text="Keep It Simple, Stupid" title="Keep It Simple, Stupid" type="rss" xmlUrl="http://blog.csdn.net/tujiaw/rss/list" htmlUrl="https://blog.csdn.net/tujiaw"/>
     <outline text="天-Awakening-记录所有事" title="天-Awakening-记录所有事" type="rss" xmlUrl="http://www.bboytian.com/Blog/feed.asp" htmlUrl="http://www.bboytian.com/Blog/"/>
     <outline text="red woft的专栏" title="red woft的专栏" type="rss" xmlUrl="http://blog.csdn.net/a3070173/rss/list" htmlUrl="https://blog.csdn.net/a3070173"/>
+    <outline text="喵耳朵" title="喵耳朵" type="rss" xmlUrl="http://www.miaoerduo.com/feed" htmlUrl="http://www.miaoerduo.com/"/>
     <outline text="烟雨博客" title="烟雨博客" type="rss" xmlUrl="http://blog.csdn.net/keith_bb/rss/list" htmlUrl="http://blog.csdn.net/keith_bb"/>
     <outline text="Leif Node" title="Leif Node" type="rss" xmlUrl="http://leifnode.com/feed/" htmlUrl="http://leifnode.com/"/>
     <outline text="安柏霖的专栏" title="安柏霖的专栏" type="rss" xmlUrl="http://blog.csdn.net/toughbro/rss/list" htmlUrl="http://blog.csdn.net/ccanan"/>
@@ -44,10 +45,9 @@
     <outline text="Z's Blog" title="Z's Blog" type="rss" xmlUrl="http://imzlp.me/atom.xml" htmlUrl="http://imzlp.me/"/>
     <outline text="BugRunner的专栏" title="BugRunner的专栏" type="rss" xmlUrl="http://blog.csdn.net/bugrunner/rss/list" htmlUrl="http://blog.csdn.net/bugrunner"/>
     <outline text="博客园_凡事看本质" title="博客园_凡事看本质" type="rss" xmlUrl="http://feed.cnblogs.com/blog/u/75088/rss" htmlUrl="http://feed.cnblogs.com/blog/u/75088/rss"/>
-    <outline text="Unreal Engine 4 blog" title="Unreal Engine 4 blog" type="rss" xmlUrl="http://www.michalorzelek.com/blog/feed/" htmlUrl="http://www.michalorzelek.com/blog"/>
-    <outline text="喵耳朵" title="喵耳朵" type="rss" xmlUrl="http://www.miaoerduo.com/feed" htmlUrl="http://www.miaoerduo.com/"/>
     <outline text="博客园_Tan" title="博客园_Tan" type="rss" xmlUrl="http://feed.cnblogs.com/blog/u/220676/rss" htmlUrl="http://feed.cnblogs.com/blog/u/220676/rss"/>
     <outline text="guyuealian的博客" title="guyuealian的博客" type="rss" xmlUrl="https://blog.csdn.net/guyuealian/rss/list" htmlUrl="https://blog.csdn.net/guyuealian"/>
+    <outline text="noslopforever ［天堂里的死神］" title="noslopforever ［天堂里的死神］" type="rss" xmlUrl="https://blog.csdn.net/noslopforever/rss/list" htmlUrl="https://blog.csdn.net/noslopforever"/>
     <outline text="博客园_代码如诗" title="博客园_代码如诗" type="rss" xmlUrl="http://www.cnblogs.com/kex1n/rss.aspx" htmlUrl="http://www.cnblogs.com/kex1n/rss.aspx"/>
     <outline text="石头的专栏" title="石头的专栏" type="rss" xmlUrl="https://blog.csdn.net/zhangzhengyi03539/rss/list" htmlUrl="https://blog.csdn.net/zhangzhengyi03539"/>
     <outline text="软件架构农" title="软件架构农" type="rss" xmlUrl="http://blog.csdn.net/charlessimonyi/rss/list" htmlUrl="https://blog.csdn.net/CharlesSimonyi"/>
@@ -58,8 +58,8 @@
     <outline text="AaronPolaris" title="AaronPolaris" type="rss" xmlUrl="http://blog.csdn.net/aarongzk/rss/list" htmlUrl="https://blog.csdn.net/AaronGZK"/>
     <outline text="博客园_LifeYx" title="博客园_LifeYx" type="rss" xmlUrl="http://feed.cnblogs.com/blog/u/361204/rss" htmlUrl="http://feed.cnblogs.com/blog/u/361204/rss"/>
     <outline text="DANIEL SLATER'S BLOG" title="DANIEL SLATER'S BLOG" type="rss" xmlUrl="https://danielslater.net/feed/" htmlUrl="https://danielslater.net/"/>
-    <outline text="noslopforever ［天堂里的死神］" title="noslopforever ［天堂里的死神］" type="rss" xmlUrl="https://blog.csdn.net/noslopforever/rss/list" htmlUrl="https://blog.csdn.net/noslopforever"/>
-    <outline text="C++博客-canaan" title="C++博客-canaan" type="rss" xmlUrl="http://www.cppblog.com/chinapeter2008/rss.aspx" htmlUrl="http://www.cppblog.com/chinapeter2008"/>
+    <outline text="InfoQ" title="InfoQ" type="rss" xmlUrl="https://feed.infoq.com/" htmlUrl="http://www.infoq.com/"/>
+    <outline text="Unreal Engine 4 blog" title="Unreal Engine 4 blog" type="rss" xmlUrl="http://www.michalorzelek.com/blog/feed/" htmlUrl="http://www.michalorzelek.com/blog"/>
     <outline text="i_dovelemon的专栏" title="i_dovelemon的专栏" type="rss" xmlUrl="http://blog.csdn.net/i_dovelemon/rss/list" htmlUrl="https://blog.csdn.net/i_dovelemon"/>
     <outline text="逍遥剑客" title="逍遥剑客" type="rss" xmlUrl="https://blog.csdn.net/xoyojank/rss/list" htmlUrl="https://blog.csdn.net/xoyojank"/>
     <outline text="博客园_DeanWang" title="博客园_DeanWang" type="rss" xmlUrl="http://feed.cnblogs.com/blog/u/323745/rss" htmlUrl="http://feed.cnblogs.com/blog/u/323745/rss"/>
@@ -169,7 +169,8 @@
     <outline text="The View from Aristeia" title="The View from Aristeia" type="rss" xmlUrl="http://scottmeyers.blogspot.com/feeds/posts/default" htmlUrl="http://scottmeyers.blogspot.com/"/>
     <outline text="Solidot" title="Solidot" type="rss" xmlUrl="http://www.solidot.org/index.rss" htmlUrl="http://www.solidot.org/"/>
     <outline text="Coding Horror" title="Coding Horror" type="rss" xmlUrl="http://feeds.feedburner.com/codinghorror" htmlUrl="http://blog.codinghorror.com/"/>
-    <outline text="cartzhang的专栏" title="cartzhang的专栏" type="rss" xmlUrl="http://blog.csdn.net/cartzhang/rss/list" htmlUrl="http://blog.csdn.net/cartzhang"/>
+    <outline text="C++博客-canaan" title="C++博客-canaan" type="rss" xmlUrl="http://www.cppblog.com/chinapeter2008/rss.aspx" htmlUrl="http://www.cppblog.com/chinapeter2008"/>
+    <outline text="MoreWindows Blog" title="MoreWindows Blog" type="rss" xmlUrl="http://blog.csdn.net/morewindows/rss/list" htmlUrl="http://blog.csdn.net/morewindows"/>
     <outline text="IT博客-平民程序 - linghuye's blog" title="IT博客-平民程序 - linghuye's blog" type="rss" xmlUrl="http://www.cnitblog.com/linghuye/Rss.aspx" htmlUrl="http://www.cnitblog.com/linghuye/"/>
     <outline text="Slashdot" title="Slashdot" type="rss" xmlUrl="http://rss.slashdot.org/Slashdot/slashdotMain" htmlUrl="http://slashdot.org/"/>
     <outline text="结构之法 算法之道" title="结构之法 算法之道" type="rss" xmlUrl="http://blog.csdn.net/v_july_v/rss/list" htmlUrl="http://blog.csdn.net/v_july_v"/>
@@ -180,10 +181,10 @@
     <outline text="James Long" title="James Long" type="rss" xmlUrl="http://feedpress.me/jlongster" htmlUrl="http://jlongster.com/"/>
     <outline text="Photone Ray" title="Photone Ray" type="rss" xmlUrl="http://www.photoneray.com/feed/" htmlUrl="http://www.photoneray.com/feed/"/>
     <outline text="博客园_迈克老狼2012" title="博客园_迈克老狼2012" type="rss" xmlUrl="http://feed.cnblogs.com/blog/u/104739/rss" htmlUrl="http://www.cnblogs.com/mikewolf2002/"/>
-    <outline text="candycat" title="candycat" type="rss" xmlUrl="http://blog.csdn.net/candycat1992/rss/list" htmlUrl="http://blog.csdn.net/candycat1992"/>
-    <outline text="MoreWindows Blog" title="MoreWindows Blog" type="rss" xmlUrl="http://blog.csdn.net/morewindows/rss/list" htmlUrl="http://blog.csdn.net/morewindows"/>
     <outline text="博客园_Trace的空间" title="博客园_Trace的空间" type="rss" xmlUrl="http://feed.cnblogs.com/blog/u/143917/rss" htmlUrl="http://feed.cnblogs.com/blog/u/143917/rss"/>
     <outline text="C++博客-战魂小筑" title="C++博客-战魂小筑" type="rss" xmlUrl="http://www.cppblog.com/sunicdavy/Rss.aspx" htmlUrl="http://www.cppblog.com/sunicdavy/"/>
+    <outline text="KlayGE游戏引擎" title="KlayGE游戏引擎" type="rss" xmlUrl="http://www.klayge.org/feed/" htmlUrl="http://www.klayge.org/"/>
+    <outline text="cartzhang的专栏" title="cartzhang的专栏" type="rss" xmlUrl="http://blog.csdn.net/cartzhang/rss/list" htmlUrl="http://blog.csdn.net/cartzhang"/>
     <outline text="博客园_C++ Minor" title="博客园_C++ Minor" type="rss" xmlUrl="http://www.cnblogs.com/atyuwen/rss.aspx" htmlUrl="http://www.cnblogs.com/atyuwen/"/>
     <outline text="青峰碧陋室" title="青峰碧陋室" type="rss" xmlUrl="http://blog.csdn.net/tengweitw/rss/list" htmlUrl="http://blog.csdn.net/tengweitw"/>
     <outline text="C++博客-重剑无锋，大巧不工" title="C++博客-重剑无锋，大巧不工" type="rss" xmlUrl="http://www.cppblog.com/lai3d/Rss.aspx" htmlUrl="http://www.cppblog.com/lai3d/"/>
@@ -194,12 +195,11 @@
     <outline text="Riot Games Tech Blog News Feed" title="Riot Games Tech Blog News Feed" type="rss" xmlUrl="http://engineering.riotgames.com/news/feed" htmlUrl="http://engineering.riotgames.com/"/>
     <outline text="燕良@游戏开发" title="燕良@游戏开发" type="rss" xmlUrl="http://blog.csdn.net/neil3d/rss/list" htmlUrl="http://blog.csdn.net/neil3d"/>
     <outline text="Seba's Lab" title="Seba's Lab" type="rss" xmlUrl="http://www.sebaslab.com/feed/" htmlUrl="http://www.sebaslab.com/"/>
-    <outline text="KlayGE游戏引擎" title="KlayGE游戏引擎" type="rss" xmlUrl="http://www.klayge.org/feed/" htmlUrl="http://www.klayge.org/"/>
+    <outline text="candycat" title="candycat" type="rss" xmlUrl="http://blog.csdn.net/candycat1992/rss/list" htmlUrl="http://blog.csdn.net/candycat1992"/>
     <outline text="博客园_麒麟子(Alex)" title="博客园_麒麟子(Alex)" type="rss" xmlUrl="http://feed.cnblogs.com/blog/u/81196/rss" htmlUrl="http://feed.cnblogs.com/blog/u/81196/rss"/>
-    <outline text="TheCodeWay:我的博客" title="TheCodeWay:我的博客" type="rss" xmlUrl="http://thecodeway.com/blog/?feed=rss2" htmlUrl="http://thecodeway.com/blog"/>
+    <outline text="liygcheng's coding world -" title="liygcheng's coding world -" type="rss" xmlUrl="http://blog.csdn.net/liygcheng/rss/list" htmlUrl="http://blog.csdn.net/chenglechao"/>
     <outline text="Tim's Blog" title="Tim's Blog" type="rss" xmlUrl="http://wuzhiwei.net/feed/" htmlUrl="http://wuzhiwei.net/"/>
     <outline text="张佩的仓库" title="张佩的仓库" type="rss" xmlUrl="http://www.yiiyee.cn/Blog/feed/" htmlUrl="http://www.yiiyee.cn/Blog"/>
-    <outline text="InfoQ" title="InfoQ" type="rss" xmlUrl="http://www.infoq.com/cn/feed" htmlUrl="http://www.infoq.com/cn/"/>
     <outline text="计算机书籍控" title="计算机书籍控" type="rss" xmlUrl="http://bestcbooks.com/atom.xml" htmlUrl="http://bestcbooks.com/"/>
     <outline text="博客园_qicosmos" title="博客园_qicosmos" type="rss" xmlUrl="http://feed.cnblogs.com/blog/u/146728/rss" htmlUrl="http://feed.cnblogs.com/blog/u/146728/rss"/>
     <outline text="走在游戏开发道路上的青年 —— BlueCoder(黎小华)的博客" title="走在游戏开发道路上的青年 —— BlueCoder(黎小华)的博客" type="rss" xmlUrl="http://blog.csdn.net/crocodile__/rss/list" htmlUrl="http://blog.csdn.net/crocodile_"/>
@@ -208,9 +208,10 @@
     <outline text="博客园-cp的小屋" title="博客园-cp的小屋" type="rss" xmlUrl="http://feed.cnblogs.com/blog/u/20242/rss" htmlUrl="http://feed.cnblogs.com/blog/u/20242/rss"/>
     <outline text="码农场" title="码农场" type="rss" xmlUrl="http://www.hankcs.com/feed" htmlUrl="http://www.hankcs.com/"/>
     <outline text="caopengcs的专栏" title="caopengcs的专栏" type="rss" xmlUrl="http://blog.csdn.net/caopengcs/rss/list" htmlUrl="http://blog.csdn.net/caopengcs"/>
-    <outline text="liygcheng's coding world -" title="liygcheng's coding world -" type="rss" xmlUrl="http://blog.csdn.net/liygcheng/rss/list" htmlUrl="http://blog.csdn.net/chenglechao"/>
     <outline text="Real-Time RenderingReal-Time Rendering »" title="Real-Time RenderingReal-Time Rendering »" type="rss" xmlUrl="http://www.realtimerendering.com/blog/feed" htmlUrl="http://www.realtimerendering.com/blog"/>
     <outline text="博客园_len3d" title="博客园_len3d" type="rss" xmlUrl="http://feed.cnblogs.com/blog/u/9496/rss" htmlUrl="uuid:a54a5578-9d01-4c5e-9205-36d58c7becf6;id=8506"/>
+    <outline text="始终" title="始终" type="rss" xmlUrl="http://liam0205.me/atom.xml" htmlUrl="http://liam0205.me/"/>
+    <outline text="TheCodeWay:我的博客" title="TheCodeWay:我的博客" type="rss" xmlUrl="http://thecodeway.com/blog/?feed=rss2" htmlUrl="http://thecodeway.com/blog"/>
     <outline text="C++博客-brent's hut" title="C++博客-brent's hut" type="rss" xmlUrl="http://www.cppblog.com/aqazero/rss.aspx" htmlUrl="http://www.cppblog.com/aqazero/"/>
     <outline text="C++博客-&lt;font color=&quot;#ff8000&quot;&gt;&amp;nbsp&amp;nbsp&amp;nbspC++&amp;nbsp技术中心&lt;/font&gt;" title="C++博客-&lt;font color=&quot;#ff8000&quot;&gt;&amp;nbsp&amp;nbsp&amp;nbspC++&amp;nbsp技术中心&lt;/font&gt;" type="rss" xmlUrl="http://www.cppblog.com/API/rss.aspx" htmlUrl="http://www.cppblog.com/API/"/>
     <outline text="白马负金羁的专栏" title="白马负金羁的专栏" type="rss" xmlUrl="http://blog.csdn.net/baimafujinji/rss/list" htmlUrl="http://blog.csdn.net/baimafujinji"/>
@@ -221,7 +222,6 @@
     <outline text="博客园_Milo的游戏开发" title="博客园_Milo的游戏开发" type="rss" xmlUrl="http://www.cnblogs.com/miloyip/rss.aspx" htmlUrl="http://www.cnblogs.com/miloyip/"/>
     <outline text="{CodingBlocks}.NET" title="{CodingBlocks}.NET" type="rss" xmlUrl="http://www.codingblocks.net/feed/" htmlUrl="http://www.codingblocks.net/"/>
     <outline text="Twinkling Star" title="Twinkling Star" type="rss" xmlUrl="http://www.twinklingstar.cn/feed/" htmlUrl="http://www.twinklingstar.cn/"/>
-    <outline text="始终" title="始终" type="rss" xmlUrl="http://liam0205.me/atom.xml" htmlUrl="http://liam0205.me/"/>
     <outline text="游蓝海 的专栏" title="游蓝海 的专栏" type="rss" xmlUrl="http://blog.csdn.net/you_lan_hai/rss/list" htmlUrl="http://blog.csdn.net/you_lan_hai"/>
   </body>
 </opml>
