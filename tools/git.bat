@@ -45,6 +45,10 @@ git.exe pull --progress -v --no-rebase "origin"
 git.exe submodule sync
 git.exe submodule update --recursive --progress
 
+cd "D:\program\qt5\qt-creator"
+git.exe pull --progress -v --no-rebase "origin"
+git.exe submodule update --progress --init -- "src/shared/qbs"
+
 cd "D:\program\ucc"
 TortoiseProc.exe /command:update /path:D:\program\ucc /closeonend:1
 
