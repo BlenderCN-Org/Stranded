@@ -27,3 +27,6 @@ http://code.qt.io/cgit/
 https://wiki.qt.io/Building_Qt_5_from_Git/zh
 https://wiki.qt.io/Building_Qt_Creator_from_Git/zh
 git.exe clone --progress -v "git://code.qt.io/qbs/qbs.git" "D:\program\qbs"
+git.exe pull --progress -v --no-rebase "origin" master
+git.exe submodule update --progress --init -- "src/shared/qtscript"
+git.exe clone --progress -v "git://code.qt.io/qt-creator/qt-creator.git" "D:\program\qt-creator"
