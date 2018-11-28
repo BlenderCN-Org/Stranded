@@ -20,7 +20,7 @@ shell@t03g:/data/data # chmod 777 .config_user.db
 
 https://learnopengl-cn.github.io/01%20Getting%20started/04%20Hello%20Triangle/
 https://github.com/appleseedhq/appleseed/wiki/Building-appleseed-on-Windows
-https://blog.csdn.net/u012966983/article/details/50918455
+
 
 -- qt
 http://code.qt.io/cgit/
