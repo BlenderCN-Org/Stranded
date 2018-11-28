@@ -8,6 +8,8 @@
 #pragma comment(lib, "Shell32.lib")
 #endif
 
+#pragma warning(push)
+#pragma warning(disable:4996)
 
 VOID ThrowStringException(LPCTSTR szFmt, ...)
 {
@@ -116,3 +118,5 @@ void SendInnerCrashReport(PEXCEPTION_POINTERS pException, HWND hInnerWnd)
 	::PathAppend(szSaveAs, szCrashFile);
 	::CopyFile(szLocalFile, szSaveAs, FALSE);
 }
+
+#pragma warning(pop)

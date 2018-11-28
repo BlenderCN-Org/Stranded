@@ -23,6 +23,8 @@ const int BUFFER_SIZE = 48 * 1024 * 1024;
 bool g_64bits = (sizeof(size_t) == 8) ? true : false;
 
 
+#pragma warning(push)
+#pragma warning(disable:4996)
 
 /*
 * 快速排序——快速排序算法中的一趟划分函数
@@ -805,11 +807,8 @@ void _cdecl GetCPUID(char* sCpuID)
 		// Instruction of CPUID with eax=80000001h returns edx of bit29 that inel 64 Architecture available if 1
 		POPAD
 	}
-
-#pragma warning(push)
-#pragma warning(disable:4996)
+	
 	sprintf(sCpuID, "%08X-%08X-%08X", dwCPUID, dwCPUName, dwCPUReserved2);
-#pragma warning(pop)
 }
 
 std::string LocalToUTF_8( const char* gb2312 )
@@ -1122,10 +1121,7 @@ int ReadFile(const std::string& file, char* buffer)
 
 	do
 	{
-#pragma warning(push)
-#pragma warning(disable:4996)
 		f = fopen(file.c_str(), "rb");
-#pragma warning(pop)
 		if (f == NULL)
 			break;
 
@@ -1165,10 +1161,7 @@ bool SaveFile(const std::string& filename, const char* data, size_t size)
 {
 	MakeRecursive(filename.c_str());
 
-#pragma warning(push)
-#pragma warning(disable:4996)
 	FILE* f = fopen(filename.c_str(), "wb");
-#pragma warning(pop)
 	if (f == NULL)
 		return false;
 
@@ -1205,13 +1198,11 @@ std::string DoMd5String(const void* data, size_t size)
 	md5_finish(&ctx, digest);
 
 	char result[33];
-#pragma warning(push)
-#pragma warning(disable:4996)
+	
 	for (unsigned int i = 0; i < 16; i++)
 	{
 		sprintf(&result[i * 2], "%02x", digest[i]);
 	}
-#pragma warning(pop)
 
 	return result;
 }
@@ -1431,9 +1422,7 @@ bool SaveToPatch(const std::string& src, const char* data, int size, char type, 
 		std::string path;
 		std::string name;
 		ExtractPathName(src, path, name);
-
-#pragma warning(push)
-#pragma warning(disable:4996)
+	
 		static std::string lastDir;
 		if (lastDir != path)
 		{
@@ -1444,7 +1433,6 @@ bool SaveToPatch(const std::string& src, const char* data, int size, char type, 
 		}
 
 		sprintf(buf, "%c, %s, %s, %d, %d\n", type, name.c_str(), md5.c_str(), size, (int)csize);
-#pragma warning(pop)
 
 		filelist += buf;
 		ret = true;
@@ -1537,3 +1525,5 @@ bool UnpackFile(const std::string& file, char* buffer, char* compressBuffer)
 
 	return true;
 }
+
+#pragma warning(pop)

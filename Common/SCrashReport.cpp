@@ -1,5 +1,8 @@
 #include "SCrashReport.h"
+#pragma warning(push)
+#pragma warning(disable : 4091)	// warning C4091: “typedef ”: 没有声明变量时忽略“<unnamed-enum-hdBase>”的左侧
 #include <DbgHelp.h>
+#pragma warning(pop)
 #include <TlHelp32.h>
 #include <time.h>
 #include <Shlwapi.h>
@@ -63,6 +66,10 @@ struct DBG_HELP_AUTOLOAD
 	HMODULE					hDbgHelp;
 	MINIDUMP_WRITE_DUMP		pfnMiniDumpWriteDump;
 } theDbgHelper;
+
+
+#pragma warning(push)
+#pragma warning(disable:4996)
 
 DBG_HELP_AUTOLOAD::DBG_HELP_AUTOLOAD()
 {
@@ -540,3 +547,6 @@ BOOL CatchSEHException(PEXCEPTION_POINTERS pException, bool bRunCrashReport)
 
 	return TRUE;
 }
+
+
+#pragma warning(pop)

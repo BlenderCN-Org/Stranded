@@ -30,7 +30,7 @@
 #include <iosfwd>
 #include <string>
 #include <windows.h>
-#include <dbghelp.h>
+
 
 /** Symbol Engine wrapper to assist with processing PDB information */
 class SimpleSymbolEngine

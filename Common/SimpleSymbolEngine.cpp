@@ -32,7 +32,10 @@ COPYRIGHT
 #include <sstream>
 #include <cstddef>
 
+#pragma warning(push)
+#pragma warning(disable : 4091)	// warning C4091: “typedef ”: 没有声明变量时忽略“<unnamed-enum-hdBase>”的左侧
 #include <dbghelp.h>
+#pragma warning(pop)
 
 #pragma comment( lib, "dbghelp" )
 

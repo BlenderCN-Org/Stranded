@@ -3,10 +3,6 @@
 
 #include <Windows.h>
 
-#pragma warning(disable : 4996)	// unsafe warning
-#pragma warning(disable : 4018) // warning C4018: ¡°<¡±: ÓÐ·ûºÅ/ÎÞ·ûºÅ²»Æ¥Åä
-
-
 #include <stdio.h>
 #include <stdlib.h>
 

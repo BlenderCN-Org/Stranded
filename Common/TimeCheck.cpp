@@ -1,5 +1,5 @@
 #include "TimeCheck.h"
-#include "pubfun.h"
+#include "pubutil.h"
 
 #ifdef _MSC_VER
 #pragma comment(lib, "Winmm.lib")
