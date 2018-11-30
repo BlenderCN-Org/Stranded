@@ -10,7 +10,7 @@
 
 typedef struct _node {
 	int data;
-	_node* link;
+	node* link;
 } node;
 
 int main(int argc, char* argv[])
