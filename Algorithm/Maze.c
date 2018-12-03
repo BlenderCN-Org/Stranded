@@ -44,13 +44,13 @@ int g_mark[MAX_ROW][MAX_COL];
 int g_top;
 element g_stack[MAX_ROW*MAX_COL];
 
-void StackFull()
+static void StackFull()
 {
 	fprintf(stderr, "Stack is full, cannot add element!\n");
 	exit(EXIT_FAILURE);
 }
 
-void push(element item)
+static void push(element item)
 {
 	if (g_top >= MAX_ROW*MAX_COL - 1)
 		StackFull();
@@ -58,7 +58,7 @@ void push(element item)
 	g_stack[++g_top] = item;
 }
 
-element pop()
+static element pop()
 {
 	if (g_top == -1)
 	{
@@ -69,7 +69,7 @@ element pop()
 	return g_stack[g_top--];
 }
 
-void Init()
+static void Init()
 {
 	for (int i = 0; i < MAX_ROW; i++)
 		for (int j = 0; j < MAX_COL; j++)
@@ -144,7 +144,7 @@ void Init()
 }
 
 /* output a path through the maze if such a path exists */
-void Path()
+static void Path()
 {
 	int i, row, col, nextRow, nextCol, dir, found = FALSE;
 	element position;

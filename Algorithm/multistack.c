@@ -6,7 +6,7 @@ int g_top[MAX_STACKS];
 int g_boundary[MAX_STACKS];
 int g_n = 0;	/* number of stacks entered by the user */
 
-void Init()
+static void Init()
 {
 	g_top[0] = g_boundary[0] = -1;
 	/* 把数组分成长度基本相等的存储区 */
@@ -18,7 +18,7 @@ void Init()
 }
 
 /* add an item to te ith stack */
-void push(int i, element item)
+static void push(int i, element item)
 {
 	if (g_top[i] == g_boundary[i + 1])
 		stackFull(i);
@@ -26,12 +26,12 @@ void push(int i, element item)
 	g_memory[++g_top[i]] = item;
 }
 
-void stackFull(int i)
+static void stackFull(int i)
 {
 }
 
 /* remove top element from the ith stack */
-element pop(int i)
+static element pop(int i)
 {
 	if (g_top[i] == g_boundary[i])
 		return stackEmpty(i);
@@ -39,7 +39,7 @@ element pop(int i)
 	return g_memory[g_top[i]--];
 }
 
-element stackEmpty(int i)
+static element stackEmpty(int i)
 {
 	element emp = { 0 };
 	return emp;

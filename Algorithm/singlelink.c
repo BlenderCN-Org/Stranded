@@ -120,9 +120,9 @@ polyNode* PaddPolynomials(polyNode *a, polyNode *b)
 			b = b->link;
 			break;
 		case 0:		/* a->expon == b->expon */
-			sum = a->coef + b->coef;
+			sum = (int)(a->coef + b->coef);
 			if (sum)
-				AttachPolynomials(sum, a->expon, &rear);
+				AttachPolynomials((float)sum, a->expon, &rear);
 			a = a->link;
 			b = b->link;
 			break;
@@ -245,6 +245,8 @@ listNode* ConcatenateList(listNode* ptr1, listNode* ptr2)
 
 	/* link end of first to start of second */
 	temp->link = ptr2;
+
+	return temp;
 }
 
 //////////////////////////////////////////////////////////////////////////
