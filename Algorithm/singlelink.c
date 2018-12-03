@@ -6,7 +6,7 @@
 
 typedef struct _SListNode {
 	int data;
-	SListNode *link;
+	struct _SListNode *link;
 } SListNode;
 
 /* create a linked list with two nodes */
@@ -78,7 +78,7 @@ void printList(SListNode* first)
 typedef struct _polyNode {
 	float coef;	// 系数
 	int expon;	// 指数
-	polyNode *link;
+	struct _polyNode *link;
 }polyNode;
 
 /*
@@ -203,7 +203,7 @@ void NewErasePoly(polyNode **ptr, polyNode* avail)
 typedef struct _listNode
 {
 	char data;
-	listNode *link;
+	struct _listNode *link;
 } listNode;
 
 /*

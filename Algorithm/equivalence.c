@@ -10,9 +10,11 @@
 
 typedef struct _node {
 	int data;
-	node* link;
+	struct _node* link;
 } node;
 
+#pragma warning(push)
+#pragma warning(disable:4996)
 int main(int argc, char* argv[])
 {
 	// 指明是否已经打印了成员i
@@ -24,6 +26,7 @@ int main(int argc, char* argv[])
 
 	printf("Enter the size (<= %d)\n", MAX_SIZE);
 	scanf("%d", &n);
+
 	for (i = 0; i < n; i++)
 	{
 		/* initialize seq and out */
@@ -52,3 +55,4 @@ int main(int argc, char* argv[])
 
 	return EXIT_SUCCESS;
 }
+#pragma warning(pop)
