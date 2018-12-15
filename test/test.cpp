@@ -2,16 +2,16 @@
 #include <vector>
 #include <list>
 
-#include "../Common/TimeCheck.h"
-
-#pragma comment(lib, "../lib/Common.lib")
-
-static const int si_len = 9000;
+//#include "../Common/TimeCheck.h"
+//
+//#pragma comment(lib, "../lib/Common.lib")
+//
+//static const int si_len = 9000;
 
 
 int main(int argc, char* argv[])
 {
-	if (argc > 0)
+	/*if (argc > 0)
 	{
 
 	}
@@ -66,7 +66,15 @@ int main(int argc, char* argv[])
 
 	double dLastTime2 = chk.QueryPerformanceEnd();
 
-	std::cout << "list int: " << dLastTime2 << std::endl;
+	std::cout << "list int: " << dLastTime2 << std::endl;*/
+
+	float a = 0.17f;
+	int b = (int)a;
+
+	float c = -1.7f;
+	int d = (int)c;
+
+	std::cout << "b=" << b << "d=" << d << std::endl;
 	
 
 	return 0;
