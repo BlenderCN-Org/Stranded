@@ -19,6 +19,49 @@
     </ClCompile>
     <ClCompile Include="SimpleSymbolEngine.cpp" />
     <ClCompile Include="pubutil.cpp" />
+    <ClCompile Include="lua\CCComponentLua.cpp" />
+    <ClCompile Include="lua\CCLuaBridge.cpp" />
+    <ClCompile Include="lua\CCLuaEngine.cpp" />
+    <ClCompile Include="lua\CCLuaStack.cpp" />
+    <ClCompile Include="lua\CCLuaValue.cpp" />
+    <ClCompile Include="lua\Cocos2dxLuaLoader.cpp" />
+    <ClCompile Include="lua\LuaBasicConversions.cpp" />
+    <ClCompile Include="lua\tolua_fix.cpp" />
+    <ClCompile Include="zlib\adler32.c" />
+    <ClCompile Include="zlib\compress.c" />
+    <ClCompile Include="zlib\crc32.c" />
+    <ClCompile Include="zlib\deflate.c" />
+    <ClCompile Include="zlib\gzclose.c" />
+    <ClCompile Include="zlib\gzlib.c" />
+    <ClCompile Include="zlib\gzread.c" />
+    <ClCompile Include="zlib\gzwrite.c" />
+    <ClCompile Include="zlib\infback.c" />
+    <ClCompile Include="zlib\inffast.c" />
+    <ClCompile Include="zlib\inflate.c" />
+    <ClCompile Include="zlib\inftrees.c" />
+    <ClCompile Include="zlib\trees.c" />
+    <ClCompile Include="zlib\uncompr.c" />
+    <ClCompile Include="zlib\zutil.c" />
+    <ClCompile Include="callclassExportDll.cpp" />
+    <ClCompile Include="base64.cpp" />
+    <ClCompile Include="createopencldll.cpp" />
+    <ClCompile Include="createopencvdll.cpp" />
+    <ClCompile Include="ddex.cpp" />
+    <ClCompile Include="def.cpp" />
+    <ClCompile Include="FileOperator.cpp" />
+    <ClCompile Include="flexibletest.cpp" />
+    <ClCompile Include="gamewindow.cpp" />
+    <ClCompile Include="GeneratingFunction.cpp" />
+    <ClCompile Include="gui3d.cpp" />
+    <ClCompile Include="Gui3d2.cpp" />
+    <ClCompile Include="gui3d3.cpp" />
+    <ClCompile Include="gui16.cpp" />
+    <ClCompile Include="KChinese.cpp" />
+    <ClCompile Include="luaCompile.cpp" />
+    <ClCompile Include="malloc.c" />
+    <ClCompile Include="md5.c" />
+    <ClCompile Include="testSimpleSymbolEngine.cpp" />
+    <ClCompile Include="xxtea.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h" />
@@ -44,6 +87,36 @@
     </ClInclude>
     <ClInclude Include="SimpleSymbolEngine.h" />
     <ClInclude Include="Param.h" />
+    <ClInclude Include="lua\CCComponentLua.h" />
+    <ClInclude Include="lua\CCLuaBridge.h" />
+    <ClInclude Include="lua\CCLuaEngine.h" />
+    <ClInclude Include="lua\CCLuaStack.h" />
+    <ClInclude Include="lua\CCLuaValue.h" />
+    <ClInclude Include="lua\Cocos2dxLuaLoader.h" />
+    <ClInclude Include="lua\LuaBasicConversions.h" />
+    <ClInclude Include="lua\tolua_fix.h" />
+    <ClInclude Include="zlib\crc32.h" />
+    <ClInclude Include="zlib\deflate.h" />
+    <ClInclude Include="zlib\gzguts.h" />
+    <ClInclude Include="zlib\inffast.h" />
+    <ClInclude Include="zlib\inffixed.h" />
+    <ClInclude Include="zlib\inflate.h" />
+    <ClInclude Include="zlib\inftrees.h" />
+    <ClInclude Include="zlib\trees.h" />
+    <ClInclude Include="zlib\zconf.h" />
+    <ClInclude Include="zlib\zlib.h" />
+    <ClInclude Include="zlib\zutil.h" />
+    <ClInclude Include="base64.h" />
+    <ClInclude Include="createopencldll.h" />
+    <ClInclude Include="createopencvdll.h" />
+    <ClInclude Include="flexible.h" />
+    <ClInclude Include="gui16.h" />
+    <ClInclude Include="IKPerson.h" />
+    <ClInclude Include="KChinese.h" />
+    <ClInclude Include="luaCompile.h" />
+    <ClInclude Include="malloc.h" />
+    <ClInclude Include="md5.h" />
+    <ClInclude Include="xxtea.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
