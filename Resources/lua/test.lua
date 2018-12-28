@@ -645,48 +645,48 @@ GetArg(1, 2)
 -- print(_VERSION)
 -- io.popen("luai.exe -v")
 --------------------------loop-------------------------
--- 一个table
-local languages =
-{
-	"lua",
-	"c",
-	"c++",
-	"java",
-	"python",
-}
-local elementnum = #(languages)
+-- -- 一个table
+-- local languages =
+-- {
+-- 	"lua",
+-- 	"c",
+-- 	"c++",
+-- 	"java",
+-- 	"python",
+-- }
+-- local elementnum = #(languages)
 
--- while 循环
-print("\nwhile loop result:")
+-- -- while 循环
+-- print("\nwhile loop result:")
 
-local index = 1
-while index <= elementnum do
-	print("[" .. index .. "] = " .. languages[index])
-	index = index + 1
-end
+-- local index = 1
+-- while index <= elementnum do
+-- 	print("[" .. index .. "] = " .. languages[index])
+-- 	index = index + 1
+-- end
 
--- repeat 循环
-print("\nrepeat loop result:")
+-- -- repeat 循环
+-- print("\nrepeat loop result:")
 
-index = 1
-repeat
-	print("[" .. index .. "] = " .. languages[index])
-	index = index + 1
-until index > elementnum
+-- index = 1
+-- repeat
+-- 	print("[" .. index .. "] = " .. languages[index])
+-- 	index = index + 1
+-- until index > elementnum
 
--- for 循环
-print("\nfor loop result:")
+-- -- for 循环
+-- print("\nfor loop result:")
 
-for i = 1,elementnum,1 do
-	print("[" .. i .. "] = " .. languages[i])
-end
+-- for i = 1,elementnum,1 do
+-- 	print("[" .. i .. "] = " .. languages[i])
+-- end
 
--- generic for 循环
-print("\ngeneric for loop result:")
-for i,value in ipairs(languages) do
-	print("[" .. i .. "] = " .. value)
-end
-print('-----pairs------')
-for i,value in pairs(languages) do
-	print("[" .. i .. "] = " .. value)
-end
+-- -- generic for 循环
+-- print("\ngeneric for loop result:")
+-- for i,value in ipairs(languages) do
+-- 	print("[" .. i .. "] = " .. value)
+-- end
+-- print('-----pairs------')
+-- for i,value in pairs(languages) do
+-- 	print("[" .. i .. "] = " .. value)
+-- end
