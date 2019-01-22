@@ -123,3 +123,63 @@ done:
 // 编译 Debug 版本 clang simplest.cpp -o outsimplest
 // 优化的 Release 版本构建：clang simplest.cpp -o outsimplest -O2
 
+// 加入代码调用并返回下一个三元数组
+struct pytriples
+{
+	pytriples() : x(1), y(1), z(1) {}
+
+	void next()
+	{
+		do 
+		{
+			if (y <= z)
+				++y;
+			else
+			{
+				if (x <= z)
+					++x;
+				else
+				{
+					x = 1;
+					++z;
+				}
+				y = x;
+			}
+		} while (x*x+y*y != z*z);
+	}
+
+	int x, y, z;
+};
+
+int main()
+{
+	clock_t t0 = clock();
+
+	pytriples py;
+	for (int c = 0; c < 100; ++c)
+	{
+		py.next();
+		printf("(%i,%i,%i)\n", py.x, py.y, py.z);
+	}
+
+	clock_t t1 = clock();
+	printf("%ims\n", (int)(t1 - t0) * 1000 / CLOCKS_PER_SEC);
+	return 0;
+}
+
+// 伪  C++ coroutine 实现三元组生成器
+generator<std::tuple<int, int, int>> pytriples()
+
+{
+
+	for (int z = 1; ; ++z)
+
+		for (int x = 1; x <= z; ++x)
+
+			for (int y = x; y <= z; ++y)
+
+				if (x*x + y * y == z * z)
+
+					co_yield std::make_tuple(x, y, z);
+
+}
