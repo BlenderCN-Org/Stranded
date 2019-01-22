@@ -183,3 +183,112 @@ generator<std::tuple<int, int, int>> pytriples()
 					co_yield std::make_tuple(x, y, z);
 
 }
+
+// clang ranges.cpp -I. -std=c++17 -lc++ -o outranges
+// clang ranges.cpp -I. -std=c++17 -lc++ -o outranges -O2
+// isrange-v3
+// 通过避免 STL 位（提交），可以让最终运行时快 10 倍，也可以让编译时间更快且调试更容易，
+// 因为微软的 STL 实现特别喜欢深度嵌套的函数调用。这并不是说 STL 必然不好，
+// 有可能编写 STL 实现在非优化版本中不会变慢 10 倍（如 EASTL 或 libc ++ 那样），
+// 但由于微软的 STL 过度依赖深度嵌套，因此会变慢。
+// ranges.cpp#include <time.h>#include <stdio.h>#include <range/v3/all.hpp>
+
+using namespace ranges;
+
+int main() {
+
+	clock_t t0 = clock();
+
+
+
+	auto triples = view::for_each(view::ints(1), {
+
+		return view::for_each(view::ints(1, z + 1), = {
+
+			return view::for_each(view::ints(x, z + 1), = {
+
+				return yield_if(x * x + y * y == z * z,
+
+					std::make_tuple(x, y, z));
+
+			});
+
+		});
+
+		});
+
+
+
+	RANGES_FOR(auto triple, triples | view::take(100))
+
+	{
+
+		printf("(%i,%i,%i)\n", std::get<0>(triple), std::get<1>(triple), std::get<2>(triple));
+
+	}
+
+
+
+	clock_t t1 = clock();
+
+	printf("%ims\n", (int)(t1 - t0) * 1000 / CLOCKS_PER_SEC);
+
+	return 0;
+
+}
+
+
+//  C＃中“毕达哥拉斯三元数组”实现
+
+using System; using System.Diagnostics; using System.Linq;
+
+class Program
+
+{
+
+	public static void Main()
+
+	{
+
+		var timer = Stopwatch.StartNew();
+
+		var triples =
+
+			from z in Enumerable.Range(1, int.MaxValue)
+
+			from x in Enumerable.Range(1, z)
+
+			from y in Enumerable.Range(x, z)
+
+		where x*x + y * y == z * z
+
+			select(x:x, y : y, z : z);
+
+		foreach(var t in triples.Take(100))
+
+		{
+
+			Console.WriteLine($"({t.x},{t.y},{t.z})");
+
+		}
+
+		timer.Stop();
+
+		Console.WriteLine($"{timer.ElapsedMilliseconds}ms");
+
+	}
+
+}
+
+// C＃LINQ 的另一种“数据库较少”的形式
+
+var triples = Enumerable.Range(1, int.MaxValue)
+
+.SelectMany(z = > Enumerable.Range(1, z), (z, x) = > new {z, x})
+
+.SelectMany(t = > Enumerable.Range(t.x, t.z), (t, y) = > new {t, y})
+
+.Where(t = > t.t.x * t.t.x + t.y * t.y == t.t.z * t.t.z)
+
+.Select(t = > (x: t.t.x, y : t.y, z : t.t.z));
+
