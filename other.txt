@@ -10,9 +10,4 @@ https://learnopengl-cn.github.io/01%20Getting%20started/04%20Hello%20Triangle/
 https://github.com/appleseedhq/appleseed/wiki/Building-appleseed-on-Windows
 
 
--- qt
-http://doc.qt.io/qt-5/build-sources.html
-http://code.qt.io/cgit/
-https://wiki.qt.io/Building_Qt_5_from_Git/zh
-https://wiki.qt.io/Building_Qt_Creator_from_Git/zh
-git.exe clone --progress -v "git://code.qt.io/qt-creator/qt-creator.git" "D:\program\qt-creator"
+
