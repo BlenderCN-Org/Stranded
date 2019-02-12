@@ -12,10 +12,10 @@ git.exe pull --progress -v --no-rebase "origin"
 cd "D:\program\icu"
 git.exe pull --progress -v --no-rebase "origin"
 
-cd "D:\program\12306"
+cd "D:\program\Stranded"
 git.exe pull --progress -v --no-rebase "origin"
 
-cd "D:\program\Stranded"
+cd "D:\program\Stranded\12306"
 git.exe pull --progress -v --no-rebase "origin"
 
 cd "D:\program\Stranded\ThirdParty\nedmalloc"
