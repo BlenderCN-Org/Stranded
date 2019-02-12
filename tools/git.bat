@@ -15,9 +15,6 @@ git.exe pull --progress -v --no-rebase "origin"
 cd "D:\program\Stranded"
 git.exe pull --progress -v --no-rebase "origin"
 
-cd "D:\program\Stranded\12306"
-git.exe pull --progress -v --no-rebase "origin"
-
 cd "D:\program\Stranded\ThirdParty\nedmalloc"
 git.exe pull --progress -v --no-rebase "origin"
 
@@ -32,6 +29,9 @@ git.exe pull --progress -v --no-rebase "origin"
 git.exe submodule update --progress --init -- "thirdparty/gtest"
 
 cd "D:\program\Stranded\ThirdParty\tinyxml2"
+git.exe pull --progress -v --no-rebase "origin"
+
+cd "D:\program\Stranded\tools\12306"
 git.exe pull --progress -v --no-rebase "origin"
 
 cd "D:\program\Stranded\tools\decoda"
