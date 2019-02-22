@@ -8,6 +8,7 @@
 //
 //static const int si_len = 9000;
 
+// Comparing a signed and unsigned number required the compiler to convert the signed value to unsigned.
 
 int main(int argc, char* argv[])
 {
@@ -68,13 +69,13 @@ int main(int argc, char* argv[])
 
 	std::cout << "list int: " << dLastTime2 << std::endl;*/
 
-	float a = 0.17f;
+	/*float a = 0.17f;
 	int b = (int)a;
 
 	float c = -1.7f;
 	int d = (int)c;
 
-	std::cout << "b=" << b << "d=" << d << std::endl;
+	std::cout << "b=" << b << "d=" << d << std::endl;*/
 	
 
 	return 0;
