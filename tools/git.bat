@@ -57,6 +57,7 @@ git.exe submodule update --recursive --progress
 cd "D:\program\qt5\qt-creator"
 git.exe pull --progress -v --no-rebase "origin" master
 git.exe submodule update --progress --init -- "src/shared/qbs"
+git.exe submodule update --progress --init -- "src/tools/perfparser"
 
 cd "D:\program\ucc"
 TortoiseProc.exe /command:update /path:D:\program\ucc /closeonend:1
