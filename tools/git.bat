@@ -3,8 +3,8 @@ echo Pulling git
 d:
 cd "D:\program\protobuf"
 git.exe pull --progress -v --no-rebase "origin"
-git.exe submodule update --init -- "third_party/benchmark"
-git.exe submodule update --init -- "third_party/googletest"
+git.exe submodule update  --progress
+
 
 cd "D:\program\llvm"
 git.exe pull --progress -v --no-rebase "origin"
@@ -29,7 +29,7 @@ git.exe pull --progress -v --no-rebase "origin"
 
 cd "D:\program\Stranded\ThirdParty\rapidjson"
 git.exe pull --progress -v --no-rebase "origin"
-git.exe submodule update --progress --init -- "thirdparty/gtest"
+git.exe submodule update --progress
 
 cd "D:\program\Stranded\ThirdParty\tinyxml2"
 git.exe pull --progress -v --no-rebase "origin"
@@ -59,8 +59,7 @@ git.exe submodule update --recursive --progress
 
 cd "D:\program\qt5\qt-creator"
 git.exe pull --progress -v --no-rebase "origin" master
-git.exe submodule update --progress --init -- "src/shared/qbs"
-git.exe submodule update --progress --init -- "src/tools/perfparser"
+git.exe submodule update --progress
 
 cd "D:\program\ucc"
 TortoiseProc.exe /command:update /path:D:\program\ucc /closeonend:1
