@@ -5,6 +5,10 @@ cd "D:\program\protobuf"
 git.exe pull --progress -v --no-rebase "origin"
 git.exe submodule update  --progress
 
+cd "D:\program\boost"
+git.exe pull --progress -v --no-rebase "origin"
+git.exe submodule sync
+git.exe submodule update --recursive --progress
 
 cd "D:\program\llvm"
 git.exe pull --progress -v --no-rebase "origin"
