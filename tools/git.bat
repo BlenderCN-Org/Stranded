@@ -1,4 +1,4 @@
-echo Pulling git
+@echo Pulling git
 
 d:
 cd "D:\program\protobuf"
