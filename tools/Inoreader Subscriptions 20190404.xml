@@ -31,7 +31,6 @@
     <outline text="奇虎360技术博客" title="奇虎360技术博客" type="rss" xmlUrl="http://blogs.360.cn/rss.html" htmlUrl="http://blogs.360.cn/"/>
     <outline text="oRbIt 的专栏" title="oRbIt 的专栏" type="rss" xmlUrl="http://blog.csdn.net/orbit/rss/list" htmlUrl="http://blog.csdn.net/orbit"/>
     <outline text="C++博客-Cpper" title="C++博客-Cpper" type="rss" xmlUrl="http://www.cppblog.com/gaimor/rss.aspx" htmlUrl="http://www.cppblog.com/gaimor/"/>
-    <outline text="Software Engineering Radio - the podcast for professional software developers" title="Software Engineering Radio - the podcast for professional software developers" type="rss" xmlUrl="http://feeds.feedburner.com/se-radio" htmlUrl="http://www.se-radio.net/"/>
     <outline text="C++博客-天行健      君子当自强而不息" title="C++博客-天行健      君子当自强而不息" type="rss" xmlUrl="http://www.cppblog.com/lovedday/Rss.aspx" htmlUrl="http://www.cppblog.com/lovedday/"/>
     <outline text="Open source collabrative network" title="Open source collabrative network" type="rss" xmlUrl="http://feeds.feedburner.com/findbestopensource" htmlUrl="http://www.findbestopensource.com/"/>
     <outline text="博客 - 伯乐在线" title="博客 - 伯乐在线" type="rss" xmlUrl="http://blog.jobbole.com/feed" htmlUrl="http://blog.jobbole.com/"/>
